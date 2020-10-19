@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Snoire" />
+  
+  
+  <title>Snoire&#39; Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Blog" />
+  
+
+  
+  <meta name="description" content="Snoire&#39;s Blog">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"53Hsawr9k3ISwmY0drKzCs2F-gzGzoHsz","appkey":"SjrIApaUKrCn5iS0dmM0qJ8L","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2019-10-08 20:01:24",
+    passwords: ["cc8f2b7a1d1a757235e2c7b58b0b1dc1a721eb34c8d06a386d50b654522393d1", ],
+    is_post: false,
+    lock: false,
+    author: "Snoire",
+    share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Snoire</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 观察改变世界</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/snoire/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      <div class="home">
+  
+    <div class="home-article-wrapper clearfix">
+      <div class="home-article" data-cover="false">
+        <div class="home-article-inner" data-cover="false">
+          <div class="passage-meta">
+            <span>
+              <i class="fa fa-calendar"></i>2020-10-19
+            </span>
+            
+            
+              <span>
+                | <i class="fa fa-unlock-alt"></i>UNLOCK
+              </span>
+            
+          </div>
+          <h1 class="home-article-title">
+            <a href="/passages/hello-world/">Hello World</a>
+          </h1>
+          <div class="home-article-content passage-article">
+            
+              
+            
+          </div>
+          <a class="home-article-read" href="/passages/hello-world/">
+            READ MORE >>>
+          </a>
+          
+        </div>
+        
+      </div>
+    </div>
+  
+    <div class="home-article-wrapper clearfix">
+      <div class="home-article" data-cover="false">
+        <div class="home-article-inner" data-cover="false">
+          <div class="passage-meta">
+            <span>
+              <i class="fa fa-calendar"></i>2020-03-12
+            </span>
+            
+              <span>
+                | <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="fa fa-bookmark"></i>笔记</a>
+              </span>
+            
+            
+              <span>
+                | <i class="fa fa-unlock-alt"></i>UNLOCK
+              </span>
+            
+          </div>
+          <h1 class="home-article-title">
+            <a href="/passages/TCP-IP_Overview/">TCP-IP_Overview</a>
+          </h1>
+          <div class="home-article-content passage-article">
+            
+              <p>TCP/IP Overview</p>
+            
+          </div>
+          <a class="home-article-read" href="/passages/TCP-IP_Overview/">
+            READ MORE >>>
+          </a>
+          
+            <div class="passage-tags">
+             
+              <a href="/tags/TCP-IP/"><i class="fa fa-tags"></i>TCP/IP</a>
+            
+            </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  
+    <div class="home-article-wrapper clearfix">
+      <div class="home-article" data-cover="false">
+        <div class="home-article-inner" data-cover="false">
+          <div class="passage-meta">
+            <span>
+              <i class="fa fa-calendar"></i>2020-03-12
+            </span>
+            
+              <span>
+                | <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="fa fa-bookmark"></i>笔记</a>
+              </span>
+            
+            
+              <span>
+                | <i class="fa fa-unlock-alt"></i>UNLOCK
+              </span>
+            
+          </div>
+          <h1 class="home-article-title">
+            <a href="/passages/Address_Space/">TCP/IP: Address Space</a>
+          </h1>
+          <div class="home-article-content passage-article">
+            
+              <p>Address Space</p>
+            
+          </div>
+          <a class="home-article-read" href="/passages/Address_Space/">
+            READ MORE >>>
+          </a>
+          
+            <div class="passage-tags">
+             
+              <a href="/tags/TCP-IP/"><i class="fa fa-tags"></i>TCP/IP</a>
+            
+            </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  
+    <div class="home-article-wrapper clearfix">
+      <div class="home-article" data-cover="false">
+        <div class="home-article-inner" data-cover="false">
+          <div class="passage-meta">
+            <span>
+              <i class="fa fa-calendar"></i>2019-10-24
+            </span>
+            
+              <span>
+                | <a href="/categories/%E8%AE%B0%E5%BD%95/"><i class="fa fa-bookmark"></i>记录</a>
+              </span>
+            
+            
+              <span>
+                | <i class="fa fa-unlock-alt"></i>UNLOCK
+              </span>
+            
+          </div>
+          <h1 class="home-article-title">
+            <a href="/passages/overtime/">overtime</a>
+          </h1>
+          <div class="home-article-content passage-article">
+            
+              <p>第一个 C 语言项目</p>
+            
+          </div>
+          <a class="home-article-read" href="/passages/overtime/">
+            READ MORE >>>
+          </a>
+          
+            <div class="passage-tags">
+             
+              <a href="/tags/C/"><i class="fa fa-tags"></i>C</a>
+            
+            </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  
+    <div class="home-article-wrapper clearfix">
+      <div class="home-article" data-cover="false">
+        <div class="home-article-inner" data-cover="false">
+          <div class="passage-meta">
+            <span>
+              <i class="fa fa-calendar"></i>2019-10-18
+            </span>
+            
+              <span>
+                | <a href="/categories/%E8%AE%B0%E5%BD%95/"><i class="fa fa-bookmark"></i>记录</a>
+              </span>
+            
+            
+              <span>
+                | <i class="fa fa-lock"></i>LOCK
+              </span>
+            
+          </div>
+          <h1 class="home-article-title">
+            <a href="/passages/profile/">配置文件</a>
+          </h1>
+          <div class="home-article-content passage-article">
+            
+              <p>记录一下个人的配置文件</p>
+            
+          </div>
+          <a class="home-article-read" href="/passages/profile/">
+            READ MORE >>>
+          </a>
+          
+            <div class="passage-tags">
+             
+              <a href="/tags/zsh/"><i class="fa fa-tags"></i>zsh</a>
+             
+              <a href="/tags/fish/"><i class="fa fa-tags"></i>fish</a>
+             
+              <a href="/tags/vim/"><i class="fa fa-tags"></i>vim</a>
+             
+              <a href="/tags/config/"><i class="fa fa-tags"></i>config</a>
+            
+            </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  
+    <div class="home-article-wrapper clearfix">
+      <div class="home-article" data-cover="false">
+        <div class="home-article-inner" data-cover="false">
+          <div class="passage-meta">
+            <span>
+              <i class="fa fa-calendar"></i>2019-10-18
+            </span>
+            
+              <span>
+                | <a href="/categories/%E8%AE%B0%E5%BD%95/"><i class="fa fa-bookmark"></i>记录</a>
+              </span>
+            
+            
+              <span>
+                | <i class="fa fa-lock"></i>LOCK
+              </span>
+            
+          </div>
+          <h1 class="home-article-title">
+            <a href="/passages/EWMTA2.4/">EWMTA2.4</a>
+          </h1>
+          <div class="home-article-content passage-article">
+            
+              <p>测试加锁、备忘<br>密码提示：初始 sdc</p>
+            
+          </div>
+          <a class="home-article-read" href="/passages/EWMTA2.4/">
+            READ MORE >>>
+          </a>
+          
+            <div class="passage-tags">
+             
+              <a href="/tags/sdc/"><i class="fa fa-tags"></i>sdc</a>
+            
+            </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  
+    <div class="home-article-wrapper clearfix">
+      <div class="home-article" data-cover="false">
+        <div class="home-article-inner" data-cover="false">
+          <div class="passage-meta">
+            <span>
+              <i class="fa fa-calendar"></i>2019-10-17
+            </span>
+            
+              <span>
+                | <a href="/categories/%E4%B9%A6/"><i class="fa fa-bookmark"></i>书</a>
+              </span>
+            
+            
+              <span>
+                | <i class="fa fa-unlock-alt"></i>UNLOCK
+              </span>
+            
+          </div>
+          <h1 class="home-article-title">
+            <a href="/passages/Walden-whjxxl/">瓦尔登湖</a>
+          </h1>
+          <div class="home-article-content passage-article">
+            
+              <p>记得最早看的就是王家湘译的版本，但是网上找到的都不方便阅读，于是自己整理了一份。<br>标注部分有点不正常，鼠标停在上面会有信息出现，点击没反应，暂时不知道怎么办..</p>
+            
+          </div>
+          <a class="home-article-read" href="/passages/Walden-whjxxl/">
+            READ MORE >>>
+          </a>
+          
+            <div class="passage-tags">
+             
+              <a href="/tags/book/"><i class="fa fa-tags"></i>book</a>
+            
+            </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  
+    <div class="home-article-wrapper clearfix">
+      <div class="home-article" data-cover="false">
+        <div class="home-article-inner" data-cover="false">
+          <div class="passage-meta">
+            <span>
+              <i class="fa fa-calendar"></i>2019-10-14
+            </span>
+            
+              <span>
+                | <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="fa fa-bookmark"></i>笔记</a>
+              </span>
+            
+            
+              <span>
+                | <i class="fa fa-unlock-alt"></i>UNLOCK
+              </span>
+            
+          </div>
+          <h1 class="home-article-title">
+            <a href="/passages/Learning-notes/">学习笔记</a>
+          </h1>
+          <div class="home-article-content passage-article">
+            
+              <p>自入职以来的笔记。<br>其中，C 语言部分主要参考 <a target="_blank" rel="noopener" href="http://c.biancheng.net/c/">C 语言中文网</a> 以及 <a target="_blank" rel="noopener" href="http://akaedu.github.io/book/">Linux C 编程一站式学习</a>；<br>Makefile 语法参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/haoel/article/details/2886/">跟我一起写 Makefile</a>；<br>Linux 命令部分主要参考《LINUX 与 UNIX-SHELL 编程指南》。</p>
+            
+          </div>
+          <a class="home-article-read" href="/passages/Learning-notes/">
+            READ MORE >>>
+          </a>
+          
+            <div class="passage-tags">
+             
+              <a href="/tags/C/"><i class="fa fa-tags"></i>C</a>
+             
+              <a href="/tags/notes/"><i class="fa fa-tags"></i>notes</a>
+             
+              <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+             
+              <a href="/tags/Makefile/"><i class="fa fa-tags"></i>Makefile</a>
+            
+            </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  
+    <div class="home-article-wrapper clearfix">
+      <div class="home-article" data-cover="false">
+        <div class="home-article-inner" data-cover="false">
+          <div class="passage-meta">
+            <span>
+              <i class="fa fa-calendar"></i>2019-10-11
+            </span>
+            
+              <span>
+                | <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="fa fa-bookmark"></i>笔记</a>
+              </span>
+            
+            
+              <span>
+                | <i class="fa fa-unlock-alt"></i>UNLOCK
+              </span>
+            
+          </div>
+          <h1 class="home-article-title">
+            <a href="/passages/Debian-cmd/">初识 Linux</a>
+          </h1>
+          <div class="home-article-content passage-article">
+            
+              <p>很久之前的记录，主要是使用 Linux 时遇到的一些问题</p>
+            
+          </div>
+          <a class="home-article-read" href="/passages/Debian-cmd/">
+            READ MORE >>>
+          </a>
+          
+            <div class="passage-tags">
+             
+              <a href="/tags/notes/"><i class="fa fa-tags"></i>notes</a>
+             
+              <a href="/tags/Debian/"><i class="fa fa-tags"></i>Debian</a>
+             
+              <a href="/tags/Linux/"><i class="fa fa-tags"></i>Linux</a>
+            
+            </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  
+</div>
+    </main>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: snoire@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="javascript:void(0);" data-enable="false">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

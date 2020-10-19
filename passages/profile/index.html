@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Snoire" />
+  
+  
+  <title>配置文件 | Snoire&#39; Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="记录,zsh,fish,vim,config," />
+  
+
+  
+  <meta name="description" content="记录一下个人的配置文件">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"53Hsawr9k3ISwmY0drKzCs2F-gzGzoHsz","appkey":"SjrIApaUKrCn5iS0dmM0qJ8L","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2019-10-08 20:01:24",
+    passwords: ["cc8f2b7a1d1a757235e2c7b58b0b1dc1a721eb34c8d06a386d50b654522393d1", ],
+    is_post: true,
+    lock: true,
+    author: "Snoire",
+    share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Snoire</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 观察改变世界</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/snoire/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-10-18
+    </span>
+    
+      <span>
+        | <a href="/categories/%E8%AE%B0%E5%BD%95/"><i class="fa fa-bookmark"></i>记录</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-lock"></i>LOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    配置文件
+  </h1>
+  
+  <article class="passage-article">
+    <p>我刚开始的时候一直使用 bash，在安装 Manjaro 的时候试用了一下 zsh，感觉很不习惯它的提示符，又换了回去。。</p>
+<p>前段时间，又看到有人推荐 zsh，感觉它的命令高亮和提示很不错，尝试用了一段时间就再也不想使用单调的 bash 了。</p>
+<p>也用过 fish，开箱即用，不用额外装什么插件，可惜有些语法和 bash 不兼容。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Snoire/profile">项目地址</a></p>
+<h2 id="zsh-配置"><a href="#zsh-配置" class="headerlink" title="zsh 配置"></a>zsh 配置</h2><p>刚装完 zsh 简直光秃秃的，什么也没有，必须要额外安装两个插件： <code>zsh-syntax-highlighting</code> 和 <code>zsh-autosuggestions</code>。一个高亮，一个自动补全。</p>
+<p>以 Debian/testing 为例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ su</span><br><span class="line">$ </span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-syntax-highlighting/Debian_Testing/ /&#x27;</span> &gt; /etc/apt/sources.list.d/shells:zsh-users:zsh-syntax-highlighting.list</span><br><span class="line">$ wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-syntax-highlighting/Debian_Testing/Release.key -O Release.key</span><br><span class="line">$ apt-key add - &lt; Release.key</span><br><span class="line">$ </span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&#x27;deb http://download.opensuse.org/repositories/shells:/zsh-users:/zsh-autosuggestions/Debian_Testing/ /&#x27;</span> &gt; /etc/apt/sources.list.d/shells:zsh-users:zsh-autosuggestions.list</span><br><span class="line">$ wget -nv https://download.opensuse.org/repositories/shells:zsh-users:zsh-autosuggestions/Debian_Testing/Release.key -O Release.key</span><br><span class="line">$ apt-key add - &lt; Release.key</span><br><span class="line">$ </span><br><span class="line">$ apt update</span><br><span class="line">$ apt install zsh-syntax-highlighting zsh-autosuggestions</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
+
+<p>这就装好了，但还不算完，还需要在 <code>～/.zshrc</code> 里面加上两句话：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [[ -s <span class="string">&#x27;/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh&#x27;</span>  ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">source</span> <span class="string">&#x27;/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh&#x27;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ -s <span class="string">&#x27;/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&#x27;</span>  ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">source</span> <span class="string">&#x27;/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&#x27;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p><code>zsh-autosuggestions.zsh</code> 和 <code>zsh-syntax-highlighting.zsh</code> 这两个文件也可能不在 <code>/usr/share</code> 路径下，自己找一下，替换一下就可以了。</p>
+<p>参考:  <a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md">zsh-autosuggestions-installation</a>    <a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md">zsh-syntax-highlighting-installation</a></p>
+<p>贴一下完整的 <code>～/.zshrc</code> 文件，需要注意一点，修改提示符那里，<code>^[</code> 是特殊字符，代表 <code>ESC</code> 这个键，需要在 <code>vim</code> 里按 <code>Ctrl+v</code>，再按 <code>Ctrl+[</code> 打出来。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Use emacs keybindings even if our EDITOR is set to vi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">bindkey</span> -e</span><br><span class="line"></span><br><span class="line"><span class="comment">#Tell zsh not to nice background processes. https://github.com/Microsoft/WSL/issues/1887</span></span><br><span class="line"><span class="built_in">unsetopt</span> BG_NICE</span><br><span class="line"></span><br><span class="line"><span class="comment"># Keep 1000 lines of history within the shell and save it to ~/.zsh_history:</span></span><br><span class="line"></span><br><span class="line">HISTSIZE=1000</span><br><span class="line">SAVEHIST=1000</span><br><span class="line">HISTFILE=~/.zsh_history</span><br><span class="line"></span><br><span class="line"><span class="built_in">setopt</span> HIST_IGNORE_DUPS   <span class="comment">#清除重复条目</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Use modern completion system</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">autoload</span> -Uz compinit</span><br><span class="line">compinit</span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> menu select     <span class="comment">#For autocompletion with an arrow-key driven interface</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> auto-description <span class="string">&#x27;specify: %d&#x27;</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> completer _expand _complete _correct _approximate</span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> format <span class="string">&#x27;Completing %d&#x27;</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> group-name <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> menu select=2</span><br><span class="line"><span class="built_in">eval</span> <span class="string">&quot;<span class="subst">$(dircolors -b)</span>&quot;</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*:default&#x27;</span> list-colors <span class="variable">$&#123;(s.:.)LS_COLORS&#125;</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> list-colors <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> list-prompt %SAt %p: Hit TAB <span class="keyword">for</span> more, or the character to insert%s</span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> matcher-list <span class="string">&#x27;&#x27;</span> <span class="string">&#x27;m:&#123;a-z&#125;=&#123;A-Z&#125;&#x27;</span> <span class="string">&#x27;m:&#123;a-zA-Z&#125;=&#123;A-Za-z&#125;&#x27;</span> <span class="string">&#x27;r:|[._-]=* r:|=* l:|=*&#x27;</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> menu select=long</span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> select-prompt %SScrolling active: current selection at %p%s</span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> use-compctl <span class="literal">false</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*&#x27;</span> verbose <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*:*:kill:*:processes&#x27;</span> list-colors <span class="string">&#x27;=(#b) #([0-9]#)*=0=01;31&#x27;</span></span><br><span class="line"><span class="built_in">zstyle</span> <span class="string">&#x27;:completion:*:kill:*&#x27;</span> <span class="built_in">command</span> <span class="string">&#x27;ps -u $USER -o pid,%cpu,tty,cputime,cmd&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Disable correction</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">unsetopt</span> correct_all</span><br><span class="line"><span class="built_in">unsetopt</span> correct</span><br><span class="line">DISABLE_CORRECTION=<span class="string">&quot;true&quot;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">## User Settings</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#配置环境变量</span></span><br><span class="line"><span class="built_in">export</span> PATH=/usr/share/safe-rm/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#命令别名</span></span><br><span class="line"><span class="built_in">alias</span> cp=<span class="string">&#x27;cp -i&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> mv=<span class="string">&#x27;mv -i&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> rm=<span class="string">&#x27;/usr/bin/safe-rm -i&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">&#x27;/bin/ls --color=auto --group-directories-first&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">&#x27;ls -A&#x27;</span>         <span class="comment"># Lists hidden files.</span></span><br><span class="line"><span class="built_in">alias</span> lf=<span class="string">&#x27;ls -F&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">&#x27;ls -lh&#x27;</span>        <span class="comment"># Lists human readable sizes.</span></span><br><span class="line"><span class="built_in">alias</span> lc=<span class="string">&#x27;ll -c&#x27;</span>         <span class="comment"># Lists sorted by date, most recent last, shows change time.</span></span><br><span class="line"><span class="built_in">alias</span> lu=<span class="string">&#x27;ll -u&#x27;</span>         <span class="comment"># Lists sorted by date, most recent last, shows access time.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">alias</span> tree=<span class="string">&#x27;tree --dirsfirst&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">&#x27;grep --color=auto&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> python=<span class="string">&#x27;/usr/bin/python3&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> ipv4=<span class="string">&#x27;ifconfig eth0 | grep &#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27;inet &#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27; | sed &#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27;s/^.*inet //g&#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27; | sed &#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27;s/netmask.*$//g&#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> ipv6=<span class="string">&#x27;ifconfig eth0 | grep &#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27;inet6 &#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27; | sed &#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27;s/^.*inet6 //g&#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27; | sed &#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27;s/prefixlen.*$//g&#x27;</span><span class="string">&quot;&#x27;&quot;</span><span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> now=<span class="string">&#x27;date &quot;+%H:%M:%S&quot;&#x27;</span></span><br><span class="line"><span class="comment">#alias debv=&#x27;lsb_release -idrc&#x27;</span></span><br><span class="line"><span class="comment">#alias debv=&#x27;printf &quot;%-15s %s\n&quot; &quot;Kernel:&quot; `uname -o` &amp;&amp; printf &quot;%-15s %s\n&quot; &quot;Machine:&quot; `uname -m` &amp;&amp; printf &quot;%-15s %s\n&quot; &quot;Hostname:&quot; `uname -n` &amp;&amp; printf &quot;%-15s %s\n&quot; &quot;Kernel release:&quot; `uname -r` &amp;&amp; lsb_release -idrc&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> <span class="built_in">where</span>=<span class="string">&#x27;whereis&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">alias</span> cdf=<span class="string">&#x27;cd $(find * -type d | fzf)&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> vif=<span class="string">&#x27;vim $(fzf)&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">debv</span></span>()&#123;</span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&quot;%-15s %s\n&quot;</span> <span class="string">&quot;Kernel:&quot;</span> `uname -o`</span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&quot;%-15s %s\n&quot;</span> <span class="string">&quot;Machine:&quot;</span> `uname -m`</span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&quot;%-15s %s\n&quot;</span> <span class="string">&quot;Hostname:&quot;</span> `uname -n`</span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&quot;%-15s %s\n&quot;</span> <span class="string">&quot;Kernel release:&quot;</span> `uname -r`</span><br><span class="line">    lsb_release -idrc</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># default keymap</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\eh&#x27;</span> backward-char</span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\el&#x27;</span> forward-char <span class="comment">#accept the suggestion</span></span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\ej&#x27;</span> down-line-or-history</span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\ek&#x27;</span> up-line-or-history</span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\en&#x27;</span> backward-word</span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\em&#x27;</span> forward-word <span class="comment">#partially accept the suggestion</span></span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\ei&#x27;</span> beginning-of-line</span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\eo&#x27;</span> end-of-line</span><br><span class="line"></span><br><span class="line"><span class="built_in">bindkey</span> -s <span class="string">&#x27;\e;&#x27;</span> <span class="string">&#x27;ll\n&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\e[1;3D&#x27;</span> backward-word <span class="comment">#Alt+左</span></span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\e[1;3C&#x27;</span> forward-word  <span class="comment">#Alt+右</span></span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\e[1;3A&#x27;</span> beginning-of-line</span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;\e[1;3B&#x27;</span> end-of-line</span><br><span class="line"></span><br><span class="line"><span class="comment">#windows title</span></span><br><span class="line"><span class="comment">#echo -n -e &quot;\033]0;Debian GNU/Linux\007&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$TERM</span> <span class="keyword">in</span></span><br><span class="line">  xterm*)</span><br><span class="line">    <span class="function"><span class="title">precmd</span></span> () &#123;<span class="built_in">print</span> -Pn <span class="string">&quot;\e]0;Debian: %~\a&quot;</span>&#125;</span><br><span class="line">    ;;</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#提示符,颜色分别为红黄青蓝</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$UID</span>&quot;</span> -eq 0  ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">export</span> PROMPT=<span class="string">&quot;%F&#123;red&#125;%# %f&quot;</span></span><br><span class="line"><span class="comment">#    export RPROMPT=&#x27;%&#123;^[[33m%&#125;%/%f&#x27;</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$UID</span>&quot;</span> -eq 1000 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">export</span> PROMPT=<span class="string">&quot;%&#123;^[[33m%&#125;\$ %f&quot;</span></span><br><span class="line"><span class="comment">#    export RPROMPT=&#x27;%&#123;^[[33m%&#125;%/%f&#x27;</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="string">&quot;<span class="variable">$UID</span>&quot;</span> -eq 1001 ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">export</span> PROMPT=<span class="string">&quot;%F&#123;118&#125;\$ %f&quot;</span></span><br><span class="line"><span class="comment">#    export RPROMPT=&#x27;%&#123;^[[33m%&#125;%/%f&#x27;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">export</span> PROMPT=<span class="string">&quot;%&#123;^[[32m%&#125;\$ %f&quot;</span></span><br><span class="line"><span class="comment">#    export RPROMPT=&#x27;%&#123;^[[33m%&#125;%/%f&#x27;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Highlight the man manual</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> LESS_TERMCAP_mb=$<span class="string">&#x27;\E[01;31m&#x27;</span></span><br><span class="line"><span class="built_in">export</span> LESS_TERMCAP_md=$<span class="string">&#x27;\E[01;31m&#x27;</span></span><br><span class="line"><span class="built_in">export</span> LESS_TERMCAP_me=$<span class="string">&#x27;\E[0m&#x27;</span></span><br><span class="line"><span class="built_in">export</span> LESS_TERMCAP_se=$<span class="string">&#x27;\E[0m&#x27;</span></span><br><span class="line"><span class="built_in">export</span> LESS_TERMCAP_so=$<span class="string">&#x27;\E[00;47;30m&#x27;</span></span><br><span class="line"><span class="built_in">export</span> LESS_TERMCAP_ue=$<span class="string">&#x27;\E[0m&#x27;</span></span><br><span class="line"><span class="built_in">export</span> LESS_TERMCAP_us=$<span class="string">&#x27;\E[01;32m&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ -s <span class="string">&#x27;/etc/zsh_command_not_found&#x27;</span>  ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">source</span> <span class="string">&#x27;/etc/zsh_command_not_found&#x27;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ -s <span class="string">&#x27;/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh&#x27;</span>  ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">source</span> <span class="string">&#x27;/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh&#x27;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> [[ -s <span class="string">&#x27;/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&#x27;</span>  ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">source</span> <span class="string">&#x27;/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh&#x27;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ -s <span class="string">&#x27;/usr/share/doc/fzf/examples/key-bindings.zsh&#x27;</span>  ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">source</span> <span class="string">&#x27;/usr/share/doc/fzf/examples/key-bindings.zsh&#x27;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="keyword">if</span> [[ -s <span class="string">&#x27;/usr/share/doc/fzf/examples/completion.zsh&#x27;</span>  ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">source</span> <span class="string">&#x27;/usr/share/doc/fzf/examples/completion.zsh&#x27;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置路径变量</span></span><br><span class="line"></span><br><span class="line">mntc=<span class="string">&quot;/mnt/c&quot;</span></span><br><span class="line">mntd=<span class="string">&quot;/mnt/d&quot;</span></span><br><span class="line">cho=<span class="string">&quot;<span class="variable">$&#123;mntc&#125;</span>/Users/11638&quot;</span></span><br><span class="line">doc=<span class="string">&quot;<span class="variable">$&#123;cho&#125;</span>/Documents&quot;</span></span><br><span class="line">dow=<span class="string">&quot;<span class="variable">$&#123;cho&#125;</span>/Downloads&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="fish-配置"><a href="#fish-配置" class="headerlink" title="fish 配置"></a>fish 配置</h2><p>fish 没什么好说的，直接贴配置文件吧，它的配置文件在 <code>～/.config/fish/config.fish</code> 。没有就自己创建一个。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> fish_greeting     <span class="comment">#关掉提示语</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> fish_title</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;Debian GNU/Linux: &quot;</span> (__fish_pwd)</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> fish_prompt --description <span class="string">&quot;Write out the prompt&quot;</span></span><br><span class="line">    set_color 66FFCC       <span class="comment">#初音绿</span></span><br><span class="line">    <span class="built_in">echo</span> -n -s <span class="string">&#x27;$ &#x27;</span></span><br><span class="line">    set_color normal</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="built_in">bind</span> \el accept-autosuggestion     <span class="comment"># Alt+l 接受建议</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> ls --description <span class="string">&quot;lists files&quot;</span></span><br><span class="line">    /bin/ls --color=auto --group-directories-first <span class="variable">$argv</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> ll --description <span class="string">&quot;lists files with a long listing format&quot;</span></span><br><span class="line">    ls -lh <span class="variable">$argv</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> la --description <span class="string">&#x27;lists hidden files&#x27;</span></span><br><span class="line">    ls -A <span class="variable">$argv</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> lf --description <span class="string">&#x27;lists files with indicator&#x27;</span></span><br><span class="line">    ls -F <span class="variable">$argv</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> lc --description <span class="string">&#x27;lists sorted by date, most recent last, shows change time&#x27;</span></span><br><span class="line">    ll -c <span class="variable">$argv</span></span><br><span class="line">end</span><br><span class="line"><span class="keyword">function</span> lu --description <span class="string">&#x27;lists sorted by date, most recent last, shows access time&#x27;</span></span><br><span class="line">    ll -u <span class="variable">$argv</span></span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> now --description <span class="string">&#x27;show time&#x27;</span></span><br><span class="line">    date <span class="string">&quot;+%H:%M:%S&quot;</span></span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="vim-配置"><a href="#vim-配置" class="headerlink" title="vim 配置"></a>vim 配置</h2><h3 id="配色方案"><a href="#配色方案" class="headerlink" title="配色方案"></a>配色方案</h3><p>有时候默认的 vim 配色挺好看的，但有时候太丑了，必须要设置一下。</p>
+<p>用到了 <a target="_blank" rel="noopener" href="https://www.vim.org/scripts/script.php?script_id=760">peaksea 配色方案</a>，下载 <code>peaksea.vim</code> 这个文件到 <code>～/.vim/colors</code> 路径下。</p>
+<p>然后在 <code>～/.vimrc</code> 里添加：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! has(<span class="string">&quot;gui_running&quot;</span>)</span><br><span class="line">    <span class="built_in">set</span> t_Co=256</span><br><span class="line">endif</span><br><span class="line"><span class="string">&quot; feel free to choose :set background=light/dark for a different style</span></span><br><span class="line"><span class="string">set background=light</span></span><br><span class="line"><span class="string">colors peaksea</span></span><br></pre></td></tr></table></figure>
+
+<p>我必须要吐槽一下，3.5 版本的暗色主题挺好看的，怎么换 3.6 版本就变得很奇怪呢，还好浅色主题不错。</p>
+<h3 id="taglist"><a href="#taglist" class="headerlink" title="taglist"></a>taglist</h3><p>还有 <code>Taglist</code> 插件，可以查看源代码的结构：</p>
+<p>到 <a target="_blank" rel="noopener" href="https://www.vim.org/scripts/script.php?script_id=273">这里</a> 下载插件压缩包，解压，就装好了</p>
+<h3 id="cscope"><a href="#cscope" class="headerlink" title="cscope"></a>cscope</h3><p>安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install cscope</span><br></pre></td></tr></table></figure>
+
+<p>到项目的根目录生成 cscope 索引文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cscope -Rbq</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="完整的-～-vimrc"><a href="#完整的-～-vimrc" class="headerlink" title="完整的 ～/.vimrc"></a>完整的 <code>～/.vimrc</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ! has(<span class="string">&quot;gui_running&quot;</span>)</span><br><span class="line">    <span class="built_in">set</span> t_Co=256</span><br><span class="line">endif</span><br><span class="line"><span class="string">&quot; feel free to choose :set background=light/dark for a different style</span></span><br><span class="line"><span class="string">set background=dark</span></span><br><span class="line"><span class="string">colors peaksea</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">try</span></span><br><span class="line"><span class="string">source /usr/share/doc/fzf/examples/fzf.vim</span></span><br><span class="line"><span class="string">catch</span></span><br><span class="line"><span class="string">endtry</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">set mouse-=a</span></span><br><span class="line"><span class="string">set pastetoggle=&lt;F9&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">syntax on</span></span><br><span class="line"><span class="string">set number              &quot;</span>显示行号</span><br><span class="line"><span class="built_in">set</span> ruler               <span class="string">&quot;在状态栏显示光标的当前位置 </span></span><br><span class="line"><span class="string">set showcmd             &quot;</span>在底部显示，当前键入的指令</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> expandtab           <span class="string">&quot;用space替代tab的输入</span></span><br><span class="line"><span class="string">set tabstop=4           &quot;</span>设定 tab 长度为 4</span><br><span class="line"><span class="built_in">set</span> shiftwidth=4        <span class="string">&quot;设定 &lt;&lt; 和 &gt;&gt; 命令移动时的宽度为 4, code auto indent width</span></span><br><span class="line"><span class="string">set softtabstop=4       &quot;</span>使得按退格键时可以一次删掉 4 个空格</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> ignorecase smartcase <span class="string">&quot; 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感</span></span><br><span class="line"><span class="string">set wrapscan            &quot;</span> 搜索到文件两端时重新搜索</span><br><span class="line"><span class="built_in">set</span> hlsearch            <span class="string">&quot;查找匹配高亮 ，用 :noh 取消</span></span><br><span class="line"><span class="string">set incsearch           &quot;</span>在查找过程中逐字匹配高亮</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span> showmatch           <span class="string">&quot;插入括号时，短暂地跳转到匹配的对应括号</span></span><br><span class="line"><span class="string">set matchtime=2         &quot;</span>短暂跳转到匹配括号的时间</span><br><span class="line"><span class="built_in">set</span> scrolloff=5         <span class="string">&quot;距离屏幕最上或最下5行时scrollbar开始滚动</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">set wildmenu            &quot;</span>vim 自身命令行模式智能补全，好像没什么用</span><br><span class="line"><span class="built_in">set</span> showmode            <span class="string">&quot;显示insert visual等模式提示，这个也是</span></span><br><span class="line"><span class="string">set wrap                &quot;</span>自动折行，即太长的行分成几行显示</span><br><span class="line"><span class="built_in">set</span> noerrorbells        <span class="string">&quot;出错时，不要发出响声</span></span><br><span class="line"><span class="string">set updatetime=1000     &quot;</span>设定更新.swp 文件时间，milliseconds，此值影响taglist插件更新快慢</span><br><span class="line"><span class="built_in">set</span> fdm=manual          <span class="string">&quot;先选中行，再用zf折叠</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;</span><span class="built_in">set</span> list                <span class="string">&quot;显示不可视字符 , 如tab符号，行结尾符号</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;</span>https://blog.csdn.net/mci2004/article/details/7944074</span><br><span class="line"><span class="keyword">if</span> has(<span class="string">&quot;cscope&quot;</span>)</span><br><span class="line">    <span class="built_in">set</span> csprg=/usr/bin/cscope</span><br><span class="line">    <span class="built_in">set</span> csto=0</span><br><span class="line">    <span class="built_in">set</span> cst</span><br><span class="line">    <span class="built_in">set</span> csverb</span><br><span class="line">    <span class="built_in">set</span> cspc=3</span><br><span class="line">    <span class="string">&quot;add any database in current dir</span></span><br><span class="line"><span class="string">    set nocsverb</span></span><br><span class="line"><span class="string">    if filereadable(&quot;</span>cscope.out<span class="string">&quot;)</span></span><br><span class="line"><span class="string">        cs add cscope.out</span></span><br><span class="line"><span class="string">    &quot;</span><span class="keyword">else</span> search cscope.out elsewhere</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">let</span> cscope_file=findfile(<span class="string">&quot;cscope.out&quot;</span>, <span class="string">&quot;.;&quot;</span>)</span><br><span class="line">        <span class="built_in">let</span> cscope_pre=matchstr(cscope_file, <span class="string">&quot;.*/&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> !empty(cscope_file) &amp;&amp; filereadable(cscope_file)</span><br><span class="line">            cs add <span class="variable">$cscope_file</span> <span class="variable">$cscope_pre</span></span><br><span class="line">        endif      </span><br><span class="line">    endif</span><br><span class="line">    <span class="built_in">set</span> csverb</span><br><span class="line">endif</span><br><span class="line"></span><br><span class="line">nmap &lt;leader&gt;ss :cs find s &lt;C-R&gt;=expand(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;cr&gt;&lt;cr&gt;</span><br><span class="line">nmap &lt;leader&gt;sg :cs find g &lt;C-R&gt;=expand(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;cr&gt;&lt;cr&gt;</span><br><span class="line">nmap &lt;leader&gt;sc :cs find c &lt;C-R&gt;=expand(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;cr&gt;&lt;cr&gt;</span><br><span class="line">nmap &lt;leader&gt;st :cs find t &lt;C-R&gt;=expand(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;cr&gt;&lt;cr&gt;</span><br><span class="line">nmap &lt;leader&gt;se :cs find e &lt;C-R&gt;=expand(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;cr&gt;&lt;cr&gt;</span><br><span class="line">nmap &lt;leader&gt;sf :cs find f &lt;C-R&gt;=expand(<span class="string">&quot;&lt;cfile&gt;&quot;</span>)&lt;cr&gt;&lt;cr&gt;</span><br><span class="line">nmap &lt;leader&gt;sd :cs find d &lt;C-R&gt;=expand(<span class="string">&quot;&lt;cword&gt;&quot;</span>)&lt;cr&gt;&lt;cr&gt;</span><br><span class="line">nmap &lt;leader&gt;si :cs find i ^&lt;C-R&gt;=expand(<span class="string">&quot;&lt;cfile&gt;&quot;</span>)&lt;cr&gt;$&lt;cr&gt;</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;set nocsverb</span></span><br><span class="line"><span class="string">&quot;</span>cs add cscope.out    <span class="string">&quot;cs add /path/cscope.out /path</span></span><br><span class="line"><span class="string">&quot;</span><span class="built_in">set</span> csverb</span><br><span class="line"></span><br><span class="line"><span class="built_in">let</span> Tlist_Show_One_File=1</span><br><span class="line"><span class="built_in">let</span> Tlist_Exit_OnlyWindow=1</span><br><span class="line"><span class="built_in">let</span> Tlist_Ctags_Cmd=<span class="string">&quot;/usr/bin/ctags&quot;</span></span><br><span class="line"><span class="built_in">let</span> Tlist_Use_Right_Window=1</span><br><span class="line">map &lt;silent&gt; &lt;F10&gt; :TlistToggle&lt;cr&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;</span>status line settings</span><br><span class="line"><span class="string">&quot;set laststatus=2</span></span><br><span class="line"><span class="string">&quot;</span>highlight StatusLine cterm=bold ctermfg=255 ctermbg=242    <span class="string">&quot;white</span></span><br><span class="line"><span class="string">&quot;</span><span class="string">&quot;highlight StatusLine cterm=bold ctermfg=87 ctermbg=242    &quot;</span>blue</span><br><span class="line"><span class="string">&quot;set statusline=[%n]\ %f%m%r%h\ \ %=\|\ %l,%c\ %p%%\ \|\ ASCII=%b,HEX=%B\ \|\ %&#123;((&amp;fenc==\&quot;\&quot;)?\&quot;\&quot;:\&quot;\&quot;.&amp;fenc)&#125;,%&#123;&amp;ff&#125;\ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&quot;</span>status line settings  </span><br><span class="line"><span class="built_in">set</span> laststatus=2</span><br><span class="line"><span class="string">&quot;highlight StatusLine cterm=bold ctermfg=49 ctermbg=240</span></span><br><span class="line"><span class="string">highlight StatusLine cterm=bold ctermfg=251 ctermbg=240</span></span><br><span class="line"><span class="string">set statusline=%1*[%*%n</span></span><br><span class="line"><span class="string">set statusline+=%2*]%*</span></span><br><span class="line"><span class="string">set statusline+=%3*\ %f%*</span></span><br><span class="line"><span class="string">set statusline+=%m%r%h\ \ %=\|%4*\ %l,%c\ %p%%\ %*</span></span><br><span class="line"><span class="string">set statusline+=\|%5*\ ASCII=%b,HEX=%B%*</span></span><br><span class="line"><span class="string">set statusline+=\ \|\ %6*%&#123;((&amp;fenc==\&quot;\&quot;)?\&quot;\&quot;:\&quot;\&quot;.&amp;fenc)&#125;,%&#123;&amp;ff&#125;\ %*</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">hi User1 cterm=bold ctermfg=251 ctermbg=240</span></span><br><span class="line"><span class="string">hi User2 cterm=bold ctermfg=251 ctermbg=240</span></span><br><span class="line"><span class="string">hi User3 cterm=bold ctermfg=39 ctermbg=240   &quot;</span>ctermfg=169 39</span><br><span class="line">hi User4 cterm=None ctermfg=251 ctermbg=240</span><br><span class="line">hi User5 cterm=None ctermfg=251 ctermbg=240</span><br><span class="line">hi User6 cterm=None ctermfg=251 ctermbg=240 </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="string">&quot; Uncomment the following to have Vim jump to the last position when</span></span><br><span class="line"><span class="string">&quot;</span> reopening a file</span><br><span class="line"><span class="keyword">if</span> has(<span class="string">&quot;autocmd&quot;</span>)</span><br><span class="line">  au BufReadPost * <span class="keyword">if</span> line(<span class="string">&quot;&#x27;\&quot;&quot;</span>) &gt; 1 &amp;&amp; line(<span class="string">&quot;&#x27;\&quot;&quot;</span>) &lt;= line(<span class="string">&quot;$&quot;</span>) | exe <span class="string">&quot;normal! g&#x27;\&quot;&quot;</span> | endif</span><br><span class="line">endif</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="fzf"><a href="#fzf" class="headerlink" title="fzf"></a>fzf</h2><p>今天看到这个应用，感觉挺有意思的</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install fzf   <span class="comment">## Debian Buster 及以上版本才有</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p><code>~/.bashrc</code> </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /usr/share/doc/fzf/examples/key-bindings.bash</span><br><span class="line"><span class="built_in">source</span> /usr/share/doc/fzf/examples/completion.bash</span><br></pre></td></tr></table></figure>
+
+<p><code>~/.zshrc</code></p>
+<figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /usr/share/doc/fzf/examples/key-bindings.zsh</span><br><span class="line"><span class="built_in">source</span> /usr/share/doc/fzf/examples/completion.zsh</span><br></pre></td></tr></table></figure>
+
+<p><code>fish</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p ~/.config/fish/<span class="built_in">functions</span>/</span><br><span class="line">$ <span class="built_in">echo</span> fzf_key_bindings &gt; ~/.config/fish/<span class="built_in">functions</span>/fish_user_key_bindings.fish</span><br></pre></td></tr></table></figure>
+
+<p><code>~/.vimrc</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /usr/share/doc/fzf/examples/fzf.vim</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><table>
+<thead>
+<tr>
+<th>Token</th>
+<th>Match type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>sbtrkt</code></td>
+<td>fuzzy-match</td>
+<td>Items that match <code>sbtrkt</code></td>
+</tr>
+<tr>
+<td><code>&#39;wild</code></td>
+<td>exact-match (quoted)</td>
+<td>Items that include <code>wild</code></td>
+</tr>
+<tr>
+<td><code>^music</code></td>
+<td>prefix-exact-match</td>
+<td>Items that start with <code>music</code></td>
+</tr>
+<tr>
+<td><code>.mp3$</code></td>
+<td>suffix-exact-match</td>
+<td>Items that end with <code>.mp3</code></td>
+</tr>
+<tr>
+<td><code>!fire</code></td>
+<td>inverse-exact-match</td>
+<td>Items that do not include <code>fire</code></td>
+</tr>
+<tr>
+<td><code>!^music</code></td>
+<td>inverse-prefix-exact-match</td>
+<td>Items that do not start with <code>music</code></td>
+</tr>
+<tr>
+<td><code>!.mp3$</code></td>
+<td>inverse-suffix-exact-match</td>
+<td>Items that do not end with <code>.mp3</code></td>
+</tr>
+</tbody></table>
+<p>直接打字母就是模糊搜索，加个英文单引号 <code>&#39;</code> 表示精确搜索，<code>^</code> 和 <code>$</code> 分别是<code>开始</code>和<code>结尾</code>界定符，<code>!</code> 表示<code>否定</code>，空格 <code> </code> 表示<code>并且</code>，<code>|</code> 表示<code>或者</code>。</p>
+<p>For example, the following query matches entries that start with <code>core</code> and end with either <code>go</code>, <code>rb</code>, or <code>py</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^core go$ | rb$ | py$</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>直接使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ fzf</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>**</code> 来引导 <code>bash</code> 或者 <code>zsh</code> 补全：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> **&lt;TAB&gt;         <span class="comment">## 打完 **，再按 Tab 键</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi ~/fzf**&lt;TAB&gt;    <span class="comment">## 查找包含 fzf 的文件</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">kill</span> -9 &lt;TAB&gt;      <span class="comment">## 中间有个空格</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ssh **&lt;TAB&gt;</span><br><span class="line">$ telnet **&lt;TAB&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>还有其他一些用法，请参考<a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf">说明文档</a></p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#zsh-%E9%85%8D%E7%BD%AE"><span class="toc-text">zsh 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fish-%E9%85%8D%E7%BD%AE"><span class="toc-text">fish 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vim-%E9%85%8D%E7%BD%AE"><span class="toc-text">vim 配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88"><span class="toc-text">配色方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#taglist"><span class="toc-text">taglist</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cscope"><span class="toc-text">cscope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%9A%84-%EF%BD%9E-vimrc"><span class="toc-text">完整的 ～&#x2F;.vimrc</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fzf"><span class="toc-text">fzf</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-text">用法</span></a></li></ol></li></ol>
+  </div>
+</aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/zsh/"><i class="fa fa-tags"></i>zsh</a>
+     
+      <a href="/tags/fish/"><i class="fa fa-tags"></i>fish</a>
+     
+      <a href="/tags/vim/"><i class="fa fa-tags"></i>vim</a>
+     
+      <a href="/tags/config/"><i class="fa fa-tags"></i>config</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: snoire@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/overtime/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/EWMTA2.4/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

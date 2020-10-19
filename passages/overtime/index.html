@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Snoire" />
+  
+  
+  <title>overtime | Snoire&#39; Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="记录,C," />
+  
+
+  
+  <meta name="description" content="第一个 C 语言项目">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"53Hsawr9k3ISwmY0drKzCs2F-gzGzoHsz","appkey":"SjrIApaUKrCn5iS0dmM0qJ8L","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2019-10-08 20:01:24",
+    passwords: ["cc8f2b7a1d1a757235e2c7b58b0b1dc1a721eb34c8d06a386d50b654522393d1", ],
+    is_post: true,
+    lock: false,
+    author: "Snoire",
+    share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Snoire</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 观察改变世界</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/snoire/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-10-24
+    </span>
+    
+      <span>
+        | <a href="/categories/%E8%AE%B0%E5%BD%95/"><i class="fa fa-bookmark"></i>记录</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    overtime
+  </h1>
+  
+  <article class="passage-article">
+    <p>想写一个记录平常加班时间的程序，估算了一下，好像任务量不是很大。虽说如此，但是我好像什么都不会呀，什么文件操作，日期换算，都没有接触过。理想情况下，大概两三个月能搞定。当然一直拖下去也是有可能的。。</p>
+<h2 id="项目规划"><a href="#项目规划" class="headerlink" title="项目规划"></a>项目规划</h2><p>核心功能：</p>
+<ul>
+<li>启动程序后，引导用户输入前一天加班时间</li>
+<li>提供填写指定日期加班时间的功能</li>
+<li>提供查询加班时间表功能</li>
+<li>提供未填写信息的提示功能</li>
+<li>提供计算剩余加班时间的功能</li>
+</ul>
+<p>基本思路：</p>
+<ul>
+<li>保存信息：用户填写的信息以表格的形式存放在文件中</li>
+<li>读取信息：定义一个结构体来解析文件中的信息</li>
+<li>约定好要输入的时间的格式，可以在纯数字前添加不同的符号来区分不同的加班类型</li>
+<li>加班表格的形式：<ul>
+<li>一行一条连续的加班信息。即，如果一天分别在早晚加班，则添加两条信息</li>
+<li>表格至少要有五列：日期、序号、开始时间、结束时间、时长</li>
+<li>序号一列用来区别同一天加班的不同信息，<ul>
+<li>0 指当天没有加班</li>
+<li>1 指正常加班</li>
+<li>2 指当天有两段间隔的加班信息</li>
+<li>默认设置此栏为 1</li>
+</ul>
+</li>
+<li>开始时间默认为 1800</li>
+<li>时长要大于半个小时，低于半个小时的不计入有效时长</li>
+<li><del>还可以考虑增加一列，用来判断是否为周末，周末默认把序号一栏置为 0</del></li>
+</ul>
+</li>
+<li><del>初始化的时候要知道当前月有多少天，并将所有周末的序号位置 0</del></li>
+<li>不初始化表格，可以无序添加，自动整理排序</li>
+<li>修改的时候要判断是增加还是修改，有覆盖风险以及时长不足30的时候提醒用户</li>
+</ul>
+<p>其他事项：</p>
+<ul>
+<li><p>信号的捕捉等问题。</p>
+</li>
+<li><p>还需要考虑多参数、完善 <code>help</code> 信息、<code>README</code> 文档等。</p>
+</li>
+<li><p>有余力的情况下，还可以尝试制作 <code>deb</code> 安装包。</p>
+</li>
+</ul>
+<h2 id="基础框架"><a href="#基础框架" class="headerlink" title="基础框架"></a>基础框架</h2><p><code>main.c</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> buf[<span class="number">1024</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> fd[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> backfd, day[<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    pipe(fd);</span><br><span class="line">    backfd = dup(STDOUT_FILENO);</span><br><span class="line">    dup2(fd[<span class="number">1</span>], STDOUT_FILENO);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Welcome to overtime!\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    system(<span class="string">&quot;cal $(date +&#x27;%m %Y&#x27;) | awk &#x27;NF &#123;DAYS = $NF&#125;; END &#123;print DAYS&#125;&#x27;&quot;</span>);</span><br><span class="line">    read(fd[<span class="number">0</span>],buf,<span class="number">1024</span>);</span><br><span class="line">    day[<span class="number">0</span>] = atoi(buf);</span><br><span class="line"></span><br><span class="line">    system(<span class="string">&quot;date +&#x27;%d&#x27;&quot;</span>);</span><br><span class="line">    read(fd[<span class="number">0</span>],buf,<span class="number">1024</span>);</span><br><span class="line">    day[<span class="number">1</span>] = atoi(buf);</span><br><span class="line"></span><br><span class="line">    dup2(backfd, STDOUT_FILENO);</span><br><span class="line">    day[<span class="number">2</span>] = day[<span class="number">0</span>] - day[<span class="number">1</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Still has %d days besides today!\n\n&quot;</span>, day[<span class="number">2</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Please input the time you got off work yesterday: \n&quot;</span>);</span><br><span class="line">	<span class="comment">/* add core code here */</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;The end..\n\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码看起来很多，其实只实现了启动时的欢迎界面的功能，核心功能完全没写。。而且，把当前月剩余天数显示出来就让我绞尽脑汁了。基本上全都是参考别人的东西。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.sleeplessbeastie.eu/2013/03/24/how-to-get-number-of-days-in-a-month-using-shell-commands/">显示一个月有多少天</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013625451/article/details/78830104">获取 system 函数的执行结果</a></p>
+<p><code>makefile</code> 很简单：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">all : overtime</span><br><span class="line">.PHONY : all</span><br><span class="line"></span><br><span class="line">overtime : main.o</span><br><span class="line">    cc -o overtime main.o</span><br><span class="line">main.o : main.c</span><br><span class="line">    cc -c main.c</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="关于时间"><a href="#关于时间" class="headerlink" title="关于时间"></a>关于时间</h2><p>在打算存储时间的时候，我发现系统好像已经定义好了相关的数据结构以及一系列的函数，那么我就不重复造轮子了。现在问题的关键是：怎么用？我想达到的目的是，指定一个日期，能够知道它是星期几。另外，如果能够直接获取当前时间并进行一定的计算就更好了，那么我就不需要调用 <code>date</code> 命令了，提高效率嘛。</p>
+<blockquote>
+<p>想找一下 time_t 的定义，但是在系统头文件里找了半天，发现一个头文件包含另一个，沿着线索找下去，愣是没找到它到底在哪里定义的。。算了，直接看书吧</p>
+</blockquote>
+<p>找到获取当前时间的方法了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timeval</span> <span class="title">tv</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">timezone</span> <span class="title">tz</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">tm</span>* <span class="title">tmp</span>;</span></span><br><span class="line"></span><br><span class="line">    gettimeofday(&amp;tv,&amp;tz);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;time is %d\n&quot;</span>,tv.tv_sec); <span class="comment">//TLPI 第10章，获取秒数</span></span><br><span class="line">    tmp = localtime(&amp;(tv.tv_sec));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;year: %d, mon: %d, day: %d, h: %d, m: %d, s: %d, wday: %d\n&quot;</span>,\</span><br><span class="line">    tmp-&gt;tm_year+<span class="number">1900</span>, tmp-&gt;tm_mon+<span class="number">1</span>, tmp-&gt;tm_mday, tmp-&gt;tm_hour,\</span><br><span class="line">    tmp-&gt;tm_min, tmp-&gt;tm_sec, tmp-&gt;tm_wday?tmp-&gt;tm_wday:<span class="number">7</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>主要步骤是：先获取当前时间距 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/epoch/6569113">Epoch</a> 的时间；再调用函数将它转换成表示当地时间的结构体。</p>
+<p>就是下面这个：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">tm</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> tm_sec;  <span class="comment">/*秒，正常范围0-59， 但允许至61*/</span></span><br><span class="line">    <span class="keyword">int</span> tm_min;  <span class="comment">/*分钟，0-59*/</span></span><br><span class="line">    <span class="keyword">int</span> tm_hour; <span class="comment">/*小时， 0-23*/</span></span><br><span class="line">    <span class="keyword">int</span> tm_mday; <span class="comment">/*日，即一个月中的第几天，1-31*/</span></span><br><span class="line">    <span class="keyword">int</span> tm_mon;  <span class="comment">/*月， 从一月算起，0-11*/</span> <span class="comment">// 1+p-&gt;tm_mon;</span></span><br><span class="line">    <span class="keyword">int</span> tm_year;  <span class="comment">/*年， 从1900至今已经多少年*/</span> <span class="comment">// 1900＋ p-&gt;tm_year;</span></span><br><span class="line">    <span class="keyword">int</span> tm_wday; <span class="comment">/*星期，一周中的第几天， 从星期日算起，0-6*/</span></span><br><span class="line">    <span class="keyword">int</span> tm_yday; <span class="comment">/*从今年1月1日到目前的天数，范围0-365*/</span></span><br><span class="line">    <span class="keyword">int</span> tm_isdst; <span class="comment">/*日光节约时间的旗标*/</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>其中，年、月、星期需要稍微转化一下才是正常时间。</p>
+<blockquote>
+<p>但是，最重要的指定日期的识别还不会欸，应该有将指定日期转化成秒的函数吧，我再找找看~</p>
+</blockquote>
+<p>虽然没找到函数，但是我发现了另一种方法：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u010603798/article/details/78986836"> Zeller 公式</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> clearInput;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> w, y, c, m, d;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;please input the date:         [format: 2019/10/24]\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d/%d/%d&quot;</span>,&amp;tmp,&amp;m,&amp;d);</span><br><span class="line">    <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF); <span class="comment">//在下次读取前清空缓冲区</span></span><br><span class="line"></span><br><span class="line">    c = tmp/<span class="number">100</span>;     <span class="comment">//取出前两位</span></span><br><span class="line">    y = tmp%<span class="number">100</span>;     <span class="comment">//取出后两位</span></span><br><span class="line">    <span class="keyword">if</span>( m&gt;<span class="number">0</span> &amp;&amp; m&lt;<span class="number">3</span>)  <span class="comment">//我一开始写的是 0&lt;m&lt;3，，为什么不报错呀</span></span><br><span class="line">    &#123;</span><br><span class="line">        m = m+<span class="number">12</span>;</span><br><span class="line">        y = y<span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    w = y + (y/<span class="number">4</span>) + (c/<span class="number">4</span>) - <span class="number">2</span>*c + ((<span class="number">26</span>*(m+<span class="number">1</span>)/<span class="number">10</span>)) + d<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">if</span>(w&lt;<span class="number">0</span>)</span><br><span class="line">        w= <span class="number">7</span>-(-w)%<span class="number">7</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        w= w%<span class="number">7</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,w);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>另一个问题：<a target="_blank" rel="noopener" href="http://c.biancheng.net/cpp/html/2814.html">判断一个月有几天</a></p>
+<p>我差点忘了阳历的月份是有迹可循的，而且也不难</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> clearInput;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> year, month, days;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;输入年份：&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;year);</span><br><span class="line">    <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF); <span class="comment">//在下次读取前清空缓冲区</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;输入月份：&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;month);</span><br><span class="line">    <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF); <span class="comment">//在下次读取前清空缓冲区</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">switch</span>(month)&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">8</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">10</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">12</span>:</span><br><span class="line">            days=<span class="number">31</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">9</span>:</span><br><span class="line">        <span class="keyword">case</span> <span class="number">11</span>:</span><br><span class="line">            days=<span class="number">30</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">            <span class="comment">// 判断闰年</span></span><br><span class="line">            <span class="keyword">if</span>(year%<span class="number">4</span>==<span class="number">0</span> &amp;&amp; year%<span class="number">100</span>!=<span class="number">0</span> || year%<span class="number">400</span>==<span class="number">0</span>)</span><br><span class="line">                days=<span class="number">29</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                days=<span class="number">28</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;月份输入错误！\n&quot;</span>);</span><br><span class="line">            <span class="built_in">exit</span>(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;天数：%d\n&quot;</span>, days);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><h3 id="读写数据块"><a href="#读写数据块" class="headerlink" title="读写数据块"></a>读写数据块</h3><p>一开始，我是打算把信息以可读文本的形式存入文件。这样做的好处是可以直接打开数据文件阅读打卡记录。但是这样做在程序实现方面稍微难一点。先以结构体的形式存入文件吧，毕竟有现成的<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/41ea7cdbc945">例子</a>。</p>
+<p>工程结构：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ tree</span><br><span class="line">.</span><br><span class="line">├── data</span><br><span class="line">│   └── record.data</span><br><span class="line">├── include</span><br><span class="line">│   ├── dayOfWeek.h</span><br><span class="line">│   ├── daysInaMonth.h</span><br><span class="line">│   └── getCurrentTime.h</span><br><span class="line">├── user</span><br><span class="line">│   ├── dayOfWeek.c</span><br><span class="line">│   ├── daysInaMonth.c</span><br><span class="line">│   ├── getCurrentTime.c</span><br><span class="line">│   └── main.c</span><br><span class="line">└── makefile</span><br><span class="line"></span><br><span class="line">3 directories, 9 files</span><br></pre></td></tr></table></figure>
+
+<p><code>main.c</code>：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;dayOfWeek.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;daysInaMonth.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;getCurrentTime.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">clockInRecord</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> date;</span><br><span class="line">    <span class="keyword">int</span> mark;</span><br><span class="line">    <span class="keyword">int</span> startime;</span><br><span class="line">    <span class="keyword">int</span> endtime;</span><br><span class="line">    <span class="keyword">int</span> duration;</span><br><span class="line">&#125; CLOCKINRECORD; <span class="comment">//给结构体起一个别名</span></span><br><span class="line"></span><br><span class="line">CLOCKINRECORD clkRecord[<span class="number">60</span>];</span><br><span class="line"><span class="keyword">int</span> totalRecords=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">char</span> *filePath=<span class="string">&quot;data/record.data&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> clearInput;</span><br><span class="line"></span><br><span class="line"><span class="comment">//声明函数</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">welcome</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">init</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">doAdd</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">doDelete</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">doModify</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">doList</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">doSearch</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">writeToFile</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    welcome();</span><br><span class="line">	init();</span><br><span class="line">	<span class="keyword">volatile</span> <span class="keyword">int</span> flag = <span class="number">1</span>;<span class="comment">//退出的标志</span></span><br><span class="line">	<span class="keyword">int</span> num = <span class="number">7</span>;</span><br><span class="line">	<span class="keyword">while</span>(flag)</span><br><span class="line">	&#123;	</span><br><span class="line">        num = <span class="number">7</span>; <span class="comment">//如果不恢复初始值，随便输入一个字母将保持上次的结果</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;(overtime) &quot;</span>);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;num);   <span class="comment">//如果不清空输入缓冲区，在这里输入字母，会一直死循环</span></span><br><span class="line">        <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF); </span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(num&lt;<span class="number">0</span>||num&gt;<span class="number">6</span>)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;ops!\n&quot;</span>);</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">			<span class="keyword">switch</span>(num)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="number">0</span>:</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;0.help 1.add 2.del 3.modify 4.list 5.search 6.exit\n&quot;</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">					doAdd(); <span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">					doDelete(); <span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">					doModify(); <span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">					doList(); <span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">					doSearch(); <span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">case</span> <span class="number">6</span>:</span><br><span class="line">					flag = <span class="number">0</span>;</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">default</span>:</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;ops!\n&quot;</span>);</span><br><span class="line">					<span class="keyword">break</span>;</span><br><span class="line">			&#125; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nThe end..\n\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">welcome</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">tm</span>* <span class="title">tmp</span>;</span></span><br><span class="line">    tmp = getCurrentTime();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Welcome to overtime!\n&quot;</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;It is now at %d:%d on %s %d, %d, today is %s\n&quot;</span>, tmp-&gt;tm_hour, tmp-&gt;tm_min, transMon(tmp-&gt;tm_mon+<span class="number">1</span>), tmp-&gt;tm_mday, tmp-&gt;tm_year+<span class="number">1900</span>, transWeek(tmp-&gt;tm_wday) );</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Still has %d days besides today!\n&quot;</span>, daysInaMonth( tmp-&gt;tm_year+<span class="number">1900</span>, tmp-&gt;tm_mon+<span class="number">1</span> ) - (tmp-&gt;tm_mday) );</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\nFor help, type \&quot;0\&quot;.\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">init</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	FILE *fp = fopen(filePath,<span class="string">&quot;r&quot;</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span>(fp!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">		fread(&amp;totalRecords,<span class="keyword">sizeof</span>(totalRecords),<span class="number">1</span>,fp);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; totalRecords;i++)&#123;</span><br><span class="line">			fread(&amp;clkRecord[i],<span class="keyword">sizeof</span>(CLOCKINRECORD),<span class="number">1</span>,fp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		fp = fopen(filePath,<span class="string">&quot;w&quot;</span>);</span><br><span class="line">		</span><br><span class="line">		fwrite(&amp;totalRecords,<span class="keyword">sizeof</span>(totalRecords),<span class="number">1</span>,fp);</span><br><span class="line">	&#125;</span><br><span class="line">	fclose(fp);</span><br><span class="line">	fp=<span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">doAdd</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> shour, smin, ehour, emin;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;what&#x27;s the date do you want to record?\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;clkRecord[totalRecords].date); <span class="comment">//忘了 &amp; 取址就会段错误</span></span><br><span class="line">    <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF);</span><br><span class="line"></span><br><span class="line">    clkRecord[totalRecords].mark = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;what&#x27;s the time when you clock in?\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;clkRecord[totalRecords].startime );</span><br><span class="line">    <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;what&#x27;s the time when you clock out?\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;clkRecord[totalRecords].endtime );</span><br><span class="line">    <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF);</span><br><span class="line"></span><br><span class="line">    shour = clkRecord[totalRecords].startime/<span class="number">100</span>; </span><br><span class="line">    smin = clkRecord[totalRecords].startime%<span class="number">100</span>; </span><br><span class="line">    ehour = clkRecord[totalRecords].endtime/<span class="number">100</span>; </span><br><span class="line">    emin = clkRecord[totalRecords].endtime%<span class="number">100</span>; </span><br><span class="line">    clkRecord[totalRecords].duration = (ehour-shour)*<span class="number">60</span>+emin-smin;</span><br><span class="line"></span><br><span class="line">    totalRecords++;</span><br><span class="line">    writeToFile();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">doDelete</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	doList();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> delnum;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;please input the num that you want to del:\n&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;delnum);</span><br><span class="line">    <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF); <span class="comment">//在下次读取前清空缓冲区</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(delnum&lt;<span class="number">1</span>||delnum&gt;totalRecords)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	 </span><br><span class="line">    <span class="keyword">if</span>(delnum==totalRecords)</span><br><span class="line">        totalRecords--;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = delnum; i &lt;totalRecords;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            clkRecord[i<span class="number">-1</span>]=clkRecord[i];</span><br><span class="line">        &#125;</span><br><span class="line">        totalRecords--;</span><br><span class="line">    &#125;</span><br><span class="line">    writeToFile();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">doModify</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    doList();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> shour, smin, ehour, emin;</span><br><span class="line">    <span class="keyword">int</span> modnum;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;please input the num that you what to modify:\n&quot;</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;modnum);</span><br><span class="line">    <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF); <span class="comment">//在下次读取前清空缓冲区</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(modnum&lt;<span class="number">1</span>||modnum&gt;totalRecords)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;what&#x27;s the time when you clock in?\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;clkRecord[modnum<span class="number">-1</span>].startime );</span><br><span class="line">    <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;what&#x27;s the time when you clock out?\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;clkRecord[modnum<span class="number">-1</span>].endtime );</span><br><span class="line">    <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF);</span><br><span class="line"></span><br><span class="line">    shour = clkRecord[modnum<span class="number">-1</span>].startime/<span class="number">100</span>; </span><br><span class="line">    smin = clkRecord[modnum<span class="number">-1</span>].startime%<span class="number">100</span>; </span><br><span class="line">    ehour = clkRecord[modnum<span class="number">-1</span>].endtime/<span class="number">100</span>; </span><br><span class="line">    emin = clkRecord[modnum<span class="number">-1</span>].endtime%<span class="number">100</span>; </span><br><span class="line">    clkRecord[modnum<span class="number">-1</span>].duration = (ehour-shour)*<span class="number">60</span>+emin-smin;</span><br><span class="line">    </span><br><span class="line">    writeToFile(); </span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">doList</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> totalTime = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(totalRecords==<span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;nothing..\n&quot;</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%-4s%-9s%4s%7s%7s%6s\n&quot;</span>,<span class="string">&quot;n&quot;</span>,<span class="string">&quot;date&quot;</span>,<span class="string">&quot;m&quot;</span>,<span class="string">&quot;stime&quot;</span>,<span class="string">&quot;etime&quot;</span>,<span class="string">&quot;dur&quot;</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ; i&lt;totalRecords ;i++)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%-4d%-9d%4d%7d%7d%6d\n&quot;</span>,i+<span class="number">1</span>,clkRecord[i].date,clkRecord[i].mark,clkRecord[i].startime,clkRecord[i].endtime,clkRecord[i].duration);</span><br><span class="line">            totalTime += clkRecord[i].duration;</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;totalTime: %d minutes\n&quot;</span>,totalTime);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">doSearch</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> searchDate, i;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;please input the date that you want to search:\n&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;searchDate);</span><br><span class="line">    <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF); <span class="comment">//在下次读取前清空缓冲区</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt; totalRecords; i++)</span><br><span class="line">        <span class="keyword">if</span>(searchDate==clkRecord[i].date)</span><br><span class="line">        &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%-4d%-9d%4d%7d%7d%6d\n&quot;</span>,i+<span class="number">1</span>,clkRecord[i].date,clkRecord[i].mark,clkRecord[i].startime,clkRecord[i].endtime,clkRecord[i].duration);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">if</span>(i==totalRecords)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;no record here.\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">writeToFile</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    FILE *fp = fopen(filePath,<span class="string">&quot;w&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(fp!=<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        fwrite(&amp;totalRecords,<span class="keyword">sizeof</span>(totalRecords),<span class="number">1</span>,fp);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i&lt; totalRecords; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            fwrite(&amp;clkRecord[i],<span class="keyword">sizeof</span>(CLOCKINRECORD),<span class="number">1</span>,fp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    fclose(fp);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="关于文件的可读性"><a href="#关于文件的可读性" class="headerlink" title="关于文件的可读性"></a>关于文件的可读性</h3><p>用 <code>fwrite()</code> 函数往文件里面写东西，你会发现文件不可读，里面的数据是一种类似于“乱码”的东西。但是用 <code>fread()</code> 函数却可以读取，所以用这两个函数读写的文件到底是什么格式的呢？找了一些资料，终于弄明白这是怎么回事了。</p>
+<p>这一篇<a target="_blank" rel="noopener" href="https://blog.csdn.net/younggift/article/details/10587893">文章</a>有一段话说的很好：</p>
+<blockquote>
+<p>也许我们这些唯物主义者关注一下唯心的书，可能理解这个问题更容易一些。康德的《纯粹理性批判》、哈耶克的《科学的反革命》，还有 Design of Everyday Things，都提到一个观点。我们对于所有事物的理解和理解以后的操作，都是基于心中的一个”模型”，或者说，我们认为它会 (或者应该) 那样工作。</p>
+<p>如果它不是那样工作的，我们会说建模有问题。不过这个字眼很学术味。它的意思大致等同于，那玩意根本就不是你想的那么回事。</p>
+</blockquote>
+<p>其实用这两个函数读写的文件也是文本格式，跟一般的文本文件一样。</p>
+<p>比如说我们用下面的程序往文件中写入一个 <code>int</code> 型的数组：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FILE * pFile;</span><br><span class="line"><span class="keyword">int</span> buffer[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line"><span class="keyword">if</span>((pFile = fopen (<span class="string">&quot;myfile.txt&quot;</span>, <span class="string">&quot;wb&quot;</span>))==<span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;cant open the file&quot;</span>);</span><br><span class="line">    <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//可以写多个连续的数据(这里一次写4个)</span></span><br><span class="line">fwrite (buffer , <span class="keyword">sizeof</span>(<span class="keyword">int</span>), <span class="number">4</span>, pFile);</span><br><span class="line">fclose (pFile);</span><br></pre></td></tr></table></figure>
+
+<p>打开这个文件会发现这些字符：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">^A^@^@^@^B^@^@^@^C^@^@^@^D^@^@^@</span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>^A</code>、<code>^B</code>、<code>^C</code>、<code>^D</code>、<code>^@</code> 都是一个字符，所以这个文件一共有 16 个字符。</p>
+<p><code>^A</code> 的值为 1，<code>^B</code> 的值为 2，<code>^C</code> 的值为3，<code>^D</code> 的值为4，正好是我们写入的四个数字。因为我们存入的是 <code>int</code> 型的数据，所以文件中保存的就是值。如果写入字符串，那么结果就会是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>^@^@^@^@^@^@^@^@^@^@^@<span class="number">2</span>^@^@^@^@^@^@^@^@^@^@^@ <span class="number">3</span>^@^@^@^@^@^@^@^@^@^@<span class="number">4</span>^@^@^@^@^@^@^@^@^@^@^@</span><br></pre></td></tr></table></figure>
+
+<p>另外，那些 <code>^@</code> 的值是 0，起到填补作用，意思是那个地方没有值。</p>
+<p>如果想要让写入的文件直接可以阅读，则需要使用 <code>fprintf()</code> 函数</p>
+<h3 id="从第二行开始读取"><a href="#从第二行开始读取" class="headerlink" title="从第二行开始读取"></a>从第二行开始读取</h3><p>刚开始就遇到了问题，因为数据从第二行开始，所以不知道怎么从第二行开始读取数据。。</p>
+<p>从<a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/370149387">这里</a>找到了方法：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">fscanf</span>(infile,<span class="string">&quot;%*[^\n]&quot;</span>);<span class="comment">/*读取第一行，但是不赋值给任何变量*/</span></span><br><span class="line"><span class="built_in">fscanf</span>(infile,<span class="string">&quot;%*s %*s %d&quot;</span>,&amp;data);<span class="comment">/*读取第二行，只把第三列数据赋值给一个变量*/</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，<code>*</code> 是赋值抑制字符，正常读取，但是随之丢弃：</p>
+<blockquote>
+<p>An optional ‘*’ assignment-suppression character: scanf() reads input as directed by the conversion specification, but discards the  input. No corresponding pointer argument is required, and this specification is not included in the count of successful assign‐  ments returned by scanf().</p>
+</blockquote>
+<p><code>[^\n]</code> 感觉好像是正则表达式：</p>
+<blockquote>
+<p>[  Matches a nonempty sequence of characters from the specified set of accepted characters; the next pointer must be a pointer to char, and there must be enough room for all the characters in the string, plus a terminating null byte. </p>
+<p>The usual skip of leading white space is suppressed. The string is to be made up of characters in (or not in) a particular set; the set is defined by the characters between the open bracket [ character and a close bracket ] character. The set excludes those characters if the first character after the open bracket is a circumflex (^). </p>
+<p>To include a close bracket in the set, make it the first character after the open bracket or the circumflex; any other position will end the set. The hyphen character - is also special; when placed between two other characters, it adds all intervening characters to the set. To include a hyphen, make it the last character before the final close bracket. </p>
+<p>For instance, [^]0-9-] means the set “everything except close bracket, zero through nine, and hyphen”. The string ends with the appearance of a character not in the (or, with a circumflex, in) set or when the field width runs out.</p>
+</blockquote>
+<h3 id="路径检查"><a href="#路径检查" class="headerlink" title="路径检查"></a>路径检查</h3><p>数据文件的路径在 <code>data/record.data</code>，如果不存在 <code>data</code> 这个文件夹，那么会打开这个文件会失败。所以需要检查路径是否存在。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( access(filePath, F_OK) != <span class="number">0</span>)  <span class="comment">//文件夹不存在</span></span><br><span class="line">    mkdir(filePath, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);</span><br><span class="line"></span><br><span class="line">FILE *fp = fopen(fileName,<span class="string">&quot;r&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013485792/article/details/52327718">参考</a></p>
+<p>还有一件事，文件如果打开失败就不需要再用 <code>fclose</code> 函数关闭，也不可以这么做，否则可能会发生段错误。</p>
+<h3 id="整形转化成字符串"><a href="#整形转化成字符串" class="headerlink" title="整形转化成字符串"></a>整形转化成字符串</h3><p>想用“年月”给数据文件命名，需要把 int 转换成字符串（文件名）。好像有专门的函数 <code>itoa</code>，但是没用过。用 <code>strcat</code> 函数也可以，但是不太方便，最简单的是用 <code>sprintf</code> 函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> filePath[<span class="number">70</span>] = <span class="string">&quot;&quot;</span>;</span><br><span class="line"><span class="keyword">char</span> dataDir[<span class="number">7</span>+<span class="number">32</span>+<span class="number">6</span>]= &#123;<span class="number">0</span>&#125;;  <span class="comment">//用户名最长为32</span></span><br><span class="line">   <span class="keyword">char</span> *homevar = getenv(<span class="string">&quot;HOME&quot;</span>);</span><br><span class="line"></span><br><span class="line">   <span class="built_in">strcat</span> (dataDir, homevar);</span><br><span class="line">   <span class="built_in">strcat</span> (dataDir, <span class="string">&quot;/.data&quot;</span>);</span><br><span class="line"></span><br><span class="line">   <span class="built_in">sprintf</span>(filePath, <span class="string">&quot;%s/.data/record_%d.data&quot;</span>, homevar, (tmp-&gt;tm_year+<span class="number">1900</span>)*<span class="number">100</span> + tmp-&gt;tm_mon+<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="参数解析"><a href="#参数解析" class="headerlink" title="参数解析"></a>参数解析</h2><p>现在文件读写已经搞定了，但是程序的逻辑和之前设想的不太一样。最好是能直接输入一条命令就能添加一条记录，而不是像现在一样交互式的输入，感觉慢慢吞吞的。</p>
+<p>这就要用到命令行参数解析 <code>getopt()</code> 函数。另一个函数 <code>getopt_long()</code> 支持解析长选项，那就直接用它好了。</p>
+<p>参考这两篇文章：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/qingergege/p/5914218.html">Linux下getopt()函数的简单使用</a> 和 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/chenliyang/p/6633739.html">命令行选项解析函数(C语言)：getopt()和getopt_long()</a></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">parseArg</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> opt, mark=<span class="number">0</span>, date=<span class="number">0</span>, stime=<span class="number">0</span>, etime=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> option_index = <span class="number">0</span>;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">option</span> <span class="title">long_options</span>[]=</span>&#123;</span><br><span class="line">        &#123;<span class="string">&quot;help&quot;</span>,no_argument, <span class="literal">NULL</span>, <span class="string">&#x27;H&#x27;</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;version&quot;</span>,no_argument, <span class="literal">NULL</span>, <span class="string">&#x27;V&#x27;</span>&#125;,</span><br><span class="line">        &#123;<span class="string">&quot;list&quot;</span>,no_argument, <span class="literal">NULL</span>, <span class="string">&#x27;L&#x27;</span>&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">if</span>(argc==<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">//进入主循环</span></span><br><span class="line">    <span class="keyword">while</span>( (opt=getopt_long(argc, argv, <span class="string">&quot;d:m::s:e:hlv&quot;</span>,long_options,&amp;option_index)) != <span class="number">-1</span> ) <span class="comment">//少加了一个括号..</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">switch</span>(opt)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;d&#x27;</span>:</span><br><span class="line">                date = atoi(optarg); <span class="comment">//这里应该判断一下</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;m&#x27;</span>:</span><br><span class="line">                <span class="keyword">if</span>(optarg)  <span class="comment">//如果不为空指针，即m选项后面带参数</span></span><br><span class="line">                    mark = atoi(optarg);</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    mark = <span class="number">1</span>;  <span class="comment">//default value is 1</span></span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;s&#x27;</span>:</span><br><span class="line">                stime = atoi(optarg);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;e&#x27;</span>:</span><br><span class="line">                etime = atoi(optarg);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;H&#x27;</span>:</span><br><span class="line">                showHelp();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;h&#x27;</span>:</span><br><span class="line">                showHelp();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;L&#x27;</span>:</span><br><span class="line">                doList();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;l&#x27;</span>:</span><br><span class="line">                doList();</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;V&#x27;</span>:</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;overtime: version 0.2\n&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">&#x27;v&#x27;</span>:</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;overtime: version 0.2\n&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>( (date+stime+etime) !=<span class="number">0</span>) <span class="comment">//至少有一个不为0</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>( changeRecord(date,mark,stime,etime) == <span class="number">-1</span> )</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  <span class="comment">//返回0的话，就是正常解析选项</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说一下各个参数的含义：</p>
+<p><code>-h</code>、<code>-l</code>、<code>-v</code> 或者 <code>--help</code>、<code>--list</code>、<code>--version</code> 分别是帮助、列出表格以及显示版本。</p>
+<p><code>-d</code>、<code>-m</code>、<code>-s</code>、<code>-e</code> 分别对应于表格中的日期、序号、开始时间、结束时间。</p>
+<p>表格大概是这个样子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ ./overtime -l</span><br><span class="line"> 5      date   m  stime  etime    dur</span><br><span class="line"> 1  20191001   1   1800   2004    124</span><br><span class="line"> 2  20191029   1   1800   1819     19</span><br><span class="line"> 3  20191029   2    825    900     35</span><br><span class="line"> 4  20191029   3    825    900     35</span><br><span class="line"> 5  20191008   1    825    900     35</span><br><span class="line">totalTime: 248 minutes</span><br></pre></td></tr></table></figure>
+
+<p>第一列的序号是记录所有条目的编号，第三列的序号是用来区分同一日期的不同记录。参数 <code>-m</code> 指的是第三列。</p>
+<p>可以执行的操作：</p>
+<ul>
+<li><p>添加记录：</p>
+<p>添加记录不需要 <code>-m</code> 选项，也不可以有！下面参数至少要有一个。</p>
+<ul>
+<li><code>-d</code> 可选，不指定则默认为前一天</li>
+<li><code>-s</code> 可选，不指定则默认为 1800</li>
+<li><code>-e</code> 可选，不指定则默认为 2000</li>
+</ul>
+</li>
+<li><p>修改记录：</p>
+<p>修改记录需要指定 <code>-m</code> 选项用来定位，但是它的参数可以不指定，默认为1</p>
+<ul>
+<li><code>-d</code> 可选，不指定则默认为前一天</li>
+<li><code>-s</code> 可选，不指定则默认为 1800</li>
+<li><code>-e</code> 可选，不指定则默认为 2000</li>
+</ul>
+</li>
+</ul>
+<p>好像少了删除选项欸，，我等会儿再加上；另外，修改的时候用两个参数来定位好像有点麻烦，可以换成用第一列来定位的参数，毕竟第一列是唯一的。</p>
+<p>目前还缺少记录排序函数、记录有效性验证函数</p>
+<h2 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h2><h3 id="读取换行符"><a href="#读取换行符" class="headerlink" title="读取换行符"></a>读取换行符</h3><p>在交互式界面中，希望在输入时可以直接按 <code>Enter</code> 键跳过输入，让程序自动选择默认值。但是 <code>scanf</code> 函数遇到 <code>Enter</code> 键会一直等待，或许应该换一个函数来等待输入。</p>
+<p>发现 <code>fgets</code> 函数可以捕获换行符，换行符的 ASCII 值为 10，不知道另一个值为 13 的回车是什么鬼，不管它，知道 <code>\n</code> 是 10 就行了。</p>
+<p><code>fgets</code> 的原理是这样的：<code>char *fgets(char *buf, int bufsize, FILE *stream)；</code> </p>
+<p>用户输入一串字符，当按下换行后，它才从缓冲区读取。如果用户输入的字符太多，那么它会截取前 <code>bufsize-1</code> 个字符（<code>\n</code> 也不例外），最后一个位置填充 <code>\0</code>，剩下的就留在缓冲区；如果字符太少，那么它会把包括 <code>\n</code> 在内的所有字符都读取，剩余的部分全都填充 <code>\0</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;(overtime) &quot;</span>);</span><br><span class="line">fgets(str, <span class="number">2</span> , <span class="built_in">stdin</span>); <span class="comment">//读取1个字符</span></span><br><span class="line"><span class="keyword">if</span>(*str==<span class="number">10</span>)           <span class="comment">//可以直接写 &#x27;\n&#x27;，不用知道它的值是多少</span></span><br><span class="line">	num = <span class="string">&#x27;h&#x27;</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	num = *str;</span><br><span class="line">	<span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF); <span class="comment">//在下次读取前清空缓冲区，如果缓冲区没有东西，这里就会卡住，所以上面不能加这一句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一开始我是没加倒数第二行的，然后出现问题：按 <code>Enter</code> 的反应是符合预期的；但是输入选项字符的时候，程序在处理完之后，会在下一次循环时自动读取一个换行符。</p>
+<p>这是由于 <code>fgets</code> 会把换行符存起来，如果直接输入 <code>Enter</code>，它会在 <code>str[0]</code> 里存入 <code>\n</code>，<code>str[1]</code> 里存入 <code>\0</code>。如果输入一个字母再按 <code>Enter</code>，它会把这个字母存到 <code>str[0]</code>，<code>str[1]</code> 里放一个 <code>\0</code>，这时候缓冲区里还剩下一个 <code>\n</code> 。。</p>
+<p>但是这样还有一个小问题，比如我想输入日期 <code>02</code>，不能输入 <code>2</code>，这样它会一直等你输完。需要用 <code>getchar</code> 函数来捕获 <code>\n</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> value=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">char</span> str[<span class="number">3</span>]; <span class="comment">//最多能放2个字符</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;what&#x27;s the day do you want to record?\n&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;e.g. 1, default yesterday: &quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">2</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">    value = getchar();</span><br><span class="line">    <span class="keyword">if</span>(i==<span class="number">0</span> &amp;&amp; value == <span class="string">&#x27;\n&#x27;</span>)        <span class="comment">//用户输入 \n</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(tmp-&gt;tm_mday==<span class="number">1</span>)</span><br><span class="line">            date = pre_date + tmp-&gt;tm_mday;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            date = pre_date + tmp-&gt;tm_mday<span class="number">-1</span>; <span class="comment">//前一天</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">1</span> &amp;&amp; value == <span class="string">&#x27;\n&#x27;</span>)   <span class="comment">//用户输入一个数字加换行</span></span><br><span class="line">    &#123;</span><br><span class="line">        date += pre_date;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    date = date*<span class="number">10</span> + value<span class="number">-48</span>;</span><br><span class="line">    <span class="keyword">if</span>(i==<span class="number">1</span>)                         <span class="comment">//用户输入两个数字</span></span><br><span class="line">    &#123;</span><br><span class="line">        date += pre_date;</span><br><span class="line">        <span class="keyword">while</span>((clearInput = getchar()) != <span class="string">&#x27;\n&#x27;</span> &amp;&amp; clearInput != EOF); <span class="comment">//这种情况下第三个字符及以后的字符还在缓冲区</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="简化日期格式"><a href="#简化日期格式" class="headerlink" title="简化日期格式"></a>简化日期格式</h3><p>现在存取的日期格式是这个样子：<code>20191024</code> 。虽然很精确，但是前六位完全没必要啊，所以需要改进一下，如果能够输入的时候只需要填后 2 位，打印表格的时候自动补全日期就更好了。</p>
+<p>在初始化的时候就获取当前月份，保存在一个变量里：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pre_date = ((tmp-&gt;tm_year+<span class="number">1900</span>)*<span class="number">100</span> + tmp-&gt;tm_mon+<span class="number">1</span>) *<span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这样只需要改两个地方就可以了：</p>
+<p><code>-d</code> 参数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="string">&#x27;d&#x27;</span>:</span><br><span class="line">    date = atoi(optarg); </span><br><span class="line">    date += pre_date;</span><br><span class="line">    <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+
+<p>交互式的添加函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;what&#x27;s the date do you want to record?\n&quot;</span>);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;e.g. 01, default yesterday: &quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">2</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">    value = getchar();</span><br><span class="line">    <span class="keyword">if</span>(i==<span class="number">0</span> &amp;&amp; value == <span class="string">&#x27;\n&#x27;</span>)        <span class="comment">//用户输入 \n</span></span><br><span class="line">    &#123;</span><br><span class="line">        date = pre_date + tmp-&gt;tm_mday<span class="number">-1</span>; <span class="comment">//前一天</span></span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">1</span> &amp;&amp; value == <span class="string">&#x27;\n&#x27;</span>)   <span class="comment">//用户输入一个数字加换行</span></span><br><span class="line">    &#123;</span><br><span class="line">        date += pre_date;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    date = date*<span class="number">10</span> + value<span class="number">-48</span>;</span><br><span class="line">    <span class="keyword">if</span>(i==<span class="number">1</span>)                         <span class="comment">//用户输入两个数字</span></span><br><span class="line">        date += pre_date;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数据排序"><a href="#数据排序" class="headerlink" title="数据排序"></a>数据排序</h3><p>因为是无序添加，所以在写入文件之后要把数据按日期排序：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">sort</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    CLOCKINRECORD recordTmp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt; totalRecords<span class="number">-1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt; totalRecords; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(clkRecord[j].date &lt; clkRecord[i].date || (clkRecord[j].date == clkRecord[i].date &amp;&amp; clkRecord[j].mark &lt; clkRecord[i].mark) )</span><br><span class="line">            &#123;</span><br><span class="line">                recordTmp = clkRecord[i];</span><br><span class="line">                clkRecord[i] = clkRecord[j];</span><br><span class="line">                clkRecord[j] = recordTmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="打包安装"><a href="#打包安装" class="headerlink" title="打包安装"></a>打包安装</h2><p>安装其实没什么，只要把生成的可执行文件移动到 <code>/usr/local/bin</code> 目录就可以了。但是数据文件的路径是相对路径，也就是说如果我安装后在不同的路径下执行程序，数据文件的路径是不一样的。这怎么能行呢，所以还是要改成绝对路径。<code>~/.data/record.data</code> 就挺好的，但是 <code>~</code> 没法自动扩展成家目录呀，我还要自己替换一下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> filePath[<span class="number">7</span>+<span class="number">32</span>+<span class="number">18</span>]= &#123;<span class="number">0</span>&#125;;  <span class="comment">// “/home/”6位，“\0”1位，32位用户名，还有18位后缀</span></span><br><span class="line">   <span class="keyword">char</span> dataDir[<span class="number">7</span>+<span class="number">32</span>+<span class="number">6</span>]= &#123;<span class="number">0</span>&#125;;</span><br><span class="line">   <span class="keyword">char</span> *homevar = getenv(<span class="string">&quot;HOME&quot;</span>);</span><br><span class="line"></span><br><span class="line">   <span class="built_in">strcat</span> (filePath, homevar);</span><br><span class="line">   <span class="built_in">strcat</span> (filePath, <span class="string">&quot;/.data/record.data&quot;</span>);</span><br><span class="line">   <span class="built_in">strcat</span> (dataDir, homevar);</span><br><span class="line">   <span class="built_in">strcat</span> (dataDir, <span class="string">&quot;/.data&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>make install</code>：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install : all</span><br><span class="line">     install -c overtime /usr/local/bin/overtime</span><br></pre></td></tr></table></figure>
+
+<h3 id="man-手册页"><a href="#man-手册页" class="headerlink" title="man 手册页"></a>man 手册页</h3><p>一个完整的程序怎么能没有自己的 man 手册页呢，于是我参照别的程序，依葫芦画瓢也写了一份。</p>
+<p><code>overtime.1</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;\&quot; t</span></span><br><span class="line"><span class="string">.\&quot; Man page for overtime</span></span><br><span class="line"><span class="string">.\&quot;</span></span><br><span class="line"><span class="string">.\&quot; 191106_160323</span></span><br><span class="line"><span class="string">.\&quot;</span></span><br><span class="line"><span class="string">.pc</span></span><br><span class="line"><span class="string">.TH OVERTIME 1 &quot;2019-11-06&quot; &quot;0.8&quot; &quot;User commands&quot;</span></span><br><span class="line"><span class="string">.SH NAME</span></span><br><span class="line"><span class="string">overtime \- record overtime</span></span><br><span class="line"><span class="string">.SH SYNOPSIS</span></span><br><span class="line"><span class="string">.B overtime</span></span><br><span class="line"><span class="string">.B [\-hlv]</span></span><br><span class="line"><span class="string">.BI [\-d \ day ]</span></span><br><span class="line"><span class="string">.BI [\-s \ stime ]</span></span><br><span class="line"><span class="string">.BI [\-e \ etime ]</span></span><br><span class="line"><span class="string">.BI [\-M \ number ]</span></span><br><span class="line"><span class="string">.BI [\-D \ number ]</span></span><br><span class="line"><span class="string">.SH DESCRIPTION</span></span><br><span class="line"><span class="string">\fBovertime\fR is used to record overtime.</span></span><br><span class="line"><span class="string">.PP</span></span><br><span class="line"><span class="string">By default, \fBovertime\fR will enter interactive mode.</span></span><br><span class="line"><span class="string">To record overtime with a single command, use the</span></span><br><span class="line"><span class="string">\fB\-d\fR, \fB-s\fR and \fB-e\fR options.</span></span><br><span class="line"><span class="string">.SH OPTIONS</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BR \-h &quot;, &quot; \-\^\-help</span></span><br><span class="line"><span class="string">View the usage help display.</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BR \-l &quot;, &quot; \-\^\-list</span></span><br><span class="line"><span class="string">List the overtime records.</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BR \-v &quot;, &quot; \-\^\-version</span></span><br><span class="line"><span class="string">Output the version number of</span></span><br><span class="line"><span class="string">.B overtime</span></span><br><span class="line"><span class="string">and exit.</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BR \-d \ \ \fIday\fR</span></span><br><span class="line"><span class="string">Select the day you want to add or modify and search the list based on this option.</span></span><br><span class="line"><span class="string">Default is the previous day. (If it is the first day of each month,</span></span><br><span class="line"><span class="string">the default is the current day.)</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BR \-s \ \ \fIstime\fR</span></span><br><span class="line"><span class="string">Record accurate starting time.</span></span><br><span class="line"><span class="string">Default is 18:00.</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BR \-e \ \ \fIetime\fR</span></span><br><span class="line"><span class="string">Record accurate ending time.</span></span><br><span class="line"><span class="string">Default is 20:00.</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BR \-M \ \ \fInumber\fR</span></span><br><span class="line"><span class="string">Select the serial number of the entry to be modified.</span></span><br><span class="line"><span class="string">Default is the last one.</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BR \-D \ \ \fInumber\fR</span></span><br><span class="line"><span class="string">Select the serial number of the entry to be deleted.</span></span><br><span class="line"><span class="string">Default is the last one.</span></span><br><span class="line"><span class="string">.SH EXAMPLES</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">\fBovertime\fR</span></span><br><span class="line"><span class="string">Enter interactive mode.</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BI overtime\ \-h</span></span><br><span class="line"><span class="string">View the usage help display.</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BI overtime\ \-e \ 2023</span></span><br><span class="line"><span class="string">If you left work at 8:23 p.m. last night and want to write down this record today, just execute the command above.</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BI &quot;overtime -d&quot; &quot;01&quot; &quot; \-e&quot;2156</span></span><br><span class="line"><span class="string">If you left work at 9:56 p.m. on the 3rd of this month and want to write down this record today, just execute the command above.</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BI &quot;overtime -D&quot; 12</span></span><br><span class="line"><span class="string">Delete the 12th record.</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.BI &quot;overtime -M&quot; &quot;05&quot; &quot;-s&quot; &quot;0830 &quot; &quot;-e&quot; \ 2156</span></span><br><span class="line"><span class="string">Modify the 5th record, set the starting time to 8:30, and the ending time to 9:00.</span></span><br><span class="line"><span class="string">.SH FILES</span></span><br><span class="line"><span class="string">.TP</span></span><br><span class="line"><span class="string">.I ~/.data/record.data</span></span><br><span class="line"><span class="string">Record data file.</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+<p>把它移动到 <code>/usr/local/man/man1</code> 就可以用 <code>man overtime</code> 命令查看了。</p>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><h3 id="彩色显示字符"><a href="#彩色显示字符" class="headerlink" title="彩色显示字符"></a>彩色显示字符</h3><p>颜色描述字符串的格式为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\<span class="number">033</span>[格式;字体;背景m</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>\033</code> 对应 ASCII 码为 27 的字符，所以这里也可以换成 <code>\0x1b</code> 或者特殊字符 <code>^[</code>（通过在 vim 中连续按 <code>Ctrl+v</code>，<code>Ctrl+[</code> 打出来）</p>
+<p>格式、字体、背景的顺序是可以换的，也可以没有，默认值为 <code>\0x1b[0m</code></p>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="center">含义</th>
+<th align="center">字体</th>
+<th align="center">背景</th>
+<th align="center">颜色</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">默认</td>
+<td align="center">30</td>
+<td align="center">40</td>
+<td align="center">黑</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">粗体</td>
+<td align="center">31</td>
+<td align="center">41</td>
+<td align="center">红</td>
+</tr>
+<tr>
+<td align="center">22</td>
+<td align="center">下划线</td>
+<td align="center">32</td>
+<td align="center">42</td>
+<td align="center">绿</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">非下划线</td>
+<td align="center">33</td>
+<td align="center">43</td>
+<td align="center">黄</td>
+</tr>
+<tr>
+<td align="center">24</td>
+<td align="center">闪烁</td>
+<td align="center">34</td>
+<td align="center">44</td>
+<td align="center">蓝</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">非闪烁</td>
+<td align="center">35</td>
+<td align="center">45</td>
+<td align="center">紫</td>
+</tr>
+<tr>
+<td align="center">25</td>
+<td align="center">反显</td>
+<td align="center">36</td>
+<td align="center">46</td>
+<td align="center">青</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">非反显</td>
+<td align="center">37</td>
+<td align="center">47</td>
+<td align="center">白</td>
+</tr>
+<tr>
+<td align="center">27</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>有些格式不支持。</p>
+<p>例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;\x1b[36m&quot;</span> <span class="string">&quot;This text is CYAN!&quot;</span> <span class="string">&quot;\x1b[0m&quot;</span> <span class="string">&quot;\n&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>项目地址 <a target="_blank" rel="noopener" href="https://github.com/Snoire/overtime">https://github.com/Snoire/overtime</a></p>
+<p>–  未完  – </p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E8%A7%84%E5%88%92"><span class="toc-text">项目规划</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A1%86%E6%9E%B6"><span class="toc-text">基础框架</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%97%B6%E9%97%B4"><span class="toc-text">关于时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-text">文件操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E6%95%B0%E6%8D%AE%E5%9D%97"><span class="toc-text">读写数据块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%96%87%E4%BB%B6%E7%9A%84%E5%8F%AF%E8%AF%BB%E6%80%A7"><span class="toc-text">关于文件的可读性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E7%AC%AC%E4%BA%8C%E8%A1%8C%E5%BC%80%E5%A7%8B%E8%AF%BB%E5%8F%96"><span class="toc-text">从第二行开始读取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B7%AF%E5%BE%84%E6%A3%80%E6%9F%A5"><span class="toc-text">路径检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%BD%A2%E8%BD%AC%E5%8C%96%E6%88%90%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">整形转化成字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90"><span class="toc-text">参数解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%8F%96%E6%8D%A2%E8%A1%8C%E7%AC%A6"><span class="toc-text">读取换行符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8C%96%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F"><span class="toc-text">简化日期格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F"><span class="toc-text">数据排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%8C%85%E5%AE%89%E8%A3%85"><span class="toc-text">打包安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#man-%E6%89%8B%E5%86%8C%E9%A1%B5"><span class="toc-text">man 手册页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="toc-text">其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%A9%E8%89%B2%E6%98%BE%E7%A4%BA%E5%AD%97%E7%AC%A6"><span class="toc-text">彩色显示字符</span></a></li></ol></li></ol>
+  </div>
+</aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/C/"><i class="fa fa-tags"></i>C</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: snoire@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/Address_Space/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/profile/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>

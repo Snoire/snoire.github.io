@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Snoire" />
+  
+  
+  <title>EWMTA2.4 | Snoire&#39; Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="记录,sdc," />
+  
+
+  
+  <meta name="description" content="测试加锁、备忘密码提示：初始 sdc">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"53Hsawr9k3ISwmY0drKzCs2F-gzGzoHsz","appkey":"SjrIApaUKrCn5iS0dmM0qJ8L","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2019-10-08 20:01:24",
+    passwords: ["cc8f2b7a1d1a757235e2c7b58b0b1dc1a721eb34c8d06a386d50b654522393d1", "e89dd33512e6e058cfc0107043a76ea83b8f3fb8b49cbe870654f7e138ad6fa6", ],
+    is_post: true,
+    lock: true,
+    author: "Snoire",
+    share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Snoire</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 观察改变世界</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/snoire/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-10-18
+    </span>
+    
+      <span>
+        | <a href="/categories/%E8%AE%B0%E5%BD%95/"><i class="fa fa-bookmark"></i>记录</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-lock"></i>LOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    EWMTA2.4
+  </h1>
+  
+  <article class="passage-article">
+    <h2 id="时序"><a href="#时序" class="headerlink" title="时序"></a>时序</h2><h3 id="CLI-nat-ruleget-显示问题"><a href="#CLI-nat-ruleget-显示问题" class="headerlink" title="CLI: nat ruleget 显示问题"></a>CLI: nat ruleget 显示问题</h3><ul>
+<li>ID：4484</li>
+<li>日期：2019-08-16</li>
+<li>标题：<code>Didn&#39;t show &#39;No NAT rules exit.&#39; with &#39;nat ruleget&#39; command when port forwarding is not set.</code></li>
+<li>路径：<code>$top/nat.c</code></li>
+<li>描述：在函数 <code>nat_ruleget_cmd</code> 里添加判断句。</li>
+</ul>
+<h3 id="CLI-增加-ngn-ipv6-show-rule-命令"><a href="#CLI-增加-ngn-ipv6-show-rule-命令" class="headerlink" title="CLI: 增加 ngn ipv6 show-rule 命令"></a>CLI: 增加 ngn ipv6 show-rule 命令</h3><ul>
+<li><p>ID：3619</p>
+</li>
+<li><p>日期：2019-08-29</p>
+</li>
+<li><p>标题：<code>Command &quot;ngn ipv6 show-rule&quot; can not be used.</code></p>
+</li>
+<li><p>路径：<code>$top/ngn.c</code>  <code>$top/top.c</code>  <code>$top/top.h</code></p>
+</li>
+<li><p>描述：在 <code>ngn.c</code> 里添加命令，用到了 <code>awk</code> 命令从 <code>/proc/net/nf_conntrak</code> 文件中抽取信息。</p>
+<p>另外，新增命令还需要在 <code>top.c</code> 和 <code>top.h</code> 这两个文件中注册一下。</p>
+</li>
+<li><p>关键点：awk 用法</p>
+</li>
+</ul>
+<h3 id="FORMAT-修改-voip-syslog-格式"><a href="#FORMAT-修改-voip-syslog-格式" class="headerlink" title="FORMAT: 修改 voip syslog 格式"></a>FORMAT: 修改 voip syslog 格式</h3><ul>
+<li>日期：2019-09-06</li>
+<li>标题：<code>Fix the format issue of voip syslog.</code></li>
+<li>路径：<code>$top/log.c</code></li>
+<li>描述：修改 syslog 的语句，毫无难度。</li>
+</ul>
+<h3 id="CLI-增加-log-flash-werror-命令"><a href="#CLI-增加-log-flash-werror-命令" class="headerlink" title="CLI: 增加 log flash werror 命令"></a>CLI: 增加 log flash werror 命令</h3><ul>
+<li>ID：5251</li>
+<li>日期：2019-09-07</li>
+<li>标题：<code>Transmission method is unknown regarding [Write flash error reboot] syslog described in syslog specification.</code></li>
+<li>路径：<ul>
+<li><code>$top/log.c</code>  <code>$top/top.c</code>  <code>$top/top.h</code></li>
+<li><code>$ap/image_ctrl/image_ctrl.c</code></li>
+</ul>
+</li>
+<li>描述：<ul>
+<li>增加 <code>log flash werror</code> 命令，当执行这个命令的时候，创建 <code>/tmp/sys_data/flash_werror</code> 空文件作为标志。</li>
+<li>在 <code>image_ctrl.c</code> 里判断是否存在 <code>/tmp/sys_data/flash_werror</code> 这个文件，如果存在，则发送一条 <code>syslog</code>。</li>
+</ul>
+</li>
+<li>关键点：创建文件、删除文件、判断文件是否存在 <code>access</code></li>
+</ul>
+<h3 id="RADIUS-sys-usb-mode-spec-update"><a href="#RADIUS-sys-usb-mode-spec-update" class="headerlink" title="RADIUS: sys-usb-mode spec update"></a>RADIUS: sys-usb-mode spec update</h3><ul>
+<li>ID：4043</li>
+<li>日期：2019-09-10</li>
+<li>标题：<code>USB mouse lights up when set Sys_USB_Mode 0.</code></li>
+<li>路径：<code>$ap/radius_handle/list.c</code></li>
+<li>描述：这个文件是 <code>radius</code> 服务器下发配置时的文件。spec 更新了参数，这里也要改一下。</li>
+<li>关键点：<code>radius</code> 服务器下发时要启动的服务</li>
+</ul>
+<h3 id="测试-ftp-get-put-test"><a href="#测试-ftp-get-put-test" class="headerlink" title="测试: ftp-get-put-test"></a>测试: ftp-get-put-test</h3><ul>
+<li><p>ID：5203</p>
+</li>
+<li><p>日期：2019-09-16</p>
+</li>
+<li><p>脚本：</p>
+<p><code>FTP_190918.bat</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">rem Enter the test item number.</span><br><span class="line">set /p INP=&quot;Enter Test No._Pattern No_CPENo&gt;&quot;</span><br><span class="line"></span><br><span class="line">rem Wired / wireless, command distinction</span><br><span class="line">set wwll=LAN-auto-ftp</span><br><span class="line"></span><br><span class="line">rem Execution command bat</span><br><span class="line">set ccmm=auto-ftp.bat</span><br><span class="line"></span><br><span class="line">rem yymmdda… Date displayed in the log</span><br><span class="line">set yymmdda=%date:~0,4%%date:~5,2%%date:~8,2%</span><br><span class="line"></span><br><span class="line">rem Reference: For every hour、%time:~0,2%%time:~3,2%</span><br><span class="line"></span><br><span class="line">cls</span><br><span class="line">:aaaa</span><br><span class="line">echo ----------------------------- &gt;&gt;%INP%_%wwll%_%yymmdda%.log</span><br><span class="line">date /t &gt;&gt;%INP%_%wwll%_%yymmdda%.log</span><br><span class="line">time /t &gt;&gt;%INP%_%wwll%_%yymmdda%.log</span><br><span class="line">echo ---------------------------- &gt;&gt;%INP%_%wwll%_%yymmdda%.log</span><br><span class="line">rem Execution command field</span><br><span class="line">call %ccmm% &gt;&gt;%INP%_%wwll%_%yymmdda%.log</span><br><span class="line"></span><br><span class="line">rem Interrupt point</span><br><span class="line">ping 127.0.0.1 -n 10</span><br><span class="line"></span><br><span class="line">echo. &gt;&gt;%INP%_%wwll%_%yymmdda%.log</span><br><span class="line">goto aaaa</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+<h3 id="NVRAM-警告灯在-reset-之后的保存问题"><a href="#NVRAM-警告灯在-reset-之后的保存问题" class="headerlink" title="NVRAM: 警告灯在 reset 之后的保存问题"></a>NVRAM: 警告灯在 reset 之后的保存问题</h3><ul>
+<li>ID：5346</li>
+<li>日期：2019-09-23</li>
+<li>标题：<code>Forced alarm lighting setting is changed after long pressing the reset button.</code></li>
+<li>路径：<code>$sal/loaddefault.c</code>  <code>$sal/misc.c</code>  <code>$pri/include/sal/sal_misc.h</code></li>
+<li>描述：<ul>
+<li>在 <code>$sal/loaddefault.c</code> 这个文件里的 <code>sal_loaddefault_get_pattern2_from_nvram()</code> 函数中加上 <code>sal_misc_set_alarmled_status(cal_misc_get_cli_alrmed_led());</code> </li>
+<li>意思是在 <code>pattern2</code> 的时候，重启之前，从 <code>nvram</code> 中取出设置的值。</li>
+<li>在 <code>sal_loaddefault_set_pattern2_from_nvram()</code> 函数中加上 <code>cal_misc_set_cli_alrmed_led(sal_misc_get_alarmled_status());</code> </li>
+<li>意思是在重启之后，再把值写回去</li>
+<li>因为 <code>sal</code> 的两个函数没有事先定义，所以要定义一下，具体方法依葫芦画瓢</li>
+</ul>
+</li>
+<li>关键点：<ul>
+<li>user config 保存在 <code>/tmp/sys_data/xmlx</code> 文件中</li>
+<li><code>cal</code> 函数可以把保存在内存中的 <code>xml tree</code> 中的值取出来，或者放回去</li>
+<li><code>sal</code> 函数可以把设定值保存在内存的另一个地方</li>
+<li>大部分的设定都是直接用 <code>cal</code> 读取 <code>xml tree</code> 中的值，或者用 <code>cal</code> 把值保存在 <code>xml tree</code> 中</li>
+<li><code>sal</code> 不太理解，应该是一种临时存放设定时的地方</li>
+</ul>
+</li>
+</ul>
+<h3 id="测试-reboot-loop"><a href="#测试-reboot-loop" class="headerlink" title="测试: reboot_loop"></a>测试: reboot_loop</h3><ul>
+<li><p>日期：2019-09-26</p>
+</li>
+<li><p>标题：<code>check VoIP status after reboot</code></p>
+</li>
+<li><p>脚本：</p>
+<p><code>reboot_loop3.vbs</code>：</p>
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"># $language = <span class="string">&quot;VBScript&quot;</span></span><br><span class="line"># $interface = <span class="string">&quot;1.0&quot;</span></span><br><span class="line"> </span><br><span class="line">crt.Screen.Synchronous = <span class="literal">True</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">&#x27;autofwafterreboot</span></span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="keyword">Sub</span> Main</span><br><span class="line">		</span><br><span class="line">        <span class="keyword">for</span> i=<span class="number">1</span> <span class="keyword">to</span> <span class="number">100000000</span></span><br><span class="line"><span class="comment">&#x27;               crt.Screen.WaitForString &quot;[ipv6_ngn_determine_daemon] first_periodical_sleep_sec=&quot;</span></span><br><span class="line">				<span class="keyword">for</span> j=<span class="number">1</span> <span class="keyword">To</span> <span class="number">40</span>				</span><br><span class="line">                        <span class="keyword">If</span>(j&gt; <span class="number">10</span>)<span class="keyword">Then</span></span><br><span class="line">                            j = <span class="number">1</span></span><br><span class="line">                            crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                            crt.Screen.WaitForString <span class="string">&quot;EWMTA2.4 login: &quot;</span></span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;supervisor&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                            crt.Screen.WaitForString <span class="string">&quot;Password: &quot;</span></span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;12wedfvb09iuhgvcz&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                            crt.Screen.WaitForString <span class="string">&quot;view @ EWMTA2.4&gt; &quot;</span></span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;reboot-error&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)						</span><br><span class="line">							crt.Screen.Send <span class="string">&quot;reboot&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        <span class="keyword">ElseIf</span>(crt.Screen.WaitForString(<span class="string">&quot;[ipv6_ngn_determine_daemon] first_periodical_sleep_sec=&quot;</span>,<span class="number">320</span>)&lt;&gt;<span class="literal">False</span>) <span class="keyword">Then</span></span><br><span class="line">                            j = <span class="number">40</span></span><br><span class="line">                            crt.Sleep <span class="number">2000</span></span><br><span class="line">                            crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                            crt.Screen.WaitForString <span class="string">&quot;EWMTA2.4 login: &quot;</span></span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;supervisor&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                            crt.Screen.WaitForString <span class="string">&quot;Password: &quot;</span></span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;12wedfvb09iuhgvcz&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)							</span><br><span class="line">                        <span class="keyword">Else</span></span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;reboot not ready,wait...&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">				<span class="keyword">next</span></span><br><span class="line"><span class="comment">&#x27; add some check point here.</span></span><br><span class="line"><span class="comment">&#x27; verify fw upgrade success</span></span><br><span class="line">                crt.Screen.WaitForString <span class="string">&quot;view @ EWMTA2.4&gt; &quot;</span></span><br><span class="line"><span class="comment">&#x27;               crt.Screen.Send &quot;version &quot; &amp; chr(13)</span></span><br><span class="line">                crt.Screen.Send i &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> j=<span class="number">1</span> <span class="keyword">To</span> <span class="number">1000000000</span></span><br><span class="line">						<span class="keyword">If</span>(j&gt; <span class="number">48</span>)<span class="keyword">Then</span></span><br><span class="line">							crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">							crt.Screen.WaitForString <span class="string">&quot;view @ EWMTA2.4&gt; &quot;</span></span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;voip-error&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)							</span><br><span class="line">							crt.Screen.Send <span class="string">&quot;reboot&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">						<span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">                        crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.Screen.WaitForString <span class="string">&quot;view @ EWMTA2.4&gt; &quot;</span></span><br><span class="line">                        crt.Screen.Send <span class="string">&quot;show ledstatus&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">						</span><br><span class="line">                        crt.Screen.Send j &amp; <span class="built_in">chr</span>(<span class="number">13</span>) &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.sleep(<span class="number">2</span>)</span><br><span class="line">                        <span class="keyword">If</span>(crt.Screen.WaitForString(<span class="string">&quot;VOIP READY      : on&quot;</span>,<span class="number">5</span>)&lt;&gt;<span class="literal">False</span>)<span class="keyword">Then</span></span><br><span class="line">							crt.Screen.Send <span class="string">&quot;VoIP is ready,reboot.&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)						</span><br><span class="line">							j = <span class="number">1000000000</span></span><br><span class="line">                        <span class="keyword">Else</span></span><br><span class="line">							crt.Screen.Send <span class="string">&quot;VoIP not ready,wait...&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">next</span></span><br><span class="line">                        crt.Screen.Send <span class="string">&quot;reboot&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">        <span class="keyword">next</span> </span><br><span class="line">        crt.Screen.Synchronous = <span class="literal">False</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关键点：配置 <code>ftp</code> 的时候 <code>empty</code> 文件夹写权限去掉</p>
+</li>
+</ul>
+<h3 id="LED-指示灯相关"><a href="#LED-指示灯相关" class="headerlink" title="LED: 指示灯相关"></a>LED: 指示灯相关</h3><ul>
+<li><p>日期：2019-09-29</p>
+</li>
+<li><p>指示灯对应关系：</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">名称</th>
+<th align="center">别名</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">电源</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">警告</td>
+<td align="center">ALARM</td>
+<td align="center">alrmed</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">电路</td>
+<td align="center">WAN</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">高速模式</td>
+<td align="center">IPv6</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">Wi-Fi</td>
+<td align="center">Wireless</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">电话 1</td>
+<td align="center">VoIP / VOIP READY</td>
+<td align="center">BBPhone</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="center">电话 2</td>
+<td align="center">FUNCTION 1</td>
+<td align="center">Hikari</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="center">service 1</td>
+<td align="center">FUNCTION 2</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="center">service 2</td>
+<td align="center">BLUETOOTH</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="center">service 3</td>
+<td align="center">USB</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>按键说明：</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">名称</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">WPS</td>
+<td>功能</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">Reset</td>
+<td>5 秒以下是 reboot，5 秒以上是 reset</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>相关命令：<code>show ledstatus</code></p>
+</li>
+</ul>
+<h3 id="CLI-增加蓝牙命令"><a href="#CLI-增加蓝牙命令" class="headerlink" title="CLI: 增加蓝牙命令"></a>CLI: 增加蓝牙命令</h3><ul>
+<li><p>日期：2019-10-17</p>
+</li>
+<li><p>标题：<code>Add cli bluetooth cmd.</code></p>
+</li>
+<li><p>路径：</p>
+<ul>
+<li><code>$top/bluetooth.c</code>  <code>$top/top.c</code>  <code>$top/top.h</code></li>
+<li><code>$ap/radius_handle/list.c</code></li>
+<li><code>$rc/mgnt/bluetooth_cfg.c</code>  <code>$rc/include/bluetooth_cfg.c</code>  <code>$rc/Makefile</code>  <code>$rc/include/apps.h</code></li>
+</ul>
+</li>
+<li><p>描述：</p>
+<ul>
+<li><code>$top/bluetooth.c</code> 文件中写蓝牙命令</li>
+<li><code>$ap/radius_handle/list.c</code> 中加入 <code>rc bluetooth restart</code>，在 <code>radius</code> 配置下发的时候执行这一条语句</li>
+<li><code>$rc/mgnt/bluetooth_cfg.c</code> 中写入 <code>start_bluetooth()</code> 和 <code>stop_bluetooth()</code> 函数</li>
+<li><code>$rc/include/apps.h</code> 中再注册一下，就完成了 <code>rc bluetooth start/stop/restart</code> 等命令</li>
+</ul>
+</li>
+<li><p>关键点：</p>
+<ul>
+<li><p><code>start_bluetooth()</code> 函数是先判断 <code>cal</code> 中的蓝牙模式设定值，再启动蓝牙服务，同时打开蓝牙指示灯；但是， <code>stop_bluetooth()</code> 函数则不管当前蓝牙状态是什么，直接杀掉进程，再关闭蓝牙灯。所以 <code>rc bluetooth restart</code> 这一命令是先关再开，它就不再是简单的重启，而是把当前蓝牙状态同步成 <code>cal</code> 中设定值一样的状态。所以 <code>bluetooth &lt;0-1&gt;</code> 这条命令只需要调用 <code>rc bluetooth restart</code> 就可以了。</p>
+<table>
+<thead>
+<tr>
+<th align="center">当前值</th>
+<th align="center">设定值</th>
+<th align="center">执行动作</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">关</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">关、开</td>
+</tr>
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">关、开</td>
+</tr>
+</tbody></table>
+<p>而且调用 <code>rc bluetooth restart</code> 来开蓝牙，一直开蓝牙，也不会启动多个进程。因为它总是先将前一个进程关掉再打开新的。</p>
+</li>
+<li><p>相应地，要想改变蓝牙状态，只需要将值写入 <code>cal</code> 设定，再执行 <code>rc bluetooth restart</code> 命令</p>
+</li>
+<li><p><code>SYSTEM()</code> 函数的用法</p>
+</li>
+<li><p><code>bluetooth &lt;0-1&gt;</code> 限定输入 <code>[0-1]</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="CLI-bluetooth-connect-for-ID"><a href="#CLI-bluetooth-connect-for-ID" class="headerlink" title="CLI: bluetooth connect for ID"></a>CLI: bluetooth connect for ID</h3><ul>
+<li>日期：2019-10-17</li>
+<li>标题：<code>Modify &quot;bluetooth connect cmd&quot;</code></li>
+<li>路径：<code>$top/bluetooth.c.bak</code></li>
+<li>关键点：<ul>
+<li>在一条命令中实现两种连接方式，命令字符串里的大写字母表示传入的参数，两个点 <code>.</code> 表示两个可选参数</li>
+<li>需要判断参数的个数来分类讨论</li>
+<li>判断参数是纯数字（负号也不行），用 <code>strspn(argv[0],&quot;0123456789&quot;)==strlen(argv[0])</code></li>
+<li>用 <code>ether_aton</code> 来判断一个字符串是否是 <code>MAC</code> 地址</li>
+<li>构造结构体解析文件，注意要判断是否越界</li>
+</ul>
+</li>
+</ul>
+<h3 id="测试-fwupdateAuto测试"><a href="#测试-fwupdateAuto测试" class="headerlink" title="测试: fwupdateAuto测试"></a>测试: fwupdateAuto测试</h3><ul>
+<li><p>日期：2019-10-22</p>
+</li>
+<li><p>ID：4932</p>
+</li>
+<li><p>脚本：</p>
+<p><code>fwupdateAuto4.vbs</code>：</p>
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br></pre></td><td class="code"><pre><span class="line">#$language = <span class="string">&quot;VBScript&quot;</span></span><br><span class="line">#$interface = <span class="string">&quot;1.0&quot;</span></span><br><span class="line"> </span><br><span class="line">crt.Screen.Synchronous = <span class="literal">True</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">&#x27; This automatically generated script may need to be</span></span><br><span class="line"><span class="comment">&#x27; edited in order to work correctly.</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">Public</span> <span class="keyword">Function</span> Updateconfigfile() </span><br><span class="line">                     crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>) &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                     crt.Screen.Send <span class="string">&quot;cd /tmp&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                     crt.sleep <span class="number">200</span></span><br><span class="line">                     crt.Screen.Send <span class="string">&quot;cat /etc/fw_version&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line"> </span><br><span class="line">                     SwitchKey = <span class="number">0</span></span><br><span class="line">                     SwitchKey = crt.Screen.WaitForStrings(<span class="string">&quot;ewmta2.4.v1028.5201c.20191018.sc&quot;</span>,<span class="string">&quot;ewmta2.4.v1028.5201t.20191018.sc&quot;</span>,<span class="number">3</span>)</span><br><span class="line">                     <span class="keyword">Select</span> <span class="keyword">Case</span> SwitchKey</span><br><span class="line">                     <span class="keyword">Case</span> <span class="number">1</span></span><br><span class="line">                        crt.Screen.Send <span class="string">&quot;current FW: ewmta2.4.v1028.5201c.20191018.sc, upgrade to ewmta2.4.v1028.5201t.20191018.sc&quot;</span>  &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.Screen.Send <span class="string">&quot;tftp -g 172.200.10.201 -r ewmta24_lab.sc -l ewmta24.sc&quot;</span>  &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.sleep <span class="number">2000</span></span><br><span class="line">						crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.Screen.Send <span class="string">&quot;tftp -p 172.200.10.201 -r ewmta24.sc -l ewmta24.sc&quot;</span>  &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.sleep <span class="number">2000</span></span><br><span class="line">						crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.Screen.Send <span class="string">&quot;reboot&quot;</span>  &amp; <span class="built_in">chr</span>(<span class="number">13</span>) </span><br><span class="line">                        Updateconfigfile = <span class="number">1</span></span><br><span class="line">                     <span class="keyword">Case</span> <span class="number">2</span></span><br><span class="line">                        crt.Screen.Send <span class="string">&quot;current FW: ewmta2.4.v1028.5201t.20191018.sc, upgrade to ewmta2.4.v1028.5201c.20191018.sc&quot;</span>  &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.Screen.Send <span class="string">&quot;tftp -g 172.200.10.201 -r ewmta24_commercial.sc -l ewmta24.sc&quot;</span>  &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.sleep <span class="number">2000</span></span><br><span class="line">						crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.Screen.Send <span class="string">&quot;tftp -p 172.200.10.201 -r ewmta24.sc -l ewmta24.sc&quot;</span>  &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.sleep <span class="number">2000</span></span><br><span class="line">						crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        crt.Screen.Send <span class="string">&quot;reboot&quot;</span>  &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        Updateconfigfile = <span class="number">1</span></span><br><span class="line">                     <span class="keyword">Case</span> <span class="keyword">Else</span></span><br><span class="line">                        Updateconfigfile = <span class="number">0</span></span><br><span class="line">                     <span class="keyword">End</span> <span class="keyword">Select</span> </span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">Sub</span> Main</span><br><span class="line">           <span class="keyword">for</span> i=<span class="number">1</span> <span class="keyword">to</span> <span class="number">10000000</span></span><br><span class="line"></span><br><span class="line">				<span class="keyword">for</span> j=<span class="number">1</span> <span class="keyword">To</span> <span class="number">20</span>				</span><br><span class="line">                        <span class="keyword">If</span>(j&gt; <span class="number">10</span>)<span class="keyword">Then</span></span><br><span class="line">                            j = <span class="number">1</span></span><br><span class="line">                            crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                            crt.Screen.WaitForString <span class="string">&quot;EWMTA2.4 login: &quot;</span></span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;supervisor&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                            crt.Screen.WaitForString <span class="string">&quot;Password: &quot;</span></span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;12wedfvb09iuhgvcz&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                            crt.Screen.WaitForString <span class="string">&quot;view @ EWMTA2.4&gt; &quot;</span></span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;reboot-error&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;reboot&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)						</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">ElseIf</span>(crt.Screen.WaitForString(<span class="string">&quot;[ipv6_ngn_determine_daemon] first_periodical_sleep_sec=&quot;</span>,<span class="number">320</span>)&lt;&gt;<span class="literal">False</span>)<span class="keyword">Then</span></span><br><span class="line">                            j = <span class="number">20</span></span><br><span class="line">                            <span class="keyword">If</span>(crt.Screen.WaitForString(<span class="string">&quot;[ipv6_ngn_determine_daemon] first_periodical_sleep_sec=&quot;</span>,<span class="number">360</span>)&lt;&gt;<span class="literal">True</span>)<span class="keyword">Then</span></span><br><span class="line">								crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">								crt.Screen.Send <span class="string">&quot;upgrade-error&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)									</span><br><span class="line">							<span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">							crt.Sleep <span class="number">2000</span></span><br><span class="line">							crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">							crt.Screen.WaitForString <span class="string">&quot;EWMTA2.4 login: &quot;</span></span><br><span class="line">							crt.Screen.Send <span class="string">&quot;supervisor&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">							crt.Screen.WaitForString <span class="string">&quot;Password: &quot;</span></span><br><span class="line">							crt.Screen.Send <span class="string">&quot;12wedfvb09iuhgvcz&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line"></span><br><span class="line">							crt.Screen.Send <span class="string">&quot;radclient showsettings&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">							<span class="keyword">If</span>(crt.Screen.WaitForString(<span class="string">&quot;Sys_TFTP: 172.200.10.201&quot;</span>,<span class="number">2</span>)&lt;&gt;<span class="literal">True</span>)<span class="keyword">Then</span></span><br><span class="line">							crt.Screen.Send <span class="string">&quot;radius-acquire-error&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">							<span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">							</span><br><span class="line">							crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">							crt.Screen.Send <span class="string">&quot;show upgradehistory&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">							SwitchKey = <span class="number">0</span></span><br><span class="line">							SwitchKey = crt.Screen.WaitForStrings(<span class="string">&quot;Result                       =Not initiated&quot;</span>,<span class="string">&quot;Result                       =Failed in image TFTP transfer&quot;</span>,<span class="number">2</span>)</span><br><span class="line">							<span class="keyword">Select</span> <span class="keyword">Case</span> SwitchKey</span><br><span class="line">							<span class="keyword">Case</span> <span class="number">1</span></span><br><span class="line">								crt.Screen.Send <span class="string">&quot;pattern1-error&quot;</span>  &amp; <span class="built_in">chr</span>(<span class="number">13</span>)			 </span><br><span class="line">							<span class="keyword">Case</span> <span class="number">2</span></span><br><span class="line">								crt.Screen.Send <span class="string">&quot;pattern2-error&quot;</span>  &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">							<span class="keyword">End</span> <span class="keyword">Select</span>																</span><br><span class="line">							</span><br><span class="line">							crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">							crt.Screen.WaitForString <span class="string">&quot;view @ EWMTA2.4&gt; &quot;</span></span><br><span class="line">							crt.Screen.Send <span class="string">&quot;sh J28%1S0g&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)				</span><br><span class="line">							crt.Screen.WaitForString <span class="string">&quot;# &quot;</span></span><br><span class="line">								</span><br><span class="line">                        <span class="keyword">Else</span></span><br><span class="line">                            crt.Screen.Send <span class="string">&quot;reboot not ready, wait...&quot;</span> &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                        <span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line">				<span class="keyword">next</span></span><br><span class="line">					 </span><br><span class="line">					 </span><br><span class="line">					 </span><br><span class="line">					 </span><br><span class="line">					 </span><br><span class="line"><span class="comment">&#x27; add some check point here.</span></span><br><span class="line"><span class="comment">&#x27; verify fw upgrade success</span></span><br><span class="line">					 crt.Screen.Send <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                     crt.Screen.Send <span class="string">&quot;fwupgradeAuto: &quot;</span></span><br><span class="line">                     crt.Screen.Send i &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line"></span><br><span class="line">                     crt.Screen.WaitForString <span class="string">&quot;# &quot;</span> </span><br><span class="line"></span><br><span class="line">                     j = <span class="number">0</span></span><br><span class="line">                     crt.Screen.Send <span class="string">&quot;Update server config file: &quot;</span></span><br><span class="line">                     crt.Screen.Send j &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                     autoupgrade = Updateconfigfile ()</span><br><span class="line">                     <span class="keyword">While</span> (autoupgrade &lt;&gt; <span class="number">1</span>)</span><br><span class="line">                         j = j + <span class="number">1</span></span><br><span class="line">                         crt.Screen.Send <span class="string">&quot;Update server config file: &quot;</span></span><br><span class="line">                         crt.Screen.Send j &amp; <span class="built_in">chr</span>(<span class="number">13</span>)</span><br><span class="line">                         autoupgrade = Updateconfigfile ()</span><br><span class="line">                     <span class="keyword">Wend</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27;                     crt.Screen.WaitForString &quot;Update Completed&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27;                     crt.sleep(80)</span></span><br><span class="line"><span class="comment">&#x27;					 crt.Screen.WaitForString &quot;Please press Enter to activate this console.&quot;</span></span><br><span class="line"><span class="comment">&#x27;                     crt.Screen.Send chr(13)</span></span><br><span class="line"> </span><br><span class="line">           <span class="keyword">next</span> </span><br><span class="line">           crt.Screen.Synchronous = <span class="literal">False</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Sub</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关键点：</p>
+<ul>
+<li><p><code>MS0 VS5</code></p>
+</li>
+<li><p>需要先在 <code>core</code> 里设置 <code>sys-fw-upgrade</code> 为 1，找不到在哪个文件设置就全都改了吧。连接 <code>Wan</code></p>
+</li>
+<li><p>从 <code>&#39;$ap/auto_fw_upgrade/auto_fw_upgrade.c</code> 这个文件里的 <code>download_cfg_file()</code> 函数里可以看出，板子会从 <code>radius</code> 服务器里下载一个 <code>ewmta24.sc</code> 文件，改名为 <code>/tmp/fw_config</code>，然后根据这个配置文件里的内容在 reboot 的过程中，自动到服务器里下载 FW。</p>
+</li>
+<li><p>所以需要判断当前是什么版本，再把服务器中的 <code>ewmta24_commercial.sc</code> 或者 <code>ewmta24_lab.sc</code> 先下载下来，再改个名 <code>ewmta24.sc</code> 上传回去。这样就可以自动更新了。</p>
+</li>
+<li><p>shell 里的 tftp 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ tftp -g 172.200.10.201 -r ewmta24_lab.sc -l ewmta24.sc</span><br><span class="line">$ tftp -p 172.200.10.201 -r ewmta24.sc -l ewmta24.sc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>core</code> 里面的服务需要先点亮才能用，tftp 的路径为 <code>/var/tftp</code>，这个文件夹的权限好像也要改一下。设置可写需要在配置里加一个 <code>-c</code> 参数。另外，在本地配置文件 <code>.core/my*/tftpd.py</code> 里的最后几行，也要加一个 <code>-c</code> 参数。</p>
+</li>
+<li><p><code>ewmta24.sc</code> 里的第四行是对应 <code>FW</code> 的大小，不改好的话，自动升级会失败，用 <code>ls -l</code> 查看</p>
+</li>
+<li><p>禁用无线命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wlan usercontrol 0</span><br><span class="line">$ save</span><br><span class="line">$ apply</span><br><span class="line">$ reboot</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="测试-蓝牙命令测试"><a href="#测试-蓝牙命令测试" class="headerlink" title="测试: 蓝牙命令测试"></a>测试: 蓝牙命令测试</h3><ul>
+<li>日期：2019-10-24</li>
+<li>描述：测试蓝牙连接功能</li>
+<li>关键点：<ul>
+<li>一块板子进入 <code>bluetooth pair</code> ，另一个 <code>bluetooth scan</code>，然后再连接</li>
+<li>因为 <code>scan</code> 会自动退出 <code>pair</code> 模式</li>
+</ul>
+</li>
+</ul>
+<h3 id="编译：把-SDK-的-dw-和-memaccess-编进-FW"><a href="#编译：把-SDK-的-dw-和-memaccess-编进-FW" class="headerlink" title="编译：把 SDK 的 dw 和 memaccess 编进 FW"></a>编译：把 SDK 的 dw 和 memaccess 编进 FW</h3><ul>
+<li><p>日期：2019-10-30</p>
+</li>
+<li><p>邮件标题：<code>E2.4 RM#5043 test FW</code></p>
+</li>
+<li><p>路径：</p>
+<ul>
+<li>脚本：<code>$bu/product/EWMTA2.4/bsp_install.sh</code></li>
+<li><code>dw</code>：<code>$ew/sdk/5.02L.05/targets/962118GWV/fs.install/opt/scripts/dw</code></li>
+<li><code>memaccess</code>：<code>$ew/sdk/5.02L.05/targets/962118GWV/fs.install/bin/memaccess</code></li>
+</ul>
+</li>
+<li><p>描述：</p>
+<ul>
+<li><p><code>dw</code> 和 <code>memaccess</code> 是两个可执行文件，要把它们复制到板子里。其中，<code>dw</code> 只是 <code>memacess</code> 的软链接，所以不需要复制过去，只需要建立链接就行了。</p>
+</li>
+<li><p>所以要在 <code>bsp_install.sh</code> 这个脚本里添加复制这两个文件到板子的命令</p>
+</li>
+<li><pre><code class="bash">cp -af $BSP_ROOTFS/bin/memaccess $INSTALL_ROOT/bin
+mkdir $INSTALL_ROOT/opt/scripts
+ln -s /bin/memaccess $INSTALL_ROOT/opt/scripts/dw
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - &#96;$BSP_ROOTFS&#96; 就是 &#96;$ew&#x2F;sdk&#x2F;5.02L.05&#x2F;targets&#x2F;962118GWV&#x2F;fs.install&#96; 这个目录</span><br><span class="line"></span><br><span class="line">  - &#96;$INSTALL_ROOT&#96; 就是板子的根目录</span><br><span class="line"></span><br><span class="line">  - 因为板子里没有 &#96;opt&#x2F;scripts&#96; 文件夹，所以要先建立</span><br><span class="line"></span><br><span class="line">  - 又因为 &#96;dw&#96; 只是软链接，所以要建立链接，第三行的 &#96;&#x2F;bin&#x2F;memaccess&#96; 是写到软链接里的内容，而不能写成 &#96;$BSP_ROOTFS&#x2F;bin&#x2F;memaccess&#96;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### MTcode: assign pskkey key</span><br><span class="line"></span><br><span class="line">- 日期：2019-11-05</span><br><span class="line"></span><br><span class="line">- 标题：&#96;assign pskkey cmd&#96;</span><br><span class="line"></span><br><span class="line">- 路径：&#96;$map&#x2F;ftool&#x2F;assign_ft&#x2F;assign_ft_dt.c&#96;</span><br><span class="line"></span><br><span class="line">- 描述：增加一条用于工厂的命令，用户输入一串字符，程序判断这串字符是否合法，如果符合标准则输出，并写到一个文件中</span><br><span class="line"></span><br><span class="line">- 关键点：</span><br><span class="line"></span><br><span class="line">  - 循环判断每个字符</span><br><span class="line"></span><br><span class="line">  - 可以不换算成 &#96;ASSIC&#96; 值直接写字符，这样还直观一点</span><br><span class="line"></span><br><span class="line">  - &gt;sprintf(cmd_line, &quot;echo %s &gt; %s&quot;, key, FT_PSKKEY_FILE);</span><br><span class="line">    &gt;</span><br><span class="line">    &gt;system(cmd_line);</span><br><span class="line"></span><br><span class="line">    这里也值得注意</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 测试: fwupdateManual</span><br><span class="line"></span><br><span class="line">- 日期：2019-11-06</span><br><span class="line"></span><br><span class="line">- 脚本：</span><br><span class="line"></span><br><span class="line">  &#96;fwupdateManual-2.4.vbs&#96;：</span><br><span class="line"></span><br><span class="line">  &#96;&#96;&#96;vbscript</span><br><span class="line">  #$language &#x3D; &quot;VBScript&quot;</span><br><span class="line">  #$interface &#x3D; &quot;1.0&quot;</span><br><span class="line">   </span><br><span class="line">  crt.Screen.Synchronous &#x3D; True</span><br><span class="line">   </span><br><span class="line">  Public Function UpdateFW() </span><br><span class="line">                       crt.Screen.Send chr(13) &amp; chr(13)</span><br><span class="line">                       crt.Screen.Send &quot;version&quot; &amp; chr(13)</span><br><span class="line">   </span><br><span class="line">                       SwitchKey &#x3D; 0</span><br><span class="line">                       SwitchKey &#x3D; crt.Screen.WaitForStrings(&quot;Version Number [IMAGE 1]: ewmta2.4.v1028.5201c.20191018.sc&quot;,&quot;Version Number [IMAGE 1]: ewmta2.4.v1028.5201t.20191018.sc&quot;,3)</span><br><span class="line">                       Select Case SwitchKey</span><br><span class="line">                       Case 1</span><br><span class="line">                          crt.Screen.Send &quot;current FW: ewmta2.4.v1028.5201c.20191018.sc, upgrade to ewmta2.4.v1028.5201t.20191018.sc&quot;  &amp; chr(13)</span><br><span class="line">                          crt.Screen.Send &quot;tftp get 192.168.3.2 ewmta2.4.v1028.5201t.20191018.sc&quot;  &amp; chr(13)</span><br><span class="line">                          UpdateFW &#x3D; 1</span><br><span class="line">                       Case 2</span><br><span class="line">                          crt.Screen.Send &quot;current FW: ewmta2.4.v1028.5201t.20191018.sc, upgrade to ewmta2.4.v1028.5201c.20191018.sc&quot;  &amp; chr(13)</span><br><span class="line">                          crt.Screen.Send &quot;tftp get 192.168.3.2 ewmta2.4.v1028.5201c.20191018.sc&quot;  &amp; chr(13)</span><br><span class="line">                          UpdateFW &#x3D; 1</span><br><span class="line">                       Case Else</span><br><span class="line">                          UpdateFW &#x3D; 0</span><br><span class="line">                       End Select </span><br><span class="line">  End Function</span><br><span class="line">   </span><br><span class="line">  Sub Main</span><br><span class="line">             </span><br><span class="line">             for i&#x3D;1 to 10000</span><br><span class="line">             </span><br><span class="line">  					for j&#x3D;1 To 20				</span><br><span class="line">  							If(j&gt; 3)Then</span><br><span class="line">  								j &#x3D; 1</span><br><span class="line">  								crt.Screen.Send chr(13)</span><br><span class="line">  								crt.Screen.WaitForString &quot;EWMTA2.4 login: &quot;</span><br><span class="line">  								crt.Screen.Send &quot;supervisor&quot; &amp; chr(13)</span><br><span class="line">  								crt.Screen.WaitForString &quot;Password: &quot;</span><br><span class="line">  								crt.Screen.Send &quot;12wedfvb09iuhgvcz&quot; &amp; chr(13)</span><br><span class="line">  								crt.Screen.WaitForString &quot;view @ EWMTA2.4&gt; &quot;</span><br><span class="line">  								crt.Screen.Send &quot;reboot--error&quot; &amp; chr(13)</span><br><span class="line">  								crt.Screen.Send &quot;reboot&quot; &amp; chr(13)						</span><br><span class="line">  </span><br><span class="line">  							ElseIf(crt.Screen.WaitForString(&quot;--WL RESTART DONE--&quot;,320)&lt;&gt;False)Then</span><br><span class="line">  								j &#x3D; 20</span><br><span class="line">  								If(crt.Screen.WaitForString(&quot;--WL RESTART DONE--&quot;,60)&lt;&gt;True)Then</span><br><span class="line">  									crt.Screen.Send chr(13)									</span><br><span class="line">  								End If</span><br><span class="line">  								crt.Sleep 2000</span><br><span class="line">  								crt.Screen.Send chr(13)</span><br><span class="line">  								crt.Screen.WaitForString &quot;EWMTA2.4 login: &quot;</span><br><span class="line">  								crt.Screen.Send &quot;supervisor&quot; &amp; chr(13)</span><br><span class="line">  								crt.Screen.WaitForString &quot;Password: &quot;</span><br><span class="line">  								crt.Screen.Send &quot;12wedfvb09iuhgvcz&quot; &amp; chr(13)</span><br><span class="line">  								</span><br><span class="line">  							Else</span><br><span class="line">  								crt.Screen.Send &quot;reboot not ready, wait...&quot; &amp; chr(13)</span><br><span class="line">  							End If</span><br><span class="line">  					next           </span><br><span class="line">             </span><br><span class="line">  &#39; add some check point here.</span><br><span class="line">  &#39; verify fw upgrade success</span><br><span class="line">                      crt.Screen.WaitForString &quot;view @ EWMTA2.4&gt; &quot;</span><br><span class="line">  					crt.Screen.Send chr(13)</span><br><span class="line">  					crt.Screen.Send &quot;fwupgrade: &quot;</span><br><span class="line">  					crt.Screen.Send i &amp; chr(13)</span><br><span class="line">  					</span><br><span class="line">                      j &#x3D; 0</span><br><span class="line">                      crt.Screen.Send &quot;Update FW: &quot;</span><br><span class="line">                      crt.Screen.Send j &amp; chr(13)</span><br><span class="line">                      upgradefw &#x3D; UpdateFW ()</span><br><span class="line">                      While (upgradefw &lt;&gt; 1)</span><br><span class="line">                          j &#x3D; j + 1</span><br><span class="line">                          crt.Screen.Send &quot;Update FW: &quot;</span><br><span class="line">                          crt.Screen.Send j &amp; chr(13)</span><br><span class="line">                          upgradefw &#x3D; UpdateFW ()</span><br><span class="line">                      Wend					</span><br><span class="line">  					</span><br><span class="line">  					</span><br><span class="line">   </span><br><span class="line">             next </span><br><span class="line">             crt.Screen.Synchronous &#x3D; False</span><br><span class="line">   </span><br><span class="line">  End Sub</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+</ul>
+</li>
+<li><p>关键点：cli 下的升级 FW 命令：<code>tftp get 192.168.3.2 ewmta2.4.sc</code></p>
+</li>
+</ul>
+<h3 id="测试-检验-E2-4-mt-code-and-fw-code-for-PR"><a href="#测试-检验-E2-4-mt-code-and-fw-code-for-PR" class="headerlink" title="测试: 检验 E2.4 mt code and fw code for PR"></a>测试: 检验 E2.4 mt code and fw code for PR</h3><ul>
+<li>日期：2019-11-06</li>
+<li>测试过程：<ul>
+<li>打开 <code>FT_Command_Test_3.32.exe</code></li>
+<li>先升级 <code>mt code</code>，<code>assign_ft_dt hw_ver 3.1</code>，<code>assign_ft_dt pskkey 1234567890asdf</code></li>
+<li>再升级 <code>fw code</code></li>
+<li>把测试程序的左上角的 <code>DUT IP</code> 设置成路由器网关 <code>192.168.3.1</code>（mt code 是 192.168.1.1），配置电脑，设成静态 IP</li>
+<li>点 <code>0x27 Get HWID</code>，<code>0x25 Get WPA key</code>，检验是否与刚才 <code>assign</code> 的值相同</li>
+<li>cmd 中输入：<code>ping 192.168.3.1 -t</code></li>
+<li>测试程序中点 <code>&#39;0x0b Reset to default</code>，看是否断 <code>ping</code></li>
+<li>点 <code>0x77 Get Resettodefault</code>，看是否提示 <code>OK</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="APP-sc-host-与-reboot-冲突"><a href="#APP-sc-host-与-reboot-冲突" class="headerlink" title="APP: sc_host 与 reboot 冲突"></a>APP: sc_host 与 reboot 冲突</h3><ul>
+<li>日期：2019-11-06</li>
+<li>路径：<code>$ap/schost/sc_host/main.c</code> <code>int schostd_main</code> 函数</li>
+<li>描述：在 <code>info(&quot;Build Time:</code> 之下，<code>memset</code> 之上，加一句 <code>daemon(0,1);</code></li>
+<li>关键点：路由器的页面：<code>192.168.3.1</code>，连 lan 口。用户名：<code>user</code>，密码：<code>user</code>。</li>
+</ul>
+<h3 id="测试-sercomm-download-bin-file"><a href="#测试-sercomm-download-bin-file" class="headerlink" title="测试: sercomm download bin file"></a>测试: sercomm download bin file</h3><ul>
+<li><p>日期：2019-11-08</p>
+</li>
+<li><p>工具：<code>download_l</code></p>
+</li>
+<li><p>描述：需要在 32 位 Linux 系统下使用，首先板子重启，然后按 <code>Enter</code> 进入 <code>bootloader</code> 模式，输入 <code>sc_dl</code> 进入下载模式，等待下载。在 32 位 Linux 虚拟机系统中先把网上设为桥接网卡，然后把 <code>bin</code> 格式的文件和下载工具放在同一个目录，使用 <code>download_l</code> 工具连接这个网卡。<code>sudo download_l -i enps3 -e</code>。</p>
+</li>
+<li><p>说明：</p>
+<ul>
+<li><p>32 位 <code>ubuntu</code> 虚拟机的用户名：<code>boone</code>，密码：<code>123456</code></p>
+</li>
+<li><p>用这种文件下载的 FW 是 <code>bin</code> 文件，不是一般的 <code>sc/img</code> 文件。有点像是卡刷和线刷的区别。</p>
+</li>
+<li><p><code>/etc/usb/lsusb.sh</code> 这个脚本可以查看连接的 <code>usb</code> 信息。</p>
+</li>
+<li><pre><code class="bash">$ sudo ip link set enp0s8 up
+$ sudo ip addr add 172.21.45.105/24 dev enp0s8   #必须要先配置一个 ip
+$ sudo sc_dl -i enp0s8 -e
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 升级 FW: 用 mtd_num 决定当前所在分区</span><br><span class="line"></span><br><span class="line">- 日期：2019-11-15</span><br><span class="line">- 标题：&#96;Use mtd_num to determine the current patition&#96;</span><br><span class="line">- 路径：</span><br><span class="line">  - &#96;&#x2F;sys&#x2F;class&#x2F;ubi&#x2F;ubi0&#x2F;mtd_num&#96; 查看当前分区，6 代表 &#96;kfs_1&#96;，7 代表 &#96;kfs_2&#96;</span><br><span class="line">  - &#96;cat &#x2F;proc&#x2F;mtd&#96; 查看所有分区</span><br><span class="line">  - 需要修改 &#96;$ap&#x2F;image_ctrl&#x2F;image_ctrl.c&#96;</span><br><span class="line">- 描述：一开始是用 &#96;boot_flag&#96; 的奇偶来判断当前所有分区是 6 还是 7。如果是 6，那么下一次需要升级到 7；反之，则升级到 6。因为用这种方法可能判断不准，&#96;image_ctrl -x&#96; 可以将 &#96;boot_flag&#96; 加 1，这样升级就会出错。所以直接读取 &#96;&#x2F;sys&#x2F;class&#x2F;ubi&#x2F;ubi0&#x2F;mtd_num&#96; 这个文件的内容来获取当前分区信息。</span><br><span class="line">- 关键点：</span><br><span class="line">  - &#96;image_ctrl -x&#96; 这个命令可以把 &#96;boot_flag&#96; 加一</span><br><span class="line">  - &#96;&#x2F;sys&#x2F;class&#x2F;ubi&#x2F;ubi0&#x2F;mtd_num&#96; 这个文件打开失败函数直接返回，不要输出错误信息就完了，这样还会继续往下执行。</span><br><span class="line">  - 为了令即使执行了 &#96;image_ctrl -x&#96; 也能正常升级，还需要判断 &#96;boot_flag&#96; 的奇偶与直接读取 &#96;mtd_num&#96; 的信息是否一致，如果不一致，那么肯定是 &#96;boot_flag&#96; 错了，将它加 1</span><br><span class="line">- 错误点：</span><br><span class="line">  - 不可以写 &#96;else if&#96;，必须要用 &#96;else&#96;。可能在你看来，用 &#96;else if&#96; 更准确，但是可能的情况并没列举完，如果发生了不在考虑中的事件，那么那两个指针就不会被初始化，下面如果用到就会报错。见说说：191120</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">###  FTool: Remove FT tool in final firmware</span><br><span class="line"></span><br><span class="line">- 日期：2019-11-18</span><br><span class="line"></span><br><span class="line">- 路径：</span><br><span class="line"></span><br><span class="line">  mt-new：</span><br><span class="line"></span><br><span class="line">  - &#96;$map&#x2F;rc&#x2F;rc_fun.c&#96;</span><br><span class="line">  - &#96;$map&#x2F;ftool&#x2F;ft_l3&#x2F;ftool_main.c&#96;</span><br><span class="line"></span><br><span class="line">  trunk：</span><br><span class="line"></span><br><span class="line">  - &#96;$ap&#x2F;rc&#x2F;rc_fun.c&#96;</span><br><span class="line">  - &#96;$ap&#x2F;ftool&#x2F;Makefile&#96;</span><br><span class="line">  </span><br><span class="line">- 描述：</span><br><span class="line"></span><br><span class="line">  - FTool 在正式版本中应当被移除，最终效果是：从 &#96;MTcode&#96; 升级上来的 &#96;FWcode&#96; 一开始是有 &#96;ftd&#96; 进程的，用 &#96;FT_Command_Test_3.32.exe&#96; 点击 &#96;0x8f Clear the FT&#96; 清除 &#96;FTool&#96;，再重启，&#96;ftd&#96; 进程就没有了。</span><br><span class="line"></span><br><span class="line">  - &#96;MTcode&#96; 中，首先需要在 &#96;rc_fun.c&#96; 的 &#96;rc_init()&#96; 函数中加入一段语句，判断 &#96;&#x2F;data&#x2F;ftd&#96; 是否存在，如果不存在就从 &#96;&#x2F;usr&#x2F;sbin&#x2F;ftd&#96; 复制一份到 &#96;&#x2F;data&#x2F;ftd&#96;。&#96;rc_init()&#96; 这个函数每次重启时都会被执行。</span><br><span class="line"></span><br><span class="line">    &#96;ftool_main.c&#96; 中，在 &#96;case FT_CMD_CLEAR_FT&#96; 中加入删除 &#96;&#x2F;data&#x2F;ftd&#96; 的语句，&#96;case FT_CMD_CLEAR_FT&#96; 就是用 &#96;FT_Command_Test_3.32.exe&#96; 点击 &#96;0x8f Clear the FT&#96; 执行的程序。</span><br><span class="line"></span><br><span class="line">  - &#96;FWcode&#96; 中，&#96;rc_init()&#96; 中加入程序，判断 &#96;&#x2F;data&#x2F;ftd&#96; 是否存在，如果存在就把它复制到 &#96;&#x2F;tmp&#x2F;ftd&#96; 并执行 &#96;&#x2F;tmp&#x2F;ftd&#96;，如果不存在就什么都不做。</span><br><span class="line"></span><br><span class="line">    &#96;$ap&#x2F;ftool&#x2F;Makefile&#96; 中注释掉 &#96;make -C ft_l3 install&#96; 一行，也就是说不把 &#96;FWcode&#96; 中的 &#96;ftool&#96; 放到板子中，板子里的 &#96;ftool&#96; 是从 &#96;MTcode&#96; 中继承上来的</span><br><span class="line"></span><br><span class="line">  - 所以，首先升级到 &#96;MTcode&#96; 时，重启之后会把 &#96;&#x2F;usr&#x2F;sbin&#x2F;ftd&#96; 复制到 &#96;&#x2F;data&#x2F;ftd&#96;</span><br><span class="line"></span><br><span class="line">    再升级到 &#96;FWcode&#96;，因为 &#96;&#x2F;data&#x2F;ftd&#96; 这个文件存在，所以会启动 &#96;&#x2F;tmp&#x2F;ftd&#96; 进程</span><br><span class="line"></span><br><span class="line">    如果用 FTool 测试工具 &#96;Clear the FT&#96;，那么 &#96;&#x2F;data&#x2F;ftd&#96; 就会被删除</span><br><span class="line"></span><br><span class="line">    再重启之后，&#96;ftd&#96; 进程不存在</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### USB: mount USB 时禁掉可执行程序的执行权限</span><br><span class="line"></span><br><span class="line">- 日期：2019-11-19</span><br><span class="line">- 标题：&#96;Disable execute bit when mount USBstorage using &quot;-o noexec&quot;&#96;</span><br><span class="line">- 路径：&#96;$ew&#x2F;sdk&#x2F;5.02L.05&#x2F;userspace&#x2F;gpl&#x2F;apps&#x2F;busybox&#x2F;brcm.config&#96;</span><br><span class="line">- 描述：</span><br><span class="line">  - 在 &#96;brcm.config&#96; 文件中开启 &#96;CONFIG_FEATURE_MOUNT_FLAGS&#x3D;y&#96;，这可以让 &#96;busybox&#96; 支持 &#96;mount&#96; 的 &#96;-o noexec&#96; 选项</span><br><span class="line">  - 在挂载的时候加入 &#96;-o noexec&#96; 选项，即执行 &#96;mount -o noexec &#x2F;dev&#x2F;sda1 &#x2F;mnt&#96;，可以使 U 盘中的可执行文件执行不了，但是用 &#96;ls -l&#96; 查看文件的属性时会发现文件的可执行权限还在，有点奇怪</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### NVRAM: 在启动时禁用 wlan 和蓝牙</span><br><span class="line"></span><br><span class="line">- 日期：2019-12-02</span><br><span class="line"></span><br><span class="line">- 路径：&#96;$mrc&#x2F;rc_fun.c&#96;</span><br><span class="line"></span><br><span class="line">  ​			&#96;$mcal&#x2F;wlan.c&#96; 的函数宏定义</span><br><span class="line"></span><br><span class="line">  ​			&#96;$mrc&#x2F;include&#x2F;wlan_common.h&#96; 中的宏定义</span><br><span class="line"></span><br><span class="line">  ​			&#96;$map&#x2F;default&#x2F;base.xml&#96; 中的 xml 值</span><br><span class="line"></span><br><span class="line">- 描述：</span><br><span class="line"></span><br><span class="line">  - 在 &#96;rc_init&#96; 函数中把 &#96;NVRAM&#96; 值设为 0，使对应的功能禁用</span><br><span class="line">  - &#96;InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.Enable&#96; 的值设为 0，把 &#96;2.4g wlan&#96; 关掉</span><br><span class="line">  - &#96;InternetGatewayDevice.LANDevice.1.WLANConfiguration.2.Enable&#96; 的值设为 0，把 &#96;5g wlan&#96; 关掉</span><br><span class="line">  - &#96;InternetGatewayDevice.x_SC_RadiusServer.Sys_BT_Mode&#96; 的值设为 0，使启动后蓝牙关闭</span><br><span class="line">  - 用 &#96;SYSTEM&#96; 调用的 &#96;sc_host&#96; 语句也要删掉</span><br><span class="line"></span><br><span class="line">- 关键点：</span><br><span class="line"></span><br><span class="line">  - 设置不同的 &#96;NVRAM&#96; 值的函数已经有了，只需要调用即可。</span><br><span class="line"></span><br><span class="line">  - 蓝牙的函数在 &#96;$mcal&#x2F;radius.c&#96; 使用 &#96;cal_radius_set_sys_bt_mode(0);&#96; 即可</span><br><span class="line"></span><br><span class="line">  - &#96;wlan&#96; 的函数因为是用宏定义的，所以找起来很麻烦</span><br><span class="line"></span><br><span class="line">  - 有一个 &#96;WLAN_ENALE&#96;，它是用宏定义的一个字符串，而且不是一次性定义好，而是不断在字符串的末尾添加而形成的。这个字符串里的内容是：&#96;InternetGatewayDevice.LANDevice.%d.WLANConfiguration.%d.Enable&#96;</span><br><span class="line"></span><br><span class="line">  - 可以这样查到它的定义：</span><br><span class="line"></span><br><span class="line">    - &#96;grep -nrE “define *WLAN_ENABLE ”&#96; ，然后知道它基于 &#96;WLANX&#96;</span><br><span class="line">    - &#96;grep -nrE “define *WLANX ”&#96; ，然后知道它基于 &#96;WLAN&#96;</span><br><span class="line">    - &#96;grep -nrE “define *WLAN ”&#96; ，然后知道它基于 &#96;LANX&#96;</span><br><span class="line">    - &#96;grep -nrE “define *LANX ”&#96; ，然后知道它基于 &#96;CONF_LAN&#96;</span><br><span class="line">    - &#96;grep -nrE “define *CONF_LAN ”&#96; ，终于知道它的定义</span><br><span class="line"></span><br><span class="line">    发现定义基本上在 &#96;$cal&#x2F;include&#x2F;xml&#x2F;&#96; 中</span><br><span class="line"></span><br><span class="line">  - 找一下引用 &#96;WLAN_ENABLE&#96; 地方，发现在 &#96;mcal&#x2F;wlan.c&#96; 里使用了一个宏函数 &#96;CAL_WLAN_FUNC1(enable, WLAN_ENABLE)&#96;</span><br><span class="line"></span><br><span class="line">  - 看一下它的定义，就发现它一次性定义了两个函数，分别是 &#96;get&#96; 和 &#96;set&#96; &#96;WLAN_ENABLE&#96; 这个值</span><br><span class="line"></span><br><span class="line">  - 使用宏函数来批量定义函数</span><br><span class="line">  </span><br><span class="line">  - 注意使用函数改 nvram 值的时候，传的是字符串，不是整数</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 测试：测试 wlan 是否被禁用</span><br><span class="line"></span><br><span class="line">- 日期：2019-12-02</span><br><span class="line"></span><br><span class="line">- 测试过程：</span><br><span class="line"></span><br><span class="line">  - 在 &#96;fw&#96; 下：</span><br><span class="line"></span><br><span class="line">  - 在 &#96;web&#96; 页面把 &#96;wlan&#96; 的 &#96;ssid&#96; 改成其它的名字</span><br><span class="line"></span><br><span class="line">    因为一开始设置被禁用，所以需要调一下，在 &#96;shell&#96; 下：</span><br><span class="line"></span><br><span class="line">    &#96;&#96;&#96;bash</span><br><span class="line">    $ cmld_client set InternetGatewayDevice.X_SC_RadiusServer.Sys-WLAN-Mode&#x3D;4</span><br><span class="line">    $ service_ctrl_client -c 7</span><br><span class="line">    $ cmld_client save</span><br></pre></td></tr></table></figure>
+
+`Sys-WLAN-Mode` 设为 1 似乎也可以，另外，获取它的值：
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cmld_client get_node InternetGatewayDevice.X_SC_RadiusServer.Sys-WLAN-Mode</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><p>在 <code>http://192.168.3.1/encryption.html</code> 这个页面：</p>
+<p>暗号化设定（密码设置） -&gt; SSID：修改 <code>wifi</code> 的名字</p>
+<p>暗号化设定 -&gt; 暗号化方式: 修改加密方式，其中最后一项 <code>暗号化しない</code> 是不加密的意思。因为要开启密码，所以默认就好了，不用改</p>
+</li>
+<li><p>烧录修改好的 <code>mtcode</code> <code>bin</code> 文件，<code>erase all</code> 模式烧录，查看 <code>SSID</code> 是否恢复为默认，连接 <code>wifi</code> 是否不需要密码</p>
+</li>
+<li><p>用以下命令查看 <code>2.4g</code> 和 <code>5g</code> 的 <code>ssid</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wl -i wl0 ssid              <span class="comment">#5g</span></span><br><span class="line">$ wl -i wl1 ssid              <span class="comment">#2.4g</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用以下命令查看密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ nvram_brcm get wl0_wpa_psk      <span class="comment">#5g</span></span><br><span class="line">$ nvram_brcm get wl1_wpa_psk      <span class="comment">#2.4g</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>虽然可以查到密码，但是在 <code>web</code> 页面中看到设置里已经变成了 <code>无加密</code>，用手机连接热点也不需要密码（虽然一直连不上，一直显示正在分配 ip）</p>
+</li>
+</ul>
+</li>
+<li><p>关键点：</p>
+<p><code>$ap/cml/main_api.c</code> 的 <code>command_set</code> 函数很有意思，它是 <code>shell</code> 底下 <code>cmld_client set</code> 命令的解析函数。它用 <code>strchr</code> 定位 <code>=</code> 的位置，把 <code>=</code> 两边的字符分为赋值给两个变量，达到解析的目的。</p>
+</li>
+<li><p>记录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">  cmld_client <span class="built_in">set</span> InternetGatewayDevice.X_SC_RadiusServer.Sys-WLAN-Mode=4</span><br><span class="line">  service_ctrl_client -c 7</span><br><span class="line">  cmld_client save</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  cmld_client get_node InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.Enable</span><br><span class="line">  cmld_client get_node InternetGatewayDevice.LANDevice.1.WLANConfiguration.2.Enable</span><br><span class="line">  cmld_client get_node InternetGatewayDevice.X_SC_RadiusServer.Sys-BT-Mode</span><br><span class="line">  cmld_client get_node InternetGatewayDevice.X_SC_RadiusServer.Sys-USB-Mode</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  cmld_client <span class="built_in">set</span> InternetGatewayDevice.LANDevice.1.WLANConfiguration.2.Enable=1</span><br><span class="line">  cmld_client <span class="built_in">set</span> InternetGatewayDevice.X_SC_RadiusServer.Sys-BT-Mode=1</span><br><span class="line">  </span><br><span class="line">  cmld_client <span class="built_in">set</span> InternetGatewayDevice.X_SC_RadiusServer.Sys-USB-Mode=1</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 检查 wlan 是否被禁用</span></span><br><span class="line">  ifconfig</span><br><span class="line">  查看是否有 wl0 和 wl1，没有说明被禁用</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 检查蓝牙是否被禁用</span></span><br><span class="line">  ps | grep sc_hostd</span><br><span class="line">  没有 sc_hostd 进程说明被禁用</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 开启 2.4g</span></span><br><span class="line">  cmld_client <span class="built_in">set</span> InternetGatewayDevice.LANDevice.1.WLANConfiguration.1.Enable=1</span><br><span class="line">  service_ctrl_client -c 7</span><br><span class="line">  ifconfig</span><br><span class="line">  查看是否有 wl1，有则说明已经开启 2.4g</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 开启 5g</span></span><br><span class="line">  cmld_client <span class="built_in">set</span> InternetGatewayDevice.LANDevice.1.WLANConfiguration.2.Enable=1</span><br><span class="line">  service_ctrl_client -c 7</span><br><span class="line">  ifconfig</span><br><span class="line">  查看是否有 wl0，有则说明已经开启 5g</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 开启蓝牙</span></span><br><span class="line">  cmld_client <span class="built_in">set</span> InternetGatewayDevice.X_SC_RadiusServer.Sys-BT-Mode=1</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&#x27;sc_hostd &amp;&#x27;</span> &gt; /tmp/cmd_agent</span><br><span class="line">ps | grep sc_hostd</span><br><span class="line">  有 sc_hostd 进程说明已开启</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="命令：禁用无线-CLI-cmd"><a href="#命令：禁用无线-CLI-cmd" class="headerlink" title="命令：禁用无线 CLI cmd"></a>命令：禁用无线 CLI cmd</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ wlan usercontrol 0</span><br><span class="line">$ save</span><br><span class="line">$ apply</span><br><span class="line">$ reboot</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="测试-蓝牙命令"><a href="#测试-蓝牙命令" class="headerlink" title="测试: 蓝牙命令"></a>测试: 蓝牙命令</h3><ul>
+<li><p>日期：2019-12-10</p>
+</li>
+<li><p>升级蓝牙：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sc_host --upgrade --firmware /tmp/bt.gbl</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>切到另一个 FW：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ image_ctrl -xr</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+<h3 id="合并-merge-changes-from-FW-code-to-MT-code"><a href="#合并-merge-changes-from-FW-code-to-MT-code" class="headerlink" title="合并: merge changes from FW code to MT code"></a>合并: merge changes from FW code to MT code</h3><ul>
+<li><p>日期：2019-12-17</p>
+</li>
+<li><p>说明：</p>
+<blockquote>
+<p>合并 schost 和 蓝牙 CLI 到 MT code</p>
+</blockquote>
+</li>
+<li><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> <span class="variable">$ap</span>/schost</span><br><span class="line">$ make clean</span><br><span class="line">$ <span class="built_in">cd</span> ..</span><br><span class="line">$ /bin/cp -r schost <span class="variable">$map</span>/</span><br><span class="line">$ <span class="built_in">cd</span> <span class="variable">$map</span>/schost/common</span><br><span class="line">$ svn delete args.h</span><br><span class="line">$ svn st &gt; merge.log</span><br><span class="line">$ vi merge.log                  <span class="comment">#查看记录，把不相关的（merge.log）删掉</span></span><br><span class="line">$ awk <span class="string">&#x27;$1==&quot;?&quot;&#x27;</span> merge.log</span><br><span class="line">$ awk <span class="string">&#x27;$1==&quot;?&quot;&#x27;</span> merge.log | wc  <span class="comment">#核对一下一共多少个</span></span><br><span class="line">$ awk <span class="string">&#x27;$1==&quot;?&quot;&#123;printf &quot;%s &quot;,$2&#125; END&#123;printf &quot;\n&quot;&#125;&#x27;</span> merge.log</span><br><span class="line">$ svn add xxx <span class="comment">#把上面的贴上来</span></span><br><span class="line">$ svn commit -m <span class="string">&quot;merge changes from FW code&quot;</span></span><br><span class="line"><span class="comment">#蓝牙 CLI 的很简单，就不写了</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h3 id="LED-改变-LED-status，使其不受-“led-off”-功能的影响"><a href="#LED-改变-LED-status，使其不受-“led-off”-功能的影响" class="headerlink" title="LED: 改变 LED status，使其不受 “led off” 功能的影响"></a>LED: 改变 LED status，使其不受 “led off” 功能的影响</h3><ul>
+<li>日期：2020-01-14</li>
+<li>ID：6095</li>
+<li>标题：<code>Redmine 6095: cannot check LED status through CLI when the LED off feature has enabled</code></li>
+<li>修订版本：2808</li>
+<li>注意点：用 <code>cat /proc/led</code> 查看 led 信息</li>
+</ul>
+<h3 id="测试：Cannot-find-5GHz-SSID"><a href="#测试：Cannot-find-5GHz-SSID" class="headerlink" title="测试：Cannot find 5GHz SSID"></a>测试：Cannot find 5GHz SSID</h3><ul>
+<li><p>日期：2020-01-19</p>
+</li>
+<li><p>重现步骤：</p>
+<ul>
+<li>change the 2.4G mode from 11ax/n/g/b to 11n/g/b on before Beta6.9</li>
+<li>don’t change the 5GHz Channel from Auto to fixed 36ch but web-UI setting is fixed 36ch</li>
+<li>update the E2.4 from Beta 6.8 to beta 6.9</li>
+<li>use Iphone X become unable to scan 5GHz SSID</li>
+</ul>
+</li>
+<li><p>结果：未能重现，但是在 channel 100 时发现无法找到 5GHz SSID</p>
+</li>
+<li><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">$ wl -i wl0 status        <span class="comment">#查看 5GHz 无线的状态</span></span><br><span class="line">$ wl -i wl0 assoclist     <span class="comment">#查看已连接的设备</span></span><br><span class="line">$ wl -i wl0 bss           <span class="comment">#未知</span></span><br><span class="line">$ ifconfig wl0            <span class="comment">#查看网口信息</span></span><br><span class="line">$ ifconfig wl0            <span class="comment">#重复几次查看 TX packets 是否变化</span></span><br><span class="line">$ wl -i wl0 counters</span><br><span class="line">$ wl -i wl0 counters | grep bcn</span><br><span class="line">$ wl -i wl0 counters | grep bcn    <span class="comment">#查看是否变化</span></span><br><span class="line">$ wl -i wl0 ssid                   <span class="comment">#查看 ssid</span></span><br><span class="line">$ <span class="built_in">exit</span>                             <span class="comment">#返回 CLI</span></span><br><span class="line"></span><br><span class="line">wlan 5ghz encryption wpapskkey 1   <span class="comment">#查看密码</span></span><br><span class="line">wlan 5ghz encryption authtype 1    <span class="comment">#查看加密方式</span></span><br><span class="line"></span><br><span class="line">sh J28%1S0g                        <span class="comment">#进入 shell</span></span><br><span class="line"></span><br><span class="line">$ wl -i wl1 assoclist</span><br><span class="line">assoclist D4:3B:04:BF:59:14                  <span class="comment">#已连接一个设备</span></span><br><span class="line">$ wl -i wl1 sta_info D4:3B:04:BF:59:14       <span class="comment">#查看设备信息</span></span><br><span class="line">$ nvram_brcm show | grep channel             <span class="comment">#未知</span></span><br><span class="line">$ acs_cli l-C</span><br><span class="line">$ acs_cli -i wl0 dump acs_record</span><br><span class="line">$ wl -i wl0 chanspec                         <span class="comment">#查看当前 channel?</span></span><br><span class="line">$ wl -i wl0 chanspecs                        <span class="comment">#查看所有 channel?</span></span><br><span class="line">$ acs_cli -i wl0 dump acs_record</span><br><span class="line">$ wl -i wl0 radar 2                          <span class="comment">#切换 channel?</span></span><br><span class="line">$ wl -i wl0 chanspecs</span><br><span class="line">$ wl -i wl0 chanspec                         <span class="comment">#到这里 channel 已经变了</span></span><br><span class="line"></span><br><span class="line">wlan 5ghz channel 100                        <span class="comment">#改变 channel 到 100</span></span><br><span class="line">save</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+
+
+
+</li>
+</ul>
+<h3 id="LED-WAN-led-不受控制"><a href="#LED-WAN-led-不受控制" class="headerlink" title="LED: WAN led 不受控制"></a>LED: WAN led 不受控制</h3><ul>
+<li><p>时间：200313</p>
+</li>
+<li><p>描述：</p>
+<blockquote>
+<p>用 ft_tool 无法控制 wan led，检查发现需要 wan led 做过特殊处理，需要连上网线才能控制</p>
+</blockquote>
+</li>
+<li><p>命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># use ftp to update fw</span></span><br><span class="line"><span class="built_in">cd</span> /tmp</span><br><span class="line">ftpget -u 3cd -p 123456 192.168.1.2 ewmta2.4.v1033.5501t.20191111.sc</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p><code>CLI</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ledon 0    <span class="comment">#全开</span></span><br><span class="line">ledoff 0   <span class="comment">#全关</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ledon 2 1  <span class="comment">#wan led green?</span></span><br><span class="line">ledon 2 2  <span class="comment">#wan led red?    #需要连网线</span></span><br><span class="line">ledon 2 0  <span class="comment">#??</span></span><br><span class="line">ledoff 2   <span class="comment">#wan led off</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>shell</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="built_in">help</span> &gt; /proc/led</span><br><span class="line">            <span class="comment">#List help information</span></span><br><span class="line"><span class="built_in">echo</span> info &gt; /proc/led</span><br><span class="line">            <span class="comment">#List S/W controlled LED ID and Name!</span></span><br><span class="line"><span class="comment">#上面两个似乎只在 MTcode 生效            </span></span><br><span class="line"></span><br><span class="line">cat /proc/led</span><br><span class="line">            <span class="comment">#List the status of all LEDs</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>echo help &gt;  /proc/led</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># echo help &gt; /proc/led </span></span><br><span class="line"><span class="built_in">echo</span> &lt;led_channel&gt; &lt;led_cmd&gt; &lt;led_config&gt; &gt; /proc/led</span><br><span class="line">=====================================================</span><br><span class="line">&lt;led_channel&gt;   : led channel <span class="keyword">in</span> decimal</span><br><span class="line">&lt;led_cmd&gt;       : led cmd as below</span><br><span class="line">            0   : Turn LED off</span><br><span class="line">            1   : Turn LED on</span><br><span class="line">            2   : toggle LED </span><br><span class="line">            3   : Force all soft LED off</span><br><span class="line">            4   : Force all soft LED on</span><br><span class="line">            7   : Reset all soft LED back to user control</span><br><span class="line">            5   : flash rate <span class="built_in">set</span>, and should be followed by [led_config]:(0~7)</span><br><span class="line">            6   : brightness <span class="built_in">set</span>, and should be followed by [led_config]:(1~8)</span><br><span class="line">&lt;led_config&gt;    :</span><br><span class="line">    <span class="keyword">for</span> cmd &lt; 5 and =7 : useless</span><br><span class="line">    <span class="keyword">for</span> cmd = 5 :</span><br><span class="line">            0   : no flash</span><br><span class="line">            1   : 25Hz</span><br><span class="line">            2   : 12.5Hz</span><br><span class="line">            3   : 6.25Hz</span><br><span class="line">            4   : 3.125Hz</span><br><span class="line">            5   : 1.5625Hz</span><br><span class="line">            6   : 0.78125Hz</span><br><span class="line">            7   : 0.390625Hz</span><br><span class="line">    <span class="keyword">for</span> cmd = 6 :</span><br><span class="line">            1 ~ 8 levels brightness</span><br></pre></td></tr></table></figure>
+
+<p>e.g.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 0 4 0 &gt; /proc/led</span><br><span class="line"><span class="built_in">echo</span> 0 5 0 &gt; /proc/led</span><br><span class="line"><span class="built_in">echo</span> 0 6 0 &gt; /proc/led</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>echo info &gt; /proc/led</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># echo info &gt; /proc/led </span></span><br><span class="line">led(8) : name(wan_spd0)</span><br><span class="line">led(9) : name(wan_spd1)</span><br><span class="line">led(12) : name(ip_v6_green)</span><br><span class="line">led(16) : name(ip_v6_orange)</span><br><span class="line">led(18) : name(wifi_green)</span><br><span class="line">led(19) : name(wifi_orange)</span><br><span class="line">led(21) : name(bt_green)</span><br><span class="line">led(22) : name(warn_red)</span><br><span class="line">led(23) : name(fxs_orange)</span><br><span class="line">led(24) : name(func1_green)</span><br><span class="line">led(25) : name(func1_red)</span><br><span class="line">led(26) : name(func2_green)</span><br><span class="line">led(27) : name(func2_red)</span><br><span class="line">led(28) : name(usb_green)</span><br><span class="line">led(29) : name(usb_orange)</span><br><span class="line">led(30) : name(fxs_green)</span><br></pre></td></tr></table></figure>
+
+<p>e.g.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> 8 0 0 &gt; /proc/led   <span class="comment">#控制 wan led</span></span><br><span class="line"><span class="built_in">echo</span> 9 0 0 &gt; /proc/led</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="FW-build-guide"><a href="#FW-build-guide" class="headerlink" title="FW build guide"></a>FW build guide</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">1. commercial fw:</span><br><span class="line">  a. 拿trunk r708，升FW version，编cod: make &amp;&amp; make bin_build</span><br><span class="line">  b. Commercial FW: ewmta2.4.v1004.1401c.20190117.sc ；imera里面是xxx.img，拿出来去掉.img部分</span><br><span class="line">  c. bin file: xxx_for_burn_and_sc_download.bin，拿出来后重命名成ASCUYMT-005-0000001004.bin</span><br><span class="line">  d. bootloader FW: ewmta2.4.v1049.6601c.20200309.sc_with_bootloader.sc.img，拿出来，去掉		 .img后缀，去掉中间的.sc</span><br><span class="line">  e. IRREGULAR FW(For FW upgrade <span class="built_in">test</span>):</span><br><span class="line">    修改product/EWMTA2.4/config.mk: <span class="built_in">export</span> BUILD_TEST_FW_FOR_FW_UPGRADE = 0 -&gt; 1</span><br><span class="line">    make</span><br><span class="line">    target FW: ewmta2.4.v1004.IRREGULAR1401c.20190117.sc</span><br><span class="line">  f: target FW有4个：imera里面是xxx.img，拿出来去掉.img部分</span><br><span class="line">    ewmta2.4.v1004.1401c.20190117.sc</span><br><span class="line">    ewmta2.4.v1049.6601c.20200309_with_bootloader.sc</span><br><span class="line">    xxx_for_burn_and_sc_download.bin/ASCUYMT-005-0000001004.bin</span><br><span class="line">    ewmta2.4.v1004.IRREGULAR1401c.20190117.sc</span><br><span class="line"></span><br><span class="line">2. lab <span class="built_in">test</span> fw:</span><br><span class="line">  a. 在Commercial FW的基础上改</span><br><span class="line">  b. compile FW</span><br><span class="line">    修改product/EWMTA2.4/config.mk: <span class="built_in">export</span> BUILD_TEST_FW_FOR_FW_UPGRADE = 1 -&gt; 0；先改回来</span><br><span class="line">    修改product/EWMTA2.4/config.mk, <span class="built_in">export</span> INSTALL_FVT_COMMERCIAL_SDK = 1 -&gt; 0</span><br><span class="line">    make</span><br><span class="line">    target FW：ewmta2.4.v1004.1401t.20190117.sc</span><br><span class="line">  c. compile IRREGULAR FW</span><br><span class="line">    修改product/EWMTA2.4/config.mk: <span class="built_in">export</span> BUILD_TEST_FW_FOR_FW_UPGRADE = 0 -&gt; 1</span><br><span class="line">    make</span><br><span class="line">    target FW：ewmta2.4.v1004.IRREGULAR1401t.20190117.sc</span><br><span class="line">  d. target FW有2个: imera里面是xxx.img，拿出来去掉.img部分</span><br><span class="line">    ewmta2.4.v1004.1401t.20190117.sc</span><br><span class="line">    ewmta2.4.v1004.IRREGULAR1401t.20190117.sc</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>查看 <code>FW</code> 版本信息（<code>svn 版本</code>）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/build.info</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+<h3 id="FW-upgrade-升级失败"><a href="#FW-upgrade-升级失败" class="headerlink" title="FW upgrade: 升级失败"></a>FW upgrade: 升级失败</h3><ul>
+<li><p>日期：200323</p>
+</li>
+<li><p>描述：客户发现从 <code>beta4.2</code> 升到 <code>beta6.8</code> 或者 <code>beta6.9.3</code> 失败，手动和自动升级都不成功，其他版本未知。表现为：升级后，用 <code>version</code> 查看，发现版本号未变，用 <code>show upgradehistory</code> 是可以看到纪录的。</p>
+</li>
+<li><p>结论：从 log 看 boot count 部分是坏块，导致 <code>BootFlag</code> always 是 0。</p>
+<blockquote>
+<p> [2020-03-19 17:36:43.382] set boot count to 0x1.</p>
+<p>~   ~   ~</p>
+<p>[2020-03-19 17:36:49.213] CFE.ROM: BootFlag(0)</p>
+</blockquote>
+</li>
+<li><p>知识点：</p>
+<ol>
+<li><p>reboot 流程</p>
+<blockquote>
+<p>view @ EWMTA2.4&gt; reboot</p>
+<p>~   ~   ~</p>
+<p>CFE.ROM: BootFlag(0)</p>
+<p>~   ~   ~</p>
+<p>CFE.RAM: BootFlag(0)</p>
+<p>~   ~   ~</p>
+<p>CFE.RAM: BootFlag(0)</p>
+<p>~   ~   ~</p>
+<p>–WL RESTART DONE–</p>
+</blockquote>
+<p>重启时 boot count 不变，即 <code>rootfs/image/cferam</code> 不变</p>
+</li>
+<li><p>手动 upgrade 流程</p>
+<blockquote>
+<p>view @ EWMTA2.4&gt; tftp get 192.168.3.2 ewmta2.4.v1017.4201c.20190808.sc</p>
+<p>~   ~   ~</p>
+<p>upgrade done</p>
+<p>set boot count to 0x3.   # boot count +1</p>
+<p>~   ~</p>
+<p>reboot now                     # 这里自动重启了</p>
+<p>~   ~   ~</p>
+<p>CFE.ROM: BootFlag(3)</p>
+<p>~   ~   ~</p>
+<p>CFE.RAM: BootFlag(3)</p>
+<p>~   ~   ~</p>
+<p>CFE.RAM: BootFlag(3)</p>
+<p>~   ~   ~</p>
+<p>–WL RESTART DONE–</p>
+</blockquote>
+<p>upgrade done 后，boot count 加一，表示下次启动到另一个分区</p>
+</li>
+<li><p>自动 upgrade 流程</p>
+<blockquote>
+<p>view @ EWMTA2.4&gt; reboot</p>
+<p>~   ~   ~</p>
+<p>CFE.ROM: BootFlag(4)    # 保持不变</p>
+<p>~   ~   ~</p>
+<p>CFE.RAM: BootFlag(4)</p>
+<p>~   ~   ~</p>
+<p>CFE.RAM: BootFlag(4)</p>
+<p>~   ~   ~</p>
+<p>–WL RESTART DONE–</p>
+<p>~   ~   ~                             # 这里配置 radius</p>
+<p>upgrade firmware &lt;/tmp/img_download&gt;</p>
+<p>~   ~</p>
+<p>upgrade done</p>
+<p>set boot count to 0x5.   # boot count +1</p>
+<p>~   ~</p>
+<p>reboot now                     # 这里自动重启了</p>
+<p>~   ~   ~</p>
+<p>CFE.ROM: BootFlag(5)</p>
+<p>~   ~   ~</p>
+<p>CFE.RAM: BootFlag(5)</p>
+<p>~   ~   ~</p>
+<p>CFE.RAM: BootFlag(5)</p>
+<p>~   ~   ~</p>
+<p>[ipv6_ngn_determine_daemon] first_periodical_sleep_sec=</p>
+</blockquote>
+</li>
+</ol>
+</li>
+<li><p>分区：</p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Creating 15 MTD partitions on &quot;brcmnand.0&quot;:</span><br><span class="line">0x000000000000-0x000000200000 : &quot;cferom&quot;</span><br><span class="line">0x000000200000-0x0000002a0000 : &quot;flash_map&quot;</span><br><span class="line">0x0000002a0000-0x0000005a0000 : &quot;cferam1&quot;</span><br><span class="line">0x0000005a0000-0x0000008a0000 : &quot;cferam2&quot;</span><br><span class="line">0x0000008a0000-0x0000009a0000 : &quot;kfs_info_1&quot;</span><br><span class="line">0x0000009a0000-0x000000aa0000 : &quot;kfs_info_2&quot;</span><br><span class="line">0x000000aa0000-0x0000046c0000 : &quot;kfs_1&quot;</span><br><span class="line">0x0000046c0000-0x0000082c0000 : &quot;kfs_2&quot;</span><br><span class="line">0x0000082c0000-0x000008360000 : &quot;bootflag&quot;</span><br><span class="line">0x000008360000-0x000008400000 : &quot;pcbasn&quot;</span><br><span class="line">0x000008400000-0x000008900000 : &quot;protect&quot;</span><br><span class="line">0x000008900000-0x000009300000 : &quot;configuration&quot;</span><br><span class="line">0x000009300000-0x000009d00000 : &quot;app_data&quot;</span><br><span class="line">0x000009d00000-0x00000f200000 : &quot;bluetooth&quot;</span><br><span class="line">0x00000f200000-0x000010000000 : &quot;reserved_bbt&quot;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p><img src="EWMTA2.4/image-20200323173223238.png" alt="image-20200323173223238"></p>
+<h3 id="测试：Cannot-tapping-by-VoIP-Monitor-Tool-VS8-MS5"><a href="#测试：Cannot-tapping-by-VoIP-Monitor-Tool-VS8-MS5" class="headerlink" title="测试：Cannot tapping by VoIP Monitor Tool (VS8/MS5)"></a>测试：Cannot tapping by VoIP Monitor Tool (VS8/MS5)</h3><ul>
+<li><p>日期：200325</p>
+</li>
+<li><p>ID：6260</p>
+</li>
+<li><p>描述：重现问题，在<code>VS8/MS5</code> 模式下，在 <code>WAN</code> 侧连接 <code>PC</code>，打开 <code>VoIP Monitor Tool</code> 软件，输出 <code>WAN IP</code>连接，出现问题</p>
+</li>
+<li><p>关键点：</p>
+<ul>
+<li><p>在 <code>WAN</code> 侧测试有两种办法：第一种，连接 <code>hub</code>，<code>hub</code> 上再接一台电脑；第二种，虚拟机的宿主机本身就相当于在 <code>WAN</code> 侧。</p>
+</li>
+<li><p>在设计的时候并没有允许在 <code>WAN</code> 侧的 <code>PC</code> 去 <code>ping</code> 路由器，所以需要手动配置 <code>WAN</code> 侧 <code>PC</code> 的 <code>IPv6</code> 地址</p>
+<ul>
+<li><p>路由器上：</p>
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip -6 neigh add&#x2F;change 2a01:d0:100::1234 lladdr b8:88:e3:fa:ae:5d dev eth0.1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip -6 route add 2a01:d0:100::1234 dev eth0.1</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面是欲配置电脑的 <code>IP</code> 地址和 <code>MAC</code> 地址，<code>eth0.1</code> 是路由器的 <code>WAN</code> 侧接口</p>
+</li>
+<li><p><code>WAN</code> 侧 <code>PC</code> 上：</p>
+<ul>
+<li><p>WIN：打开 <code>IPv6</code> 的地址设置，设置为手动</p>
+<p><code>2a01:d0:100::1234</code></p>
+<p><code>64</code></p>
+<p><code>fe80....</code>    <code>（ip -6 r 的 default 一样，ngnv6 的地址）</code></p>
+</li>
+<li><p>LINUX：</p>
+<p><code>sudo ip addr del 2a01:d0:100::1234/64 dev eth0</code></p>
+<p><code>（可能还需要加一条默认路由，不太确定。。）</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="SYSLOG-MS、VS、PDRA-模式改变时多发的-syslog"><a href="#SYSLOG-MS、VS、PDRA-模式改变时多发的-syslog" class="headerlink" title="SYSLOG: MS、VS、PDRA 模式改变时多发的 syslog"></a>SYSLOG: MS、VS、PDRA 模式改变时多发的 syslog</h3><ul>
+<li><p>日期：200407</p>
+</li>
+<li><p>ID：6268，6269</p>
+</li>
+<li><p>文件：<code>$ap/boot_order/boot_order.c</code></p>
+<p>​            <code>$ap/radius_handle/handle.c</code></p>
+<p>​            <code>$etc/reboot.sh</code></p>
+<p>​            <code>$public/apps/dhcpv6/wide-dhcpv6-20080615/dhcp6c.c</code></p>
+</li>
+<li><p>描述：在 MSchg、VSchg、PD 切换到 RA 时多发一条 ”system reboot CLI”。</p>
+<p><code>handle.c</code> 是 <code>radius</code> 重启时要执行的，在 <code>list.c</code> 里设置好各种属性后，如果模式有变化，会有个需要重启的 <code>flag</code>，<code>handle.c</code> 就根据这个来决定是否重启。</p>
+<p><code>handle.c</code> 调用 <code>/etc/reboot.sh hold</code> 来重启，<code>/etc/reboot.sh</code> 的 <code>hold</code> 函数里会发 <code>system reboot CLI</code> 的 syslog。</p>
+<p>而 <code>dhcp6c.c</code> 是从 PD 切换到 RA 的文件。<code>boot_order.c</code> 是从 RA 切换成 PD 的文件。它们都调用了 <code>/etc/reboot.sh</code> 这个脚本。</p>
+</li>
+<li><p>关键点：</p>
+<ul>
+<li><p>RA 模式配置：</p>
+<p>虚拟机 <code>NGNv6-GW</code> 这个节点的 <code>radvd</code> 服务打开，<code>dhcpv6</code> 服务关掉，就是 RA 模式。<code>radvd</code> 的配置文件中把前缀改成板子的 <code>IPv6</code> 前缀（或者改成 <code>2a01:d0:22::/64</code>，这是后来的事了，不太确定）。</p>
+</li>
+<li><p>RA/PD 模式切换</p>
+<p>在启动 <code>CORE</code> 之前，把 <code>radvd</code> 和 <code>dhcpv6</code> 服务都打开。启动后，右击节点，<code>service</code>，把 <code>radvd</code> 和 <code>dhcpv6</code> 服务关掉一个。</p>
+<p>双击节点，打开终端，输入 <code>ps -ef | grep &quot;radvd\|dhcpv6</code> 查看当前哪个服务在运行。</p>
+<p>在板子中输入 <code>ngn mode</code> 查看当前是什么模式。要确保 <code>WAN</code> 口（第三个灯）是绿的。</p>
+</li>
+<li><p>减少 PD/RA 切换时等待时间的小技巧</p>
+<p>无论是从 PD 切换到 RA，还是从 RA 切换到 PD，都需要等待两小时（不能手动重启，不然观察不到发 PDRAchg 的 syslog）。</p>
+<p>从 PD 切换到 RA，可以在 CORE 打开之前，更改 dhcpv6 服务的配置文件，把 <code>T1</code> 的时间，从 <code>3600</code> 一小时，改成 <code>360</code>，6分钟。<code>T2</code> 也改掉吧，不太确定。</p>
+<p>从 RA 切换到 PD，在板子中 <code>echo &quot;300&quot; &gt; /tmp/sys_data/select_interval</code>。应该是在 <code>boot_order.c</code> 中定义这个文件的吧，注意不要小于 <code>300</code>，小于 <code>300</code> 他就自动更换成 <code>7200</code> 了。。</p>
+</li>
+<li><p>观察 MSchg 和 VSchg</p>
+<p>更改 <code>sbb</code> 配置文件，然后在 <code>SBBv4-server</code> 节点上右击、服务、<code>restart radius</code>。在板子中，<code>radclient restart</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="WLAN-在-radius-重启时执行-wlan-acs-scan-0-1-2-会导致-wlan-重启"><a href="#WLAN-在-radius-重启时执行-wlan-acs-scan-0-1-2-会导致-wlan-重启" class="headerlink" title="WLAN: 在 radius 重启时执行 wlan acs scan 0/1/2 会导致 wlan 重启"></a>WLAN: 在 radius 重启时执行 <code>wlan acs scan 0/1/2</code> 会导致 wlan 重启</h3><ul>
+<li><p>日期：200415</p>
+</li>
+<li><p>ID：6109</p>
+</li>
+<li><p>文件：<code>$top/wlan.c</code></p>
+</li>
+<li><p>描述：在 radius 重启时执行 <code>wlan acs scan 0/1/2</code>（需要变化着执行0、1、2才能观察到），会更改 <code>nvram</code> 中 <code>ScanLogMode</code> 的值，如果有相关结点的值变化，wlan 就会重启。所以修改 <code>wlan acs scan</code> 命令，把 <code>scanlogmode</code> 的值保存在 <code>/tmp/sys_data/scan_log_mode</code> 中。</p>
+</li>
+<li><p>关键点：</p>
+<ul>
+<li><p>设置 radius 90 秒重启一次</p>
+<p>在 CORE 启动之前，修改 <code>sbb</code> 文件，把 <code>Sys-Config-Req-Time</code> 改成 90。</p>
+</li>
+<li><p>比较执行 <code>wlan acs scan</code> 命令前后结点值的变化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">cmld_client get InternetGatewayDevice.X_SC_RadiusServer.Sys-Mode-Switch</span><br><span class="line">cmld_client get_node InternetGatewayDevice.X_SC_RadiusServer.Sys-WLAN-Mode</span><br><span class="line">cmld_client get_node InternetGatewayDevice.LANDevice.1.WLANConfiguration.</span><br></pre></td></tr></table></figure>
+
+<p>第三条是关键，最后的点表示把这个节点下所有的值都打印出来。<code>get</code> 只打印值，<code>get_node</code> 还打印其他信息。</p>
+</li>
+<li><p>telnet 连接板子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">console 中 shell ， </span><br><span class="line">utelnetd -p 20 -l /bin/sh -d</span><br><span class="line">touch /tmp/utelnetd_debug</span><br><span class="line"></span><br><span class="line">cmd 中  </span><br><span class="line">telnet 192.168.3.1 340                 <span class="comment">#lan</span></span><br><span class="line">telnet 172.114.10.10 340               <span class="comment">#wan</span></span><br><span class="line"></span><br><span class="line">supervisor</span><br><span class="line">!bboohayyahoobb!sbb</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="测试：RA-切换-PD，没收到-syslog"><a href="#测试：RA-切换-PD，没收到-syslog" class="headerlink" title="测试：RA 切换 PD，没收到 syslog"></a>测试：RA 切换 PD，没收到 syslog</h3><ul>
+<li><p>日期：200422</p>
+</li>
+<li><p>ID：6314</p>
+</li>
+<li><p>描述：</p>
+<p>RA 切换 PD，没收到 syslog。测了一下发现，按照之前的配置（radvd 的配置中 prefix 设为板子的 IPv6 前缀），手动重启可以配置好，但是，从 PD 自动切换到 RA 就会失败（一开始失败，过了十几分钟自动重启才好，但是重启的时候，环境没好，没有 IP，发送 syslog 失败）。</p>
+<p>Daniel 改了之后，把 radvd 配置改为 <code>2a01:d0:22::/64</code>，<code>radclient mode auto 0; save</code>，RA 模式之下，WAN 口（第三个灯）亮红灯，<code>ip a s br0</code> 能拿到 <code>192.168.3.1</code>、<code>2a01:d0:22:0:1111:1111:1111:1111/64</code>，还有一个 IPv6 本地链路地址。成功切换。</p>
+</li>
+</ul>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F"><span class="toc-text">时序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#CLI-nat-ruleget-%E6%98%BE%E7%A4%BA%E9%97%AE%E9%A2%98"><span class="toc-text">CLI: nat ruleget 显示问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CLI-%E5%A2%9E%E5%8A%A0-ngn-ipv6-show-rule-%E5%91%BD%E4%BB%A4"><span class="toc-text">CLI: 增加 ngn ipv6 show-rule 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FORMAT-%E4%BF%AE%E6%94%B9-voip-syslog-%E6%A0%BC%E5%BC%8F"><span class="toc-text">FORMAT: 修改 voip syslog 格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CLI-%E5%A2%9E%E5%8A%A0-log-flash-werror-%E5%91%BD%E4%BB%A4"><span class="toc-text">CLI: 增加 log flash werror 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RADIUS-sys-usb-mode-spec-update"><span class="toc-text">RADIUS: sys-usb-mode spec update</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-ftp-get-put-test"><span class="toc-text">测试: ftp-get-put-test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NVRAM-%E8%AD%A6%E5%91%8A%E7%81%AF%E5%9C%A8-reset-%E4%B9%8B%E5%90%8E%E7%9A%84%E4%BF%9D%E5%AD%98%E9%97%AE%E9%A2%98"><span class="toc-text">NVRAM: 警告灯在 reset 之后的保存问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-reboot-loop"><span class="toc-text">测试: reboot_loop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LED-%E6%8C%87%E7%A4%BA%E7%81%AF%E7%9B%B8%E5%85%B3"><span class="toc-text">LED: 指示灯相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CLI-%E5%A2%9E%E5%8A%A0%E8%93%9D%E7%89%99%E5%91%BD%E4%BB%A4"><span class="toc-text">CLI: 增加蓝牙命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CLI-bluetooth-connect-for-ID"><span class="toc-text">CLI: bluetooth connect for ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-fwupdateAuto%E6%B5%8B%E8%AF%95"><span class="toc-text">测试: fwupdateAuto测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-%E8%93%9D%E7%89%99%E5%91%BD%E4%BB%A4%E6%B5%8B%E8%AF%95"><span class="toc-text">测试: 蓝牙命令测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%EF%BC%9A%E6%8A%8A-SDK-%E7%9A%84-dw-%E5%92%8C-memaccess-%E7%BC%96%E8%BF%9B-FW"><span class="toc-text">编译：把 SDK 的 dw 和 memaccess 编进 FW</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-%E6%A3%80%E9%AA%8C-E2-4-mt-code-and-fw-code-for-PR"><span class="toc-text">测试: 检验 E2.4 mt code and fw code for PR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#APP-sc-host-%E4%B8%8E-reboot-%E5%86%B2%E7%AA%81"><span class="toc-text">APP: sc_host 与 reboot 冲突</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-sercomm-download-bin-file"><span class="toc-text">测试: sercomm download bin file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%EF%BC%9A%E7%A6%81%E7%94%A8%E6%97%A0%E7%BA%BF-CLI-cmd"><span class="toc-text">命令：禁用无线 CLI cmd</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95-%E8%93%9D%E7%89%99%E5%91%BD%E4%BB%A4"><span class="toc-text">测试: 蓝牙命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%88%E5%B9%B6-merge-changes-from-FW-code-to-MT-code"><span class="toc-text">合并: merge changes from FW code to MT code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LED-%E6%94%B9%E5%8F%98-LED-status%EF%BC%8C%E4%BD%BF%E5%85%B6%E4%B8%8D%E5%8F%97-%E2%80%9Cled-off%E2%80%9D-%E5%8A%9F%E8%83%BD%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="toc-text">LED: 改变 LED status，使其不受 “led off” 功能的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%EF%BC%9ACannot-find-5GHz-SSID"><span class="toc-text">测试：Cannot find 5GHz SSID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LED-WAN-led-%E4%B8%8D%E5%8F%97%E6%8E%A7%E5%88%B6"><span class="toc-text">LED: WAN led 不受控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FW-build-guide"><span class="toc-text">FW build guide</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FW-upgrade-%E5%8D%87%E7%BA%A7%E5%A4%B1%E8%B4%A5"><span class="toc-text">FW upgrade: 升级失败</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%EF%BC%9ACannot-tapping-by-VoIP-Monitor-Tool-VS8-MS5"><span class="toc-text">测试：Cannot tapping by VoIP Monitor Tool (VS8&#x2F;MS5)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SYSLOG-MS%E3%80%81VS%E3%80%81PDRA-%E6%A8%A1%E5%BC%8F%E6%94%B9%E5%8F%98%E6%97%B6%E5%A4%9A%E5%8F%91%E7%9A%84-syslog"><span class="toc-text">SYSLOG: MS、VS、PDRA 模式改变时多发的 syslog</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WLAN-%E5%9C%A8-radius-%E9%87%8D%E5%90%AF%E6%97%B6%E6%89%A7%E8%A1%8C-wlan-acs-scan-0-1-2-%E4%BC%9A%E5%AF%BC%E8%87%B4-wlan-%E9%87%8D%E5%90%AF"><span class="toc-text">WLAN: 在 radius 重启时执行 wlan acs scan 0&#x2F;1&#x2F;2 会导致 wlan 重启</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%8B%E8%AF%95%EF%BC%9ARA-%E5%88%87%E6%8D%A2-PD%EF%BC%8C%E6%B2%A1%E6%94%B6%E5%88%B0-syslog"><span class="toc-text">测试：RA 切换 PD，没收到 syslog</span></a></li></ol></li></ol>
+  </div>
+</aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/sdc/"><i class="fa fa-tags"></i>sdc</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: snoire@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/profile/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/Walden-whjxxl/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
