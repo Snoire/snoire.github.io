@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Snoire" />
+  
+  
+  <title>Snoire&#39; Blog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="Blog" />
+  
+
+  
+  <meta name="description" content="Snoire&#39;s Blog">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"53Hsawr9k3ISwmY0drKzCs2F-gzGzoHsz","appkey":"SjrIApaUKrCn5iS0dmM0qJ8L","comment":true,"count":true},
+    welcome: {"enable":false,"interval":30},
+    start_time: "2019-10-08 20:01:24",
+    passwords: ["cc8f2b7a1d1a757235e2c7b58b0b1dc1a721eb34c8d06a386d50b654522393d1", ],
+    is_post: true,
+    lock: false,
+    author: "Snoire",
+    share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  
+<script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  
+<link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+
+  
+<meta name="generator" content="Hexo 5.2.0"></head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">Snoire</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 观察改变世界</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/snoire/" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+      <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+    </ol>
+  </div>
+</nav>
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2021-07-18
+    </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    
+  </h1>
+  
+  <article class="passage-article">
+    <p>##　vim modes</p>
+<p>官方文档上说，vim 有 7 种基本模式，还有 7 种由基本模式衍生出来的额外模式。。</p>
+<p>但是不用管那么多，记住三种就够用了：</p>
+<h3 id="normal-mode"><a href="#normal-mode" class="headerlink" title="normal mode"></a>normal mode</h3><h4 id="移动与翻页"><a href="#移动与翻页" class="headerlink" title="移动与翻页"></a>移动与翻页</h4><p>刚才进入 vim 就会处于这种模式，不能打字，但是可以很方便地执行各种操作。</p>
+<p>上下左右移动：</p>
+<pre><code>         ^
+         k
+   &lt; h       l &gt;
+         j
+         v</code></pre>
+<p><code>0</code> 移动到行首，<code>$</code> 移动到行尾。这两个比较常用。</p>
+<p><code>^</code> 与 <code>0</code> 类似，区别是 <code>^</code> 会略过空白符（空格或 <code>&lt;Tab&gt;</code>），移动到第一个非空字符上。</p>
+<p><code>w</code> 移动到下一个单词的开头。</p>
+<p><code>b</code> 移动到上一个单词的开头。</p>
+<p>也就是一个向后移动一个单词，一个向前移动。</p>
+<p><code>e</code> 与 <code>w</code> 类似，也是向后跳一个单词，不过是移动到下个单词的结尾。</p>
+<p><code>H</code> 使光标移动到页面的最上方，<code>L</code> 移动到页面的最下方，<code>M</code> 移动到页面的中间。</p>
+<p>这种大写字母的快捷键，需要同时按住 <code>&lt;Shift&gt;</code> 和对应的字母键。</p>
+<p>注意一点，这三个快捷键只是使光标移动，页面上的文本并没有翻动。</p>
+<p>使用 <code>&lt;C-d&gt;</code> 向下翻半页，<code>&lt;C-u&gt;</code> 向上翻半页。<code>&lt;C-</code> 表示 <code>&lt;Ctrl&gt;</code> 键，也就是同时按住 <code>&lt;Ctrl&gt;</code> 和对应的字母键。</p>
+<p><code>&lt;C-f&gt;</code> 向下翻一页，<code>&lt;C-b&gt;</code> 向上翻一页。</p>
+<p>还有一个 <code>&lt;C-e&gt;</code> 向下翻一行😂。看起来好像和 <code>j</code> 一样，但是按 <code>j</code>，在光标到达最底下之前不会翻动页面。而 <code>&lt;C-e&gt;</code> 不会移动光标，直接就可以向下翻行。这个在浏览文本的时候很有用。</p>
+<p>这些快捷键，大部分都可以在前面加上个数字，来表示重复执行几次这样的事。比如说 <code>5h</code> 向上移动 5 行，<code>2w</code> 向后移动两个单词，<code>12&lt;C-e&gt;</code> 向下翻动 12 行。注意在 <code>12&lt;C-e&gt;</code> 中 <code>&lt;C-e&gt;</code> 是一个组合键，不能分开按。</p>
+<p>另外，<code>gg</code> 跳转到第一行，<code>G</code> 跳转到最后一行，而 <code>数字G</code> 跳转到指定行数。比如 <code>132G</code> 移动到第 132 行。</p>
+<h4 id="快速定位"><a href="#快速定位" class="headerlink" title="快速定位"></a>快速定位</h4><p>上面说到用 <code>w</code> 和 <code>b</code> 可以以单词为单位进行移动，但是有些情况下还是不够好用，比如说下面这一行：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">rt_sigframe</span> __<span class="title">user</span> *<span class="title">frame</span> =</span> (struct rt_sigframe __user *) (<span class="keyword">long</span>) REF_REG_SP;</span><br></pre></td></tr></table></figure>
+
+<p>现在光标位于这一行的开头，我想把 <code>long</code> 改成 <code>int</code>。如果想要快速移过去，可以先按下 <code>f</code>，再按下想要查找的字符 <code>(</code>，这样光标就移动到了第一个括号处。</p>
+<p>不过我想跳到第二个括号，难道需要再按一下 <code>f(</code> 吗😑？</p>
+<p>幸好 vim 提供了快捷方式 <code>;</code> 可以再向后找下一个 <code>(</code>，也可以用 <code>,</code> 向前找。这样就很方便了。</p>
+<p>还有个 <code>t</code> 和 <code>f</code> 的作用差不多，不过 <code>t</code> + <code>某个字符</code> 会让光标停在这个字符之前。</p>
+<p>只用来移动光标的话，<code>t</code> 好像没啥用，但是如果和删除命令结合起来，就变得有意义了。比如说，删除光标与指定字符之前的内容。</p>
+<p><code>f</code> 和 <code>t</code> 只能用来在一行内定位单个字符，如果想要在整个文本中查找单词，就需要用到 <code>/</code>。</p>
+<p>先按下 <code>/</code>，再输入想查询的单词，最后回车。匹配的单词会高亮显示，这和普通文本编辑器的 <code>&lt;Ctrl&gt; + f</code> 查找是一样的。</p>
+<p><code>f</code> 和 <code>t</code> 使用 <code>,</code> 和 <code>;</code> 向前和向后查找。而 <code>/</code> 用的是 <code>N</code> 和 <code>n</code>。</p>
+<p>值得一提的是，查找时支持正则表达式😉，比如下面这一行，查找行尾的空格：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/ \&#123;<span class="number">1</span>,\&#125;$</span><br></pre></td></tr></table></figure>
+
+<p><code>\&#123;1,\&#125;</code> 用来修饰前面的空格，表示空格出现大于等于一次，<code>$</code> 表示行尾。</p>
+<p>查找完成后，使用 <code>:noh</code> 命令取消高亮。 </p>
+<h4 id="文本操作"><a href="#文本操作" class="headerlink" title="文本操作"></a>文本操作</h4><p><code>dd</code> 删除一行</p>
+<p><code>cc</code> 也是删除，相当于 <code>dd</code> 删除之后再进入 <code>插入模式</code></p>
+<p><code>x</code> 删除光标所在字符；<code>X</code> 删除光标前的字符</p>
+<p><code>s</code> 删除光标所在字符，然后进入 <code>插入模式</code>；<code>S</code> 删除当前行，再进入 <code>插入模式</code>，好像和 <code>cc</code> 效果一样</p>
+<p><code>yy</code> 复制一行</p>
+<p><code>p</code> 粘贴</p>
+<p><code>P</code> 也是粘贴，不过是粘贴到当前行的上面</p>
+<p>注意，<code>d</code> <code>c</code> <code>x</code> <code>s</code> 的删除应该算是剪切，也就是删除的内容都放在剪切板上了，通过 <code>p</code> 可以粘贴出来。</p>
+<p>同样地，这些快捷键前面都可以加上数字，猜猜 <code>5yy</code> <code>5P</code> 和 <code>5cc</code> 都是什么意思</p>
+<p>另外，<code>d</code> <code>c</code> 和 <code>y</code> 还可以和上面提到的 <code>f</code> 和 <code>t</code> 结合，比如：<code>yf)</code>、<code>dt)</code>、<code>cf;</code></p>
+<p>与 <code>0</code> <code>^</code> <code>$</code> 结合：</p>
+<ul>
+<li><code>d0</code> 删除行首到光标之间的字符</li>
+<li><code>y^</code> 复制这一行第一个非空字符到光标之间的字符</li>
+<li><code>c$</code> 删除光标到行尾之间的字符，再进入插入模式</li>
+</ul>
+<p>所以这样的模式：&lt;表示操作的按键 + 用来定位的按键&gt; 表示对某一范围的文本进来操作。因此，像 <code>c/&lt;keyword&gt;</code> 这样的操作也是可以的😄</p>
+<p><code>x</code> 和 <code>s</code> 这种单个字符的，就没法和它们结合，不过也不需要，<code>d</code> 和 <code>c</code> 就已经可以表示删除操作了。</p>
+<h3 id="insert-mode"><a href="#insert-mode" class="headerlink" title="insert mode"></a>insert mode</h3><p><code>i</code> 和 <code>a</code> 都可以进入插入模式，区别在于，<code>i</code> 在光标所在的字符之前插入，<code>a</code> 在光标所在的字符之后插入。</p>
+<p><code>I</code> 在行首插入，<code>A</code> 在行尾添加文本。</p>
+<p><code>o</code> 在下一行插入，<code>O</code> 在上一行插入。</p>
+<p>进入 <code>插入模式</code> 后，基本上那些快捷键都用不了了，只能老老实实打字🤣。想用只能按 <code>&lt;Esc&gt;</code> 或者 <code>&lt;C-c&gt;</code> 退回到 <code>普通模式</code>。</p>
+<p>不过如果只是想临时用一下 <code>普通模式</code> 的快捷键，可以按 <code>&lt;C-o&gt;</code>，这时就可以使用快捷键了，只不过在使用一次后，会自动回到 <code>插入模式</code>（准确地说，在插入模式下按 <code>&lt;C-o&gt;</code> 后，进入的这种短暂的状态，叫做 <code>Insert Normal mode</code>）。</p>
+<h4 id="replace-mode"><a href="#replace-mode" class="headerlink" title="replace mode"></a>replace mode</h4><ol>
+<li><p>这是什么？</p>
+<p><code>替换模式</code>，<code>插入模式</code> 的变种。和 <code>插入模式</code> 一样，都是为了往文本中输入信息。不同的是，<code>插入模式</code> 是添加，<code>替换模式</code> 是取代原有的字符。</p>
+<p>在 <code>普通模式</code> 下按下 <code>r</code> 或 <code>R</code> 进入 <code>替换模式</code>，<code>r</code> 在输入一个字符后自动退回 <code>普通模式</code>，<code>R</code> 则可以连续输入，直到按下 <code>&lt;Esc&gt;</code> 或 <code>&lt;C-c&gt;</code>。</p>
+</li>
+<li><p>这有什么用？</p>
+<p>比如说这里，我想把 32 改成 39，如果没有 <code>插入模式</code>，我需要先进入 <code>插入模式</code>，删掉 2，再输入 9，最后退回到 <code>普通模式</code>，非常麻烦。</p>
+<p>而 <code>替换模式</code> 只需要把光标停留在 2 上，按下 <code>r</code>，再按下 <code>9</code> 就行了。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">22</span> + <span class="number">17</span> = <span class="number">32</span></span><br></pre></td></tr></table></figure>
+
+<p>再来看个例子：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;+--------------------------------+&quot;</span><br><span class="line">echo &quot;|            something           |&quot;</span><br><span class="line">echo &quot;+--------------------------------+&quot;</span><br></pre></td></tr></table></figure>
+
+<p>如果想要把第二行中间的单词“擦掉”，只需要按 <code>R</code> 进入 <code>替换模式</code>，再一直按空格，最后退出 <code>替换模式</code>，中间的单词就被空格覆盖了。如果想再填上新的内容也非常方便。</p>
+<p>总之，<code>替换模式</code> 适合在不改变文本原有格式的前提下修改文本。</p>
+</li>
+</ol>
+<h3 id="visual-mode"><a href="#visual-mode" class="headerlink" title="visual mode"></a>visual mode</h3><p>有三个按键可以在 <code>普通模式</code> 下进入 <code>可视化模式</code>，<code>v</code> <code>V</code> 和 <code>&lt;C-v&gt;</code>，这个模式像是用鼠标选中文本。</p>
+<ol>
+<li><p>按下 <code>v</code>，当前字符会被选中，可以用<code>h</code> <code>j</code> <code>k</code> 或 <code>l</code> 来扩大选区。当然，像 <code>w</code> <code>^</code> <code>$</code> <code>t</code> <code>/</code> 这些用来移动的按键也可以使用。</p>
+<p>总之，我们会先选中一部分区域，再对其进行操作。</p>
+<p>可以进行操作只有三个：复制、剪切和粘贴，也就是：</p>
+<p><code>y</code> 复制</p>
+<p><code>d</code> 或 <code>x</code> 这两个在这种情况下效果是一样的，<code>c</code> 和 <code>s</code> 在剪切之后再进入 <code>插入模式</code></p>
+<p><code>p</code> 粘贴 </p>
+</li>
+<li><p><code>V</code> 进入的 <code>可视化模式</code> 只能整行整行地选。如果说 <code>v</code> 是对单词进行选中，那么 <code>V</code> 就是对段落进行选中，再执行相应操作。</p>
+</li>
+<li><p><code>&lt;C-v&gt;</code> 执行的操作又称为 <code>列编辑</code>，经常用来给代码添加或取消注释。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">inline</span> <span class="keyword">void</span> __user *</span><br><span class="line">get_sigframe(struct k_sigaction *ka, <span class="keyword">unsigned</span> <span class="keyword">long</span> sp, <span class="keyword">size_t</span> frame_size)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> ((ka-&gt;sa.sa_flags &amp; SA_ONSTACK) != <span class="number">0</span> &amp;&amp; ! sas_ss_flags(sp))</span><br><span class="line">		sp = current-&gt;sas_ss_sp + current-&gt;sas_ss_size;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> (<span class="keyword">void</span> __user *)((sp - frame_size) &amp; <span class="number">-8u</span>l);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我想把这个函数注释掉，先移动到第一行开头，按 <code>&lt;C-v&gt;</code>，再选中这几行，按 <code>I</code> 开始添加注释，输入 <code>//</code>，按 <code>&lt;Esc&gt;</code> 退出。</p>
+<p>最后所有行的开头都会加上 <code>//</code>，于是这个函数就被注释了。取消注释的话，在选中这几行的所有 <code>//</code> 后再按 <code>x</code> 删除就好了。</p>
+</li>
+</ol>
+<p><code>可视化模式</code> 选中的区域由两个端点来界定，默认情况下我们只能控制右下角的端点，可以按 <code>o</code> 来切换端点。</p>
+<p>##　高级操作</p>
+<h3 id="多窗口"><a href="#多窗口" class="headerlink" title="多窗口"></a>多窗口</h3><p>同时打开多个文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi -O 1.txt 2.txt         <span class="comment"># 竖直分屏</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vi -o 1.txt 2.txt         <span class="comment"># 水平分屏</span></span></span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;C-w&gt;w</code>：在所有窗口中循环移动</p>
+<p><code>&lt;C-w&gt;W</code>：逆序循环移动</p>
+<p><code>&lt;C-w&gt;h</code>：向左边移动</p>
+<p><code>&lt;C-w&gt;l</code>：向右边移动</p>
+<p><code>&lt;C-w&gt;j</code>：向下边移动</p>
+<p><code>&lt;C-w&gt;k</code>：向上边移动</p>
+<p>以多个分页打开文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi -p 1.txt 2.txt</span></span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;C-PageUp&gt;</code>：移动到上一个分页</p>
+<p><code>&lt;C-PageDown&gt;</code>：移动到下一个分页</p>
+<h3 id="比较差异"><a href="#比较差异" class="headerlink" title="比较差异"></a>比较差异</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi -d 1.txt 2.txt				<span class="comment"># 竖直分屏</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vi -<span class="keyword">do</span> 1.txt 2.txt			<span class="comment"># 水平分屏</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如果希望把一个差异点中当前文件的内容复制到另一个文件里，可以用快捷键 <code>dp</code>；</p>
+<p>如果希望把另一个文件的内容复制到当前行中，可以用 <code>do</code>。</p>
+<p>用 <code>[c</code> 和 <code>]c</code> 在各个差异点之间快速移动。</p>
+<h3 id="替换"><a href="#替换" class="headerlink" title="替换"></a>替换</h3><p>上面介绍都是快捷键，而替换操作用的是命令：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:s/<span class="keyword">abc</span>/xyz/</span><br></pre></td></tr></table></figure>
+
+<p>命令以 <code>:</code> 开头，也可以写在 <code>vimrc</code> 文件里，这时候就不需要加 <code>:</code> 了。</p>
+<p>上面的命令只能替换当前行，并且只会替换一次 <code>abc</code>，可以在最后加个 <code>g</code> 表示全部替换，加 <code>gc</code> 表示全部替换并且每一个都询问是否替换。</p>
+<p>也可以指定行数内替换，比如从第一行到第 10 行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:1,10&#x2F;abc&#x2F;xyz&#x2F;g</span><br></pre></td></tr></table></figure>
+
+<p>还可以这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:1,+9&#x2F;abc&#x2F;xyz&#x2F;g</span><br></pre></td></tr></table></figure>
+
+<p><code>$</code> 表示最后一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:1,$s&#x2F;abc&#x2F;xyz&#x2F;g</span><br></pre></td></tr></table></figure>
+
+<p>也就是全文替换，可以简写成：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:%s&#x2F;abc&#x2F;xyz&#x2F;g</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="输入特殊字符"><a href="#输入特殊字符" class="headerlink" title="输入特殊字符"></a>输入特殊字符</h3><p>执行命令 <code>:dig</code>，可以看到类似于这样的内容：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NU ^@  <span class="number">10</span>    SH ^A   <span class="number">1</span>    SX ^B   <span class="number">2</span>    EX ^C   <span class="number">3</span>    ET ^D   <span class="number">4</span>    EQ ^E   <span class="number">5</span>    AK ^F   <span class="number">6</span>    BL ^G   <span class="number">7</span>    BS ^H   <span class="number">8</span>    HT ^I   <span class="number">9</span>    LF ^@  <span class="number">10</span>    VT ^K  <span class="number">11</span>    FF ^L  <span class="number">12</span>    CR ^M  <span class="number">13</span>    SO ^<span class="keyword">N</span>  <span class="number">14</span></span><br><span class="line">SI ^O  <span class="number">15</span>    DL ^<span class="keyword">P</span>  <span class="number">16</span>    D1 ^Q  <span class="number">17</span>    D2 ^R  <span class="number">18</span>    D3 ^S  <span class="number">19</span>    D4 ^T  <span class="number">20</span>    NK ^U  <span class="number">21</span>    SY ^V  <span class="number">22</span>    EB ^W  <span class="number">23</span>    CN ^<span class="keyword">X</span>  <span class="number">24</span>    EM ^Y  <span class="number">25</span>    SB ^Z  <span class="number">26</span>    EC ^[  <span class="number">27</span>    FS ^\  <span class="number">28</span>    GS ^]  <span class="number">29</span></span><br><span class="line">......</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>进入 <code>插入模式</code>，按 <code>&lt;C-k&gt;</code>，再按 <code>SH</code>，你就会得到 <code>^A</code> 这个字符。注意，这是一个字符，而不是两个，它代表 <code>ASCII</code> 码表中值为 <code>1</code> 的字符。</p>
+<p>也就是说，按下 <code>&lt;C-k&gt;</code>，再输入这张表中第一列的两个字符，你就能得到显示为第二列，值为第三列的字符😂</p>
+<p>注意，<code>NU</code> 和 <code>LF</code>，表中都写着它们的值为 <code>10</code>，但是 <code>^@</code> 的值明明是 <code>0</code> 呀，我也不知道为啥。值为 <code>10</code> 的键就是回车键，好像除了按 <code>&lt;cr&gt;</code>，没法通过这种方式打出来。</p>
+<p>另外，对于以 <code>^</code> 为前缀的字符，还有一种方法，<code>&lt;Tab&gt;</code> 键，它显示的是 <code>^I</code>，可以用 <code>&lt;C-v&gt;&lt;C-i&gt;</code> 打出来。<code>&lt;Esc&gt;</code> 就是 <code>&lt;C-v&gt;&lt;C-[&gt;</code>。这种方法不是 vim 独有的，它其实是 shell 的功能。</p>
+<h3 id="撤销和反撤销"><a href="#撤销和反撤销" class="headerlink" title="撤销和反撤销"></a>撤销和反撤销</h3><p><code>普通模式</code> 下：</p>
+<p><code>u</code> -&gt; undo</p>
+<p><code>&lt;C-r&gt;</code> -&gt; redo</p>
+<p>###　重复</p>
+<p>按下 <code>dd</code>，删除了一行，再按下 <code>.</code>，你会发现又少了一行，再按一下 <code>.</code>，又删除了一行。</p>
+<p><code>.</code> 表示重复刚才的动作。</p>
+<h3 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h3><p>按 <code>&lt;&lt;</code> 和 <code>&gt;&gt;</code> 调整缩进，仅限于当前行，多行需要先用 <code>可视化模式</code> 选中，再按 <code>&lt;</code> 和 <code>&gt;</code>，多次缩进可以用 <code>.</code>。</p>
+<p>按 <code>=</code> 也可以调整缩进，直接调整到最佳位置，不过有时候 vim 的调整和我们想要的不一样，还是要用 <code>&lt;&lt;</code> 和 <code>&gt;&gt;</code> 手动调整。</p>
+<p>###　数字增减</p>
+<p>一个数字，我想把它加一或者减一，应该怎么办呢？</p>
+<p>进入 <code>插入模式</code>，修改，退回 <code>普通模式</code>。</p>
+<p>不，还有更好的办法：光标移动到数字上，<code>&lt;C-a&gt;</code> 加一，<code>&lt;C-x&gt;</code> 减一。</p>
+<p>正负数都可以这么做，不过仅限于十进制。</p>
+<h3 id="大小写转换"><a href="#大小写转换" class="headerlink" title="大小写转换"></a>大小写转换</h3><p>按下 <code>~</code>，可以把当前字母在大小写之前进行转换。如果想转换多个字符，只能进入 <code>可视化模式</code> 选中文本再按 <code>~</code> 了。</p>
+<p>另外，<code>可视化模式</code> 下，按 <code>u</code> 把所选字符转换成小写，<code>U</code> 把所选字符转换成大写。不要和 <code>普通模式</code> 下的 <code>u</code> 搞混了。</p>
+<h3 id="文本对象"><a href="#文本对象" class="headerlink" title="文本对象"></a>文本对象</h3><p>如果想要删除一个单词，可以先移动到单词的开头，再按 <code>dw</code>。但是移动到单词开头这一步就很麻烦。</p>
+<p>实际上可以停在单词的任意位置，然后按 <code>daw</code>，达到相同的效果。<code>aw</code> 就代表一个单词以及它后面的空白符，而 <code>iw</code> 代表单词但是不包括后面的空白符。</p>
+<p>还有这些文本对象：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">a</span><span class="variable">w:</span> <span class="keyword">a</span> word, 表示一个单词, 及其后面的空白, daw 表示删除光标所在单词及空白</span><br><span class="line">i<span class="variable">w:</span> inner word, 也是表示一个单词, 但是不包括单词后面的空白</span><br><span class="line"><span class="keyword">a</span><span class="variable">s:</span> <span class="keyword">a</span> sentence, 表示一个句子, 及其后面的空白, das表示删除光标所在句子及空白</span><br><span class="line">i<span class="variable">s:</span> inner sentence, 也是表示一个句子, 但是不包括句子后面的空白</span><br><span class="line">ap/ip: <span class="keyword">a</span> paragraph, 一个段落, 细节同上</span><br><span class="line"><span class="keyword">a</span>[, <span class="keyword">a</span>] / i[, i]: 一个 [] 块, <span class="keyword">a</span>[, <span class="keyword">a</span>] 包括两边的 <span class="string">&quot;[]&quot;</span>, i[, i] 不包括两边的 []</span><br><span class="line"><span class="keyword">a</span>(, <span class="keyword">a</span>) / i(, i) / <span class="keyword">ab</span> i<span class="variable">b:</span> 一个小 block, 细节同上</span><br><span class="line"><span class="keyword">a</span>&#123;, <span class="keyword">a</span>&#125; / i&#123;, i&#125; / aB iB: 一个大 block, 细节同上</span><br><span class="line"><span class="keyword">a</span>&lt;, <span class="keyword">a</span>&gt; / i&lt;, i&gt;: 一个尖括号块, 细节同上</span><br><span class="line"><span class="keyword">a</span><span class="string">&quot;, a&#x27;, a` / i&quot;</span>, i<span class="string">&#x27;, i`: 一对引号, 细节同上</span></span><br><span class="line"><span class="string">at/it: 一个 tag, 匹配 HTML 或者 XML 中的 tag 及其内容, 会忽略单标签</span></span><br></pre></td></tr></table></figure>
+
+<p>前面可以和 <code>d</code> <code>c</code> <code>y</code> <code>v</code> 结合，还可以加上数字：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d3a<span class="variable">w:</span> 表示删除<span class="number">3</span>个单词, <span class="keyword">as</span>, ap 同理</span><br><span class="line">y2ab / y2a(: 表示向外复制两层小括号的内容, 其他类似括号的同理</span><br><span class="line"><span class="comment">&quot;, &#x27;, `, 这几个不可使用计数器</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>我经常用 <code>yiw</code> 复制一个单词，再用 <code>p</code> 粘贴；用 <code>viw</code> 选中一个单词，再按 <code>U</code> 使其大写；用 <code>di)</code> 删除一个函数括号里的所有内容。</p>
+<h3 id="剪切板与寄存器"><a href="#剪切板与寄存器" class="headerlink" title="剪切板与寄存器"></a>剪切板与寄存器</h3><p>系统剪切板和 vim 里的剪切板是两个东西。vim 里的应该叫 <code>register</code>，而且不止一个。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">There are ten types of register<span class="variable">s:</span></span><br><span class="line"><span class="number">1</span>. The unnamed register <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="number">2</span>. <span class="number">10</span> numbered <span class="keyword">registers</span> <span class="string">&quot;0 to &quot;</span><span class="number">9</span></span><br><span class="line"><span class="number">3</span>. The small <span class="keyword">delete</span> register <span class="comment">&quot;-</span></span><br><span class="line"><span class="number">4</span>. <span class="number">26</span> named <span class="keyword">registers</span> <span class="string">&quot;a to &quot;</span><span class="keyword">z</span> <span class="built_in">or</span> <span class="string">&quot;A to &quot;</span>Z</span><br><span class="line"><span class="number">5</span>. Three <span class="keyword">read</span>-<span class="keyword">only</span> <span class="keyword">registers</span> <span class="string">&quot;:, &quot;</span>., <span class="comment">&quot;%</span></span><br><span class="line"><span class="number">6</span>. Alternate <span class="keyword">buffer</span> register <span class="comment">&quot;#</span></span><br><span class="line"><span class="number">7</span>. The expression register <span class="comment">&quot;=</span></span><br><span class="line"><span class="number">8</span>. The selection <span class="built_in">and</span> <span class="keyword">drop</span> <span class="keyword">registers</span> <span class="string">&quot;*, &quot;</span>+ <span class="built_in">and</span> <span class="comment">&quot;~</span></span><br><span class="line"><span class="number">9</span>. The black hole register <span class="comment">&quot;_</span></span><br><span class="line"><span class="number">10</span>. Last <span class="built_in">search</span> pattern register <span class="comment">&quot;/</span></span><br></pre></td></tr></table></figure>
+
+<p><code>unnamed register</code> 是最常用的，和系统的剪切板类似，保存着最近一次剪切/复制的内容，<code>p</code> 就是把这个寄存器里的内容粘贴出来。 </p>
+<p>寄存器 <code>0</code> 是复制寄存器，保存最近一次复制的内容。</p>
+<p>寄存器 <code>1</code> 到 <code>9</code> 都是删除寄存器，<code>1</code> 保存最近一次删除的内容，2 保存最近第二次，以此类推。。我也不明白搞这么多有啥用。</p>
+<p>字母寄存器是留给用户使用的，一共有 26 × 2 个，挺多的。</p>
+<p>怎么用呢？</p>
+<p>有种叫做 <code>swap</code> 的操作，就是把两个单词交换位置。先移动到第一个单词的位置上，<code>diw</code>/<code>yiw</code> 删除/复制，这个单词就会保存到无名寄存器里，然后移动到第二个单词上，<code>viw</code> 选中，<code>p</code> 把第一个单词粘贴出来并且把选中的第二个单词保存到无名寄存器里，再移动到第一个单词的位置上，<code>p</code> 把第二个单词粘贴出来。</p>
+<p>vim 的这种在选择的区域上执行粘贴操作时，会把选中/被覆盖的文本保存到无名寄存器的行为很有意思，但是也会带来一些问题。比如说我想把一个单词复制到多个地方，但是复制的时候会覆盖其他单词，这时，无名寄存器里的内容就被改变了，就没法再用 <code>p</code> 来粘贴原本的单词了。</p>
+<p>这种情况下可以使用复制寄存器 <code>0</code> 里的内容，用 <code>&quot;0</code> 引用复制寄存器里的内容，<code>&quot;0p</code> 就是把 <code>0</code> 这个寄存器里的内容粘贴出来。</p>
+<p>字母寄存器在保存多行不连续文本时很有用，比如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	frame = get_sigframe(&amp;ksig-&gt;ka, regs-&gt;regs[REG_SP], <span class="keyword">sizeof</span>(*frame));</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 0</span></span><br><span class="line">	<span class="keyword">if</span> (!access_ok(VERIFY_WRITE, frame, <span class="keyword">sizeof</span>(*frame)))</span><br><span class="line">		<span class="keyword">return</span> -EFAULT;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">	err |= setup_sigcontext(&amp;frame-&gt;sc, regs, <span class="built_in">set</span>-&gt;sig[<span class="number">0</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>我想把条件编译语句加到其他地方，先移动到 <code>#if 0</code> 这一行，<code>&quot;ayy</code>，再移动到 <code>#endif</code> 这一行，<code>&quot;byy</code>。这样，这两行都被保存下来。使用的时候，<code>&quot;ap</code> 和 <code>&quot;bp</code> 分别粘贴这两行。</p>
+<p>使用命令 <code>:registers</code> 查看所有寄存器的内容，简写 <code>:reg</code>，<code>:reg a</code> 查看寄存器 <code>a</code> 的内容。</p>
+<h3 id="宏"><a href="#宏" class="headerlink" title="宏"></a>宏</h3><p>宏是一系列操作的集合，使用 <code>q</code> 录制宏，后面加上一个字母，作为这个宏的名字，再输入任意操作，最后再按 <code>q</code> 退出录制。</p>
+<p>用 <code>@</code> 加宏名“播放”宏，把录制的操作再执行一遍。</p>
+<p>我经常定义的两个宏是 <code>qp&quot;0pq</code> 和 <code>qoviw&quot;0pq</code>， 这样我按下 <code>@p</code> 就相当于执行了 <code>&quot;0p</code>，按 <code>@o</code> 则是 <code>viw&quot;0p</code>。</p>
+<p>录制宏后会一直保存，下次打开 vim 时仍然可用。</p>
+<p>但是需要注意的是，宏是保存在寄存器里的。也就是说如果你录制了一个宏在 <code>a</code> 里，之后又用 <code>&quot;ayy</code> 复制了某些东西，那么这个宏就被覆盖了。不仅如此，你再用 <code>@a</code> 来执行宏，那么会按照你复制的内容来执行操作😂</p>
+<h3 id="单词搜索"><a href="#单词搜索" class="headerlink" title="单词搜索"></a>单词搜索</h3><p>光标放在一个单词上，按下 <code>#</code> 或 <code>*</code>，会移动到上/下一个相同的单词，并且所有相同的单词会被高亮。</p>
+<p>等价于使用 <code>?\&lt;word\&gt;</code> 和 <code>/\&lt;word\&gt;</code>。是的，<code>?</code> 和 <code>/</code> 一样，都可以用来搜索单词，不过 <code>?</code> 是向上搜，<code>/</code> 是向下。<code>\&lt;</code> 和 <code>&gt;</code> 用来限定单词的边界必须是空白符。</p>
+<p>另外，我经常使用 <code>gd</code> 来搜索单词。<code>gd</code> 本意是用来跳转到局部变量的定义处，随便把相同的单词高亮。普通文本没有局部变量这一概念，不过也可以用。按了 <code>gd</code> 之后，再用 <code>n</code> 和 <code>N</code> 在单词间跳转。</p>
+<h3 id="标记与跳转"><a href="#标记与跳转" class="headerlink" title="标记与跳转"></a>标记与跳转</h3><p>按下 <code>m</code>，再加上一个小写字母，比如说 <code>a</code>，就可以给当前位置做个标记。把光行移其他行，再按下 <code>&#39;a</code>，就会跳回之前标记 <code>a</code> 的地方。</p>
+<p>有趣的是，就算把这个文件关掉，下一次打开时，这个标记还是存在的。</p>
+<p>另外，这样做只能在同一个文件中跳转，在其他文件中是跳不过来的。如果想在文件间做标记，需要使用大写字母。</p>
+<p>比如，<code>mA</code>，再打开另一个文件，按下 <code>&#39;A</code>， 就跳过来了😀。</p>
+<p>我跳过去，如果想再跳回来呢？按下 <code>&lt;C-o&gt;</code>。之前也提到 <code>&lt;C-o&gt;</code>，不过那个是 <code>插入模式</code> 下按的，这里是 <code>普通模式</code>，不要搞混了。</p>
+<p><code>&lt;C-o</code> 是向后跳，而 <code>&lt;C-i</code> 是向前跳，熟练使用 <code>&lt;C-o</code> 和 <code>&lt;C-i&gt;</code> 可以在两个地方来回跳转。</p>
+<h3 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h3><p>写代码的时候，定义一个函数，然后在其他地方多次调用。如果函数名很长，每次写就会很麻烦。可以只输入前面的一部分，然后按下 <code>&lt;C-p&gt;</code> 或 <code>&lt;C-n&gt;</code> 补全。</p>
+<p>如果只有一个候选项，它会直接补全；如果有多个，它会显示一个修补框，可以用上下方向键进行选择，或者 <code>&lt;C-n&gt;</code> 向下选，<code>&lt;C-p&gt;</code> 向上选。选好后，可以继续打字，也可以按 <code>&lt;C-y&gt;</code> 选中，中途取消可以按 <code>&lt;C-e&gt;</code>。</p>
+<h3 id="按键映射"><a href="#按键映射" class="headerlink" title="按键映射"></a>按键映射</h3><p>有时候，我们会觉得 vim 定义的按键太别扭了，不太习惯，这时候我们就可以把原有的功能映射到我们喜欢的按键上。</p>
+<p>输入下面命令：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">map</span> - <span class="keyword">x</span></span><br></pre></td></tr></table></figure>
+
+<p>现在按下 <code>-</code> 就相当于按下 <code>x</code> 删除一个字符。</p>
+<p>这个映射只在当前的 vim 里有效，关掉后再打开，这个绑定就没了。相要永久生效可以去掉前面的 <code>:</code> 写到 <code>~/.vimrc</code> 里。</p>
+<p><code>:map</code> 这个命令在 <code>普通模式</code> 和 <code>可视化模式</code> 里生效，在 <code>插入模式</code> 里是没用的，你在 <code>插入模式</code> 里打一个 <code>-</code>，只会输入一个 <code>-</code>，而不会删掉字符。</p>
+<p>想在 <code>插入模式</code> 里绑定按键，要用 <code>imap</code>：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">imap</span> jk <span class="symbol">&lt;esc&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样，就可以在 <code>插入模式</code> 里按 <code>jk</code> 退出了🤣</p>
+<p>是的，vim 也可以绑定多个键，必须在短时间内输入，vim 才会把它们当成是快捷键。所以如果想在 <code>插入模式</code> 下输入字符 <code>jk</code>，只需要在输入 <code>j</code> 后，稍微等一会儿，再输入 <code>k</code> 就可以了。至于等多久，vim 底栏会有提示的。</p>
+<p>这种映射虽然退出很方便，但是会影响到普通字母的输入，所以我不太喜欢。我用 <code>&lt;Alt&gt;</code> + <code>i</code> 来实现 <code>&lt;Esc&gt;</code> 的功能。</p>
+<p>照理说，我这么配置，应该就能生效：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">imap</span> <span class="symbol">&lt;A-i&gt;</span> <span class="symbol">&lt;esc&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是却不行，终端会把 <code>&lt;Alt&gt;</code> 键转义成其他字符。也就是说，你虽然按下了 <code>&lt;A-i&gt;</code>，但是 vim 收到的按键却不是这个😒</p>
+<p>所以得这么写，先打 <code>imap</code>，空格，再按 <code>&lt;C-v&gt;</code>，紧接着按 <code>&lt;A-i&gt;</code>，最后空格，再打 <code>&lt;esc&gt;</code>。</p>
+<p>你会发现会变成这个样子：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">imap</span> ^[i <span class="symbol">&lt;esc&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>^[</code> 是一个字符，也就是 <code>&lt;Esc&gt;</code> 键，所以你按下 <code>&lt;A-i&gt;</code> 组合键，终端会传给 vim <code>&lt;Esc-i&gt;</code>。。</p>
+<p><code>map</code> 系列的命令很方便，但是它本身有个问题。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:<span class="keyword">map</span> - dd</span><br><span class="line">:<span class="keyword">map</span> \ -</span><br></pre></td></tr></table></figure>
+
+<p>上面的两个 <code>map</code> 命令产生了递归定义，按下 <code>\</code> 会删除当前行。有时候这是我们需要的，但是更多时候，我们不希望这样。因为我们可能在各种地方定义映射，你不知道你想映射成的那个键有没有被映射成其他的，再加上可能会加载各种插件，插件中有其他人写的各种按键映射，所以这种用真的会乱套。</p>
+<p>所以最好使用 <code>map</code> 的 <code>Nonrecursive</code> 形式：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">     COMMANDS                    MODES</span><br><span class="line">:<span class="keyword">map</span>   :<span class="keyword">noremap</span>  :<span class="keyword">unmap</span>     Normal, Visual, Select, Operator-pending</span><br><span class="line">:<span class="keyword">nmap</span>  :<span class="keyword">nnoremap</span> :<span class="keyword">nunmap</span>    Normal</span><br><span class="line">:<span class="keyword">vmap</span>  :<span class="keyword">vnoremap</span> :<span class="keyword">vunmap</span>    Visual <span class="built_in">and</span> Select</span><br><span class="line">:<span class="keyword">smap</span>  :<span class="keyword">snoremap</span> :<span class="keyword">sunmap</span>    Select</span><br><span class="line">:<span class="keyword">xmap</span>  :<span class="keyword">xnoremap</span> :<span class="keyword">xunmap</span>    Visual</span><br><span class="line">:<span class="keyword">omap</span>  :<span class="keyword">onoremap</span> :<span class="keyword">ounmap</span>    Operator-pending</span><br><span class="line">:map!  :noremap! :unmap!    Insert <span class="built_in">and</span> Command-<span class="built_in">line</span></span><br><span class="line">:<span class="keyword">imap</span>  :<span class="keyword">inoremap</span> :<span class="keyword">iunmap</span>    Insert</span><br><span class="line">:<span class="keyword">lmap</span>  :<span class="keyword">lnoremap</span> :<span class="keyword">lunmap</span>    Insert, Command-<span class="built_in">line</span>, Lang-Arg</span><br><span class="line">:<span class="keyword">cmap</span>  :<span class="keyword">cnoremap</span> :<span class="keyword">cunmap</span>    Command-<span class="built_in">line</span></span><br><span class="line">:tmap  :tnoremap :tunmap    Terminal-Job</span><br></pre></td></tr></table></figure>
+
+<p>加上 <code>nore</code> 就好了，很容易记。第三列的命令是取消映射。</p>
+<p>所以上面的自动补全，可以用 <code>&lt;Tab&gt;</code> 来选择候选项，用 <code>&lt;cr&gt;</code> （回车键）来确定：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&quot; Use &lt;Tab&gt; and &lt;S-Tab&gt; to navigate the completion list</span></span><br><span class="line"><span class="keyword">inoremap</span> <span class="symbol">&lt;expr&gt;</span> <span class="symbol">&lt;Tab&gt;</span> <span class="built_in">pumvisible</span>() ? <span class="string">&quot;\&lt;C-n&gt;&quot;</span> : <span class="string">&quot;\&lt;Tab&gt;&quot;</span></span><br><span class="line"><span class="keyword">inoremap</span> <span class="symbol">&lt;expr&gt;</span> <span class="symbol">&lt;S-Tab&gt;</span> <span class="built_in">pumvisible</span>() ? <span class="string">&quot;\&lt;C-p&gt;&quot;</span> : <span class="string">&quot;\&lt;S-Tab&gt;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&quot; Use &lt;cr&gt; to confirm completion</span></span><br><span class="line"><span class="keyword">inoremap</span> <span class="symbol">&lt;expr&gt;</span> <span class="symbol">&lt;cr&gt;</span> <span class="built_in">pumvisible</span>() ? <span class="string">&quot;\&lt;C-y&gt;&quot;</span> : <span class="string">&quot;\&lt;C-g&gt;u\&lt;CR&gt;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>不用管这么复杂的表达式是啥意思，贴到 <code>~/.vimrc</code> 里能用就行了😂</p>
+<h3 id="帮助文档"><a href="#帮助文档" class="headerlink" title="帮助文档"></a>帮助文档</h3><p>vim 自带了一些文档，可以用命令 <code>:help</code> 查看，简写 <code>:h</code>。</p>
+<p>比如，<code>:h registers</code> 查看寄存器相关说明，<code>:h :registers</code> 则是查看 <code>:registers</code> 这个命令的用法。</p>
+<p>底下的命令栏，支持 <code>&lt;Tab&gt;</code> 补全。</p>
+<p>有用的文档：</p>
+<p><code>:h vim-modes</code>、<code>:h map-modes</code>、<code>:h operator</code>、<code>:h key-notation</code></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="vim-script"><a href="#vim-script" class="headerlink" title="vim script"></a>vim script</h3><p>vim 配置是有语法的，对应的语言就叫 <code>vim script</code>。</p>
+<p>以下语句在 vim 里当成命令输入时，需要在前面加 <code>:</code>。</p>
+<p>变量：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="keyword">a</span> = <span class="string">&#x27;hi&#x27;</span>		<span class="comment">&quot; 双引号后面的是注释</span></span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> <span class="keyword">a</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>设置选项：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="keyword">number</span>          <span class="comment">&quot; 显示行号</span></span><br></pre></td></tr></table></figure>
+
+<p>像这种 <code>number</code> 是布尔型的，可以在前面加上 <code>no</code> 前缀设为否：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> nonumber		<span class="comment">&quot; 简写 set nonu</span></span><br></pre></td></tr></table></figure>
+
+<p>或者在后面加个 <code>!</code> 表示取反：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> nu!				<span class="comment">&quot; 在 true 和 false 之间切换</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>选项也可以像变量一样设置，不过得在前面加个 <code>&amp;</code>，表示这是个选项，而不是同名的变量：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> &amp;<span class="keyword">nu</span>			<span class="comment">&quot; 0 或者 1，取决于你的设置</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以赋值：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &amp;<span class="keyword">nu</span> = <span class="number">1</span>			<span class="comment">&quot; 和 set nu 效果一样</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>变量默认是全局变量，也可以定义局部变量：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">g:ack_options</span> = <span class="string">&#x27;-s -H&#x27;</span>    <span class="comment">&quot; g: global</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:ack_program</span> = <span class="string">&#x27;ack&#x27;</span>      <span class="comment">&quot; s: local (to script)</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">l:foo</span> = <span class="string">&#x27;bar&#x27;</span>              <span class="comment">&quot; l: local (to function)</span></span><br></pre></td></tr></table></figure>
+
+<p>还有其他几种：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">w:foo</span> = <span class="string">&#x27;bar&#x27;</span>    <span class="comment">&quot; w: window</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">b:state</span> = <span class="string">&#x27;on&#x27;</span>   <span class="comment">&quot; b: buffer</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">t:state</span> = <span class="string">&#x27;off&#x27;</span>  <span class="comment">&quot; t: tab</span></span><br><span class="line"><span class="keyword">echo</span> <span class="variable">v:var</span>           <span class="comment">&quot; v: vim special</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><h4 id="netrw"><a href="#netrw" class="headerlink" title="netrw"></a>netrw</h4><p>netrw 是 vim 的一个官方插件，可以把当前目录的文件显示出来。</p>
+<p><img src="%E4%BD%BF%E7%94%A8vim%E5%B0%8F%E6%8A%80%E5%B7%A7/image-20210718125133330.png" alt="image-20210718125133330"></p>
+<p>由于 vim 自带，所以也不需要额外安装，稍微配置一下就能用了：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&quot;netrw settings</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:netrw_banner</span> = <span class="number">0</span>      <span class="comment">&quot;Removing the banner</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:netrw_liststyle</span> = <span class="number">3</span>   <span class="comment">&quot;Changing the directory view in netrw, 0 for thin, 1 for long, 2 for wide and 3 for tree</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:netrw_winsize</span> = <span class="number">17</span>    <span class="comment">&quot;Set the percentage of the netrw buffer&#x27;s window</span></span><br><span class="line"><span class="string">&quot;let g:netrw_keepdir = 0    &quot;</span>keep the current directory the same <span class="keyword">as</span> the browsing directory</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">g:NetrwIsOpen</span>=<span class="number">0</span>         <span class="comment">&quot;https://vi.stackexchange.com/questions/10988/toggle-explorer-window</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>! <span class="title">ToggleNetrw</span><span class="params">()</span></span></span><br><span class="line">    <span class="keyword">if</span> <span class="variable">g:NetrwIsOpen</span></span><br><span class="line">        <span class="keyword">let</span> i = <span class="built_in">bufnr</span>(<span class="string">&quot;$&quot;</span>)</span><br><span class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">if</span> (<span class="built_in">getbufvar</span>(i, <span class="string">&quot;&amp;filetype&quot;</span>) == <span class="string">&quot;netrw&quot;</span>)</span><br><span class="line">                <span class="keyword">silent</span> <span class="keyword">exe</span> <span class="string">&quot;bwipeout &quot;</span> . i</span><br><span class="line">            <span class="keyword">endif</span></span><br><span class="line">            <span class="keyword">let</span> i-=<span class="number">1</span></span><br><span class="line">        <span class="keyword">endwhile</span></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">g:NetrwIsOpen</span>=<span class="number">0</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">g:NetrwIsOpen</span>=<span class="number">1</span></span><br><span class="line">        <span class="keyword">silent</span> Lexplore</span><br><span class="line">    <span class="keyword">endif</span></span><br><span class="line"><span class="keyword">endfunction</span></span><br><span class="line"><span class="keyword">noremap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;F9&gt;</span> :<span class="keyword">call</span> ToggleNetrw()<span class="symbol">&lt;CR&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这样配置之后，目录窗口显示在左边，按 <code>&lt;F9&gt;</code> 触发，再按一下关闭。</p>
+<h4 id="taglist"><a href="#taglist" class="headerlink" title="taglist"></a>taglist</h4><p>taglist 可以显示宏、全局变量，函数等信息。</p>
+<p><img src="%E4%BD%BF%E7%94%A8vim%E5%B0%8F%E6%8A%80%E5%B7%A7/image-20210718154328979.png" alt="image-20210718154328979"></p>
+<p>需要安装 <code>ctags</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt install universal-ctags		<span class="comment"># 不同系统可能包名不一样</span></span></span><br></pre></td></tr></table></figure>
+
+<p>然后下载 <a target="_blank" rel="noopener" href="http://github.com/yegappan/taglist">taglist</a>，把下载的文件放在 <code>~/.vim/</code> 文件夹下。</p>
+<p>最后在 <code>~/.vimrc</code> 里配置：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> Tlist_Auto_Open=<span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> Tlist_Show_One_File=<span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> Tlist_Exit_OnlyWindow=<span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> Tlist_Ctags_Cmd=<span class="string">&quot;/usr/bin/ctags&quot;</span></span><br><span class="line"><span class="keyword">let</span> Tlist_Use_Right_Window=<span class="number">1</span></span><br><span class="line"><span class="keyword">noremap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;F10&gt;</span> :TlistToggle<span class="symbol">&lt;cr&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>按 <code>&lt;F10&gt;</code> 可以打开/关闭 taglist。</p>
+<h4 id="rainbow"><a href="#rainbow" class="headerlink" title="rainbow"></a>rainbow</h4><p>彩虹括号，让多层括号呈现不同的颜色。</p>
+<p><img src="%E4%BD%BF%E7%94%A8vim%E5%B0%8F%E6%8A%80%E5%B7%A7/image-20210718160850017.png" alt="image-20210718160850017"></p>
+<p>同样地，下载 <a target="_blank" rel="noopener" href="https://github.com/luochen1990/rainbow">rainbow</a> 到 <code>~/.vim/</code> 目录下，再配置一下：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">g:rainbow_active</span> = <span class="number">1</span> <span class="comment">&quot;0 if you want to enable it later via :RainbowToggle</span></span><br><span class="line"><span class="keyword">noremap</span> <span class="symbol">&lt;silent&gt;</span> <span class="symbol">&lt;F8&gt;</span> :RainbowToggle<span class="symbol">&lt;cr&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="cscope"><a href="#cscope" class="headerlink" title="cscope"></a>cscope</h4><p><code>taglist</code> 只能显示当前文件中定义了哪些函数，而一个大项目中经常把代码分散到多个文件中，这时候就需要用到 <code>cscope</code>。</p>
+<p>能过它，可以快速定位全局变量、结构体、函数等定义以及被调用的地方。</p>
+<p>需要下载 <code>cscope</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo apt install cscope</span></span><br></pre></td></tr></table></figure>
+
+<p>然后配置：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&quot;https://blog.csdn.net/mci2004/article/details/7944074</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">has</span>(<span class="string">&quot;cscope&quot;</span>)</span><br><span class="line">    <span class="keyword">set</span> csprg=/usr/bin/<span class="keyword">cscope</span></span><br><span class="line">    <span class="keyword">set</span> csto=<span class="number">0</span></span><br><span class="line">    <span class="keyword">set</span> <span class="keyword">cst</span></span><br><span class="line">    <span class="keyword">set</span> csverb</span><br><span class="line">    <span class="keyword">set</span> cspc=<span class="number">3</span></span><br><span class="line">    <span class="comment">&quot;add any database in current dir</span></span><br><span class="line">    <span class="keyword">set</span> nocsverb</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">filereadable</span>(<span class="string">&quot;cscope.out&quot;</span>)</span><br><span class="line">        <span class="keyword">cs</span> <span class="built_in">add</span> <span class="keyword">cscope</span>.out</span><br><span class="line">    <span class="comment">&quot;else search cscope.out elsewhere</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">let</span> cscope_file=<span class="built_in">findfile</span>(<span class="string">&quot;cscope.out&quot;</span>, <span class="string">&quot;.;&quot;</span>)</span><br><span class="line">        <span class="keyword">let</span> cscope_pre=<span class="built_in">matchstr</span>(cscope_file, <span class="string">&quot;.*/&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> !empty(cscope_file) &amp;&amp; <span class="built_in">filereadable</span>(cscope_file)</span><br><span class="line">            <span class="keyword">exe</span> <span class="string">&quot;cs add&quot;</span> cscope_file cscope_pre</span><br><span class="line">        <span class="keyword">endif</span></span><br><span class="line">    <span class="keyword">endif</span></span><br><span class="line">    <span class="keyword">set</span> csverb</span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span>ss :<span class="keyword">cs</span> <span class="keyword">find</span> s <span class="symbol">&lt;C-R&gt;</span>=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span>sg :<span class="keyword">cs</span> <span class="keyword">find</span> g <span class="symbol">&lt;C-R&gt;</span>=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span>sc :<span class="keyword">cs</span> <span class="keyword">find</span> <span class="keyword">c</span> <span class="symbol">&lt;C-R&gt;</span>=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span><span class="keyword">st</span> :<span class="keyword">cs</span> <span class="keyword">find</span> t <span class="symbol">&lt;C-R&gt;</span>=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span><span class="keyword">se</span> :<span class="keyword">cs</span> <span class="keyword">find</span> <span class="keyword">e</span> <span class="symbol">&lt;C-R&gt;</span>=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span><span class="keyword">sf</span> :<span class="keyword">cs</span> <span class="keyword">find</span> <span class="keyword">f</span> <span class="symbol">&lt;C-R&gt;</span>=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cfile&gt;&quot;</span>)<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span>sd :<span class="keyword">cs</span> <span class="keyword">find</span> d <span class="symbol">&lt;C-R&gt;</span>=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cword&gt;&quot;</span>)<span class="symbol">&lt;cr&gt;</span><span class="symbol">&lt;cr&gt;</span></span><br><span class="line"><span class="keyword">nnoremap</span> <span class="symbol">&lt;leader&gt;</span>si :<span class="keyword">cs</span> <span class="keyword">find</span> i ^<span class="symbol">&lt;C-R&gt;</span>=<span class="built_in">expand</span>(<span class="string">&quot;&lt;cfile&gt;&quot;</span>)<span class="symbol">&lt;cr&gt;</span>$<span class="symbol">&lt;cr&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>最后在项目目录下，执行以下命令，生成索引文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> cscope -Rbq		<span class="comment"># 每换一个项目，都要在执行一下</span></span></span><br></pre></td></tr></table></figure>
+
+<p>用 vim 打开项目中一个代码文件，移动到一个函数/全局变量/宏上，按 <code>&lt;C-]&gt;</code>，就可以跳转到它的定义处。</p>
+<p>按 <code>\ss</code>，找出它所有出现的地方，<code>\sc</code> 找出所有被调用的地方。</p>
+<p>效果如图：</p>
+<p><img src="%E4%BD%BF%E7%94%A8vim%E5%B0%8F%E6%8A%80%E5%B7%A7/image-20210718163313644.png" alt="image-20210718163313644"></p>
+<h4 id="LSP"><a href="#LSP" class="headerlink" title="LSP"></a>LSP</h4><p>cscope 是静态符号索引，如果一个函数有多个定义的地方，它并不能分辨究竟哪一个才是真正用到的。说到底，它只是按名字搜索了一下，然后把结果呈现给你看而已。</p>
+<p>LSP（Language Server Protocol）是一个协议，有了这个协议，服务端提供代码补全、纠错、定义引用查找、帮助文档等一系列服务。客户端和编辑器结合在一起，根据服务器传回来的信息，实现代码查找等功能。</p>
+<p>理论上说，LSP 实现的是语义层面的功能，也就是说，编辑器能检查，它都能检查出来。</p>
+<p>但是配置起来很麻烦，每种语言都有对应的 LSP Server，甚至每个项目可能还要再设置一下，我是没搞出来😂，不过这应该是以后的趋势，所以在这里提一下。</p>
+<p>配好之后，大概是这个样子：</p>
+<p><img src="%E4%BD%BF%E7%94%A8vim%E5%B0%8F%E6%8A%80%E5%B7%A7/image-20210718165617623.png" alt="image-20210718165617623"></p>
+<h3 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> nocompatible                            <span class="comment">&quot; 这个要放在最上面</span></span><br><span class="line"><span class="keyword">set</span> backspace=<span class="built_in">indent</span>,eol,start</span><br><span class="line"><span class="keyword">set</span> whichwrap=<span class="keyword">b</span>,s,&lt;,&gt;,[,],h,<span class="keyword">l</span>				<span class="comment">&quot; 设置这几个键移动时可以换行</span></span><br><span class="line"><span class="keyword">set</span> encoding=utf-<span class="number">8</span></span><br><span class="line"><span class="keyword">set</span> fileencodings=ucs-bom,utf-<span class="number">8</span>,cp932,cp936,gb18030,big5,euc-jp,euc-kr,latin1</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> mouse-=<span class="keyword">a</span>			   <span class="comment">&quot; 禁用鼠标</span></span><br><span class="line"><span class="string">&quot;set mouse=n			   &quot;</span> 只在普通模式下允许使用鼠标</span><br><span class="line"><span class="keyword">syntax</span> <span class="keyword">on</span>                  <span class="comment">&quot; syntax highlighting</span></span><br><span class="line"><span class="keyword">filetype</span> <span class="keyword">on</span></span><br><span class="line"><span class="keyword">filetype</span> plugin <span class="keyword">on</span></span><br><span class="line"><span class="keyword">filetype</span> <span class="built_in">indent</span> <span class="keyword">on</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> <span class="keyword">number</span>                 <span class="comment">&quot; 显示行号</span></span><br><span class="line"><span class="keyword">set</span> ruler                  <span class="comment">&quot; 在状态栏显示光标的当前位置</span></span><br><span class="line"><span class="keyword">set</span> rnu                    <span class="comment">&quot; 相对行号，可能不生效，需要手动执行</span></span><br><span class="line"><span class="keyword">set</span> showcmd                <span class="comment">&quot; 在底部显示，当前键入的指令</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> tabstop=<span class="number">4</span>              <span class="comment">&quot; 设定 tab 长度为 4</span></span><br><span class="line"><span class="keyword">set</span> expandtab              <span class="string">&quot; 用space替代tab的输入 &quot;</span>某些时候一定要 Tab，而不是<span class="number">4</span>个空格，比如 makefile 。。</span><br><span class="line"><span class="keyword">set</span> <span class="built_in">shiftwidth</span>=<span class="number">4</span>           <span class="comment">&quot; 设定 &lt;&lt; 和 &gt;&gt; 命令移动时的宽度为 4, code auto indent width</span></span><br><span class="line"><span class="keyword">set</span> softtabstop=<span class="number">4</span>          <span class="comment">&quot; 使得按退格键时可以一次删掉 4 个空格</span></span><br><span class="line"><span class="keyword">set</span> <span class="built_in">cindent</span>                <span class="comment">&quot; c 语言语法缩进</span></span><br><span class="line"><span class="keyword">set</span> autoindent             <span class="comment">&quot; copy indent from current line when starting a new line</span></span><br><span class="line"><span class="string">&quot;set textwidth=120         &quot;</span> <span class="keyword">break</span> lines when <span class="built_in">line</span> length increases，没啥用，需要手动 gggqG 应用</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> ignorecase smartcase   <span class="comment">&quot; 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感</span></span><br><span class="line"><span class="keyword">set</span> wrapscan               <span class="comment">&quot; 搜索到文件两端时重新搜索</span></span><br><span class="line"><span class="keyword">set</span> hlsearch               <span class="comment">&quot; 查找匹配高亮 ，用 :noh 取消</span></span><br><span class="line"><span class="keyword">set</span> incsearch              <span class="comment">&quot; 在查找过程中逐字匹配高亮</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> showmatch              <span class="comment">&quot; 插入括号时，短暂地跳转到匹配的对应括号</span></span><br><span class="line"><span class="keyword">set</span> matchtime=<span class="number">2</span>            <span class="comment">&quot; 短暂跳转到匹配括号的时间</span></span><br><span class="line"><span class="keyword">set</span> scrolloff=<span class="number">5</span>            <span class="comment">&quot; 距离屏幕最上或最下5行时scrollbar开始滚动</span></span><br><span class="line"><span class="keyword">set</span> hidden                 <span class="comment">&quot; 允许在有未保存的修改时切换缓冲区</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> wildmenu               <span class="comment">&quot; vim 自身命令行模式智能补全，好像没什么用</span></span><br><span class="line"><span class="keyword">set</span> showmode               <span class="comment">&quot; 显示insert visual等模式提示</span></span><br><span class="line"><span class="keyword">set</span> wrap                   <span class="comment">&quot; 自动折行，即太长的行分成几行显示</span></span><br><span class="line"><span class="keyword">set</span> noerrorbells           <span class="comment">&quot; 出错时，不要发出响声</span></span><br><span class="line"><span class="keyword">set</span> updatetime=<span class="number">300</span>         <span class="comment">&quot; 设定更新.swp 文件时间，milliseconds，此值影响taglist插件更新快慢</span></span><br><span class="line"><span class="keyword">set</span> fdm=manual             <span class="comment">&quot; 先选中行，再选中用zf折叠，或者设为syntax，用zr(zR),zm(zM),zo,zc控制</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&quot; 设置 @o 和 @p 两个宏</span></span><br><span class="line"><span class="keyword">let</span> @p = <span class="string">&#x27;&quot;0p&#x27;</span></span><br><span class="line"><span class="keyword">let</span> @o = <span class="string">&#x27;viw&quot;0p&#x27;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&quot; Abbreviations，自动纠错</span></span><br><span class="line"><span class="keyword">iabbrev</span> ture true</span><br><span class="line"><span class="keyword">iabbrev</span> flase false</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&quot; Statusline settings</span></span><br><span class="line"><span class="keyword">set</span> laststatus=<span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stl1</span> = <span class="string">&#x27;[%n] &#x27;</span>                            <span class="comment">&quot; Buffer number</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stl2</span> = <span class="string">&#x27;%f&#x27;</span>                               <span class="comment">&quot; Path to the file</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stl3</span> = <span class="string">&#x27;%1*%f%*&#x27;</span>                          <span class="comment">&quot; highlight the filename</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stl4</span> = <span class="string">&#x27;%m%r%h&#x27;</span>                           <span class="comment">&quot; Modified flag [+], Readonly flag [RO], Help buffer flag [help]</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stl5</span> = <span class="string">&#x27;%= &#x27;</span>                              <span class="comment">&quot; Switch to the right side</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stl6</span> = <span class="string">&quot;%13(0X%B&#x27;%b%) &quot;</span>                   <span class="comment">&quot; Value of character under cursor: hexadecimal&#x27;decimal</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stl7</span> = <span class="string">&#x27;%10(%3l,%02c%03V %2p%)%%&#x27;</span>         <span class="comment">&quot; Line number, Column number, Percentage through file in lines as in CTRL-G</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stl8</span> = <span class="string">&#x27; | &#x27;</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stl9</span> = <span class="string">&#x27;%&#123;(&amp;fenc==&quot;&quot;?&amp;enc:&amp;fenc)&#125;&#x27;</span>        <span class="comment">&quot; file encoding</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stla</span> = <span class="string">&#x27;%2*%&#123;(&amp;bomb?&quot;[B]&quot;:&quot;&quot;)&#125;%*&#x27;</span>         <span class="comment">&quot; with the f**king BOM?</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stlb</span> = <span class="string">&#x27;/&#x27;</span></span><br><span class="line"><span class="keyword">let</span> <span class="variable">s:stlc</span> = <span class="string">&#x27;%&#123;&amp;ff&#125; &#x27;</span>                          <span class="comment">&quot; fileformat: dos, unix, or mac?</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> &amp;background==<span class="string">&#x27;dark&#x27;</span></span><br><span class="line">    <span class="keyword">highlight</span> StatusLine cterm=bold ctermfg=<span class="number">251</span> ctermbg=<span class="number">240</span>         <span class="comment">&quot; status line of current window, see `hl-StatusLine`</span></span><br><span class="line">    <span class="keyword">highlight</span> StatusLineNC cterm=None ctermfg=<span class="number">248</span> ctermbg=<span class="number">235</span>       <span class="comment">&quot; status lines of not-current windows</span></span><br><span class="line">    <span class="keyword">highlight</span> User1 cterm=bold ctermfg=<span class="number">39</span> ctermbg=<span class="number">240</span>               <span class="comment">&quot; status line of filename</span></span><br><span class="line">    <span class="keyword">highlight</span> User2 cterm=bold ctermfg=<span class="number">208</span> ctermbg=<span class="number">240</span>              <span class="comment">&quot; status line of BOM</span></span><br><span class="line"><span class="keyword">elseif</span> &amp;background==<span class="string">&#x27;light&#x27;</span></span><br><span class="line">    <span class="keyword">highlight</span> StatusLine cterm=bold ctermfg=<span class="number">16</span> ctermbg=<span class="number">250</span></span><br><span class="line">    <span class="keyword">highlight</span> StatusLineNC cterm=None ctermfg=<span class="number">235</span> ctermbg=<span class="number">252</span></span><br><span class="line">    <span class="keyword">highlight</span> User1 cterm=bold ctermfg=<span class="number">161</span> ctermbg=<span class="number">250</span></span><br><span class="line">    <span class="keyword">highlight</span> User2 cterm=bold ctermfg=<span class="number">196</span> ctermbg=<span class="number">250</span></span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line">fun! BuildStatusLine(nr)</span><br><span class="line">    <span class="comment">&quot; https://github.com/vim/vim/commit/1c6fd1e100fd0457375642ec50d483bcc0f61bb2</span></span><br><span class="line">    <span class="keyword">if</span> <span class="variable">g:statusline_winid</span> == win_getid()        <span class="comment">&quot; active window</span></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">l:width</span> = <span class="built_in">winwidth</span>(<span class="number">0</span>)                           <span class="comment">&quot; the width of the current window</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="variable">l:width</span> &lt; <span class="number">32</span>                                     <span class="comment">&quot; if the window&#x27;s width is too small,</span></span><br><span class="line">            <span class="keyword">let</span> <span class="variable">l:stl</span> = <span class="variable">s:stl1</span> . <span class="variable">s:stl3</span> . <span class="variable">s:stl4</span>            <span class="comment">&quot; discard the right part of statusline</span></span><br><span class="line">        <span class="keyword">elseif</span> <span class="variable">l:width</span> &lt; <span class="number">45</span></span><br><span class="line">            <span class="keyword">let</span> <span class="variable">l:stl</span> = <span class="variable">s:stl1</span> . <span class="variable">s:stl3</span> . <span class="variable">s:stl4</span> . <span class="variable">s:stl5</span> . <span class="variable">s:stl7</span></span><br><span class="line">        <span class="keyword">elseif</span> <span class="variable">l:width</span> &lt; <span class="number">65</span></span><br><span class="line">            <span class="keyword">let</span> <span class="variable">l:stl</span> = <span class="variable">s:stl1</span> . <span class="variable">s:stl3</span> . <span class="variable">s:stl4</span> . <span class="variable">s:stl5</span> . <span class="variable">s:stl6</span> . <span class="variable">s:stl7</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">let</span> <span class="variable">l:stl</span> = <span class="variable">s:stl1</span> . <span class="variable">s:stl3</span> . <span class="variable">s:stl4</span> . <span class="variable">s:stl5</span> . <span class="variable">s:stl6</span> . <span class="variable">s:stl7</span> . <span class="variable">s:stl8</span> . <span class="variable">s:stl9</span> . <span class="variable">s:stla</span> . <span class="variable">s:stlb</span> . <span class="variable">s:stlc</span></span><br><span class="line">        <span class="keyword">endif</span></span><br><span class="line">    <span class="keyword">else</span>                                        <span class="comment">&quot; inactive window</span></span><br><span class="line">        <span class="keyword">let</span> <span class="variable">l:stl</span> = <span class="variable">s:stl1</span> . <span class="variable">s:stl2</span> . <span class="variable">s:stl4</span></span><br><span class="line">    <span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="variable">l:stl</span></span><br><span class="line"><span class="keyword">endf</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&quot; winnr() here is always the number of the *active* window</span></span><br><span class="line"><span class="keyword">set</span> statusline=%!BuildStatusLine(<span class="built_in">winnr</span>())</span><br><span class="line"></span><br><span class="line"><span class="keyword">augroup</span> statusline_autocmd_group</span><br><span class="line">  autocmd!</span><br><span class="line">    <span class="keyword">autocmd</span> Filetype <span class="built_in">taglist</span> <span class="keyword">setlocal</span> statusline=\ %<span class="keyword">y</span>               <span class="comment">&quot; Type of file or &#x27;%&#123;&amp;ft&#125;&#x27;</span></span><br><span class="line">    <span class="keyword">autocmd</span> Filetype netrw <span class="keyword">setlocal</span> statusline=%&#123;<span class="variable">b:netrw_curdir</span>&#125;/   <span class="comment">&quot; show current browsing directory</span></span><br><span class="line"><span class="keyword">augroup</span> END</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="扩展阅读"><a href="#扩展阅读" class="headerlink" title="扩展阅读"></a>扩展阅读</h2><p>官方有个教程，在终端中执行这个命令可以查看：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vimtutor zh				<span class="comment"># 打开中文教程</span></span></span><br></pre></td></tr></table></figure>
+
+<p>照着里面的提示做就行了。</p>
+<p>还有一些文章：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lijia0511/p/5644566.html">vim简单使用教程 - 走在大牛的路上 - 博客园</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/markleaf/p/7808817.html">VIM常用快捷键 - markleaf - 博客园</a></p>
+<p><a target="_blank" rel="noopener" href="http://c.biancheng.net/linux/Vim.html">Vim命令_Linux Vim命令：替换文本内容</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ii1245712564/article/details/46960387">Vim技巧之四大模式 vim可视模式 qeesung的专栏-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903859110805517">Vim 2 高级用法</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ii1245712564/article/details/46496347">Vim技巧之重复_qeesung的专栏-CSDN博客_vim 重复</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/oxspirt/p/9486883.html">vim 多窗口，多tab编辑 - 立志做一个好的程序员 - 博客园</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/0541a67c6d3f">vimdiff 使用教程 - 简书</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/dengxiayehu/article/details/6330200">Cscope的使用（领略Vim + Cscope的强大魅力）_音视频之路-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37290578">Vim 8 中 C/C++ 符号索引：LSP 篇 - 知乎</a></p>
+<p><a target="_blank" rel="noopener" href="https://jdhao.github.io/2019/11/03/vim_custom_statusline/">Building A Vim Statusline from Scratch - jdhao’s blog</a></p>
+<p><a target="_blank" rel="noopener" href="https://learnvimscriptthehardway.stevelosh.com/">Learn Vimscript the Hard Way</a></p>
+<p><a target="_blank" rel="noopener" href="https://devhints.io/vimscript">Vim scripting cheatsheet</a></p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#normal-mode"><span class="toc-text">normal mode</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E4%B8%8E%E7%BF%BB%E9%A1%B5"><span class="toc-text">移动与翻页</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D"><span class="toc-text">快速定位</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">文本操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#insert-mode"><span class="toc-text">insert mode</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#replace-mode"><span class="toc-text">replace mode</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#visual-mode"><span class="toc-text">visual mode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E7%AA%97%E5%8F%A3"><span class="toc-text">多窗口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AF%94%E8%BE%83%E5%B7%AE%E5%BC%82"><span class="toc-text">比较差异</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2"><span class="toc-text">替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6"><span class="toc-text">输入特殊字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%92%A4%E9%94%80%E5%92%8C%E5%8F%8D%E6%92%A4%E9%94%80"><span class="toc-text">撤销和反撤销</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%A9%E8%BF%9B"><span class="toc-text">缩进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E6%8D%A2"><span class="toc-text">大小写转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%AF%B9%E8%B1%A1"><span class="toc-text">文本对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%AA%E5%88%87%E6%9D%BF%E4%B8%8E%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">剪切板与寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8F"><span class="toc-text">宏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2"><span class="toc-text">单词搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E8%AE%B0%E4%B8%8E%E8%B7%B3%E8%BD%AC"><span class="toc-text">标记与跳转</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="toc-text">自动补全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E9%94%AE%E6%98%A0%E5%B0%84"><span class="toc-text">按键映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3"><span class="toc-text">帮助文档</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vim-script"><span class="toc-text">vim script</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6"><span class="toc-text">插件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#netrw"><span class="toc-text">netrw</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#taglist"><span class="toc-text">taglist</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rainbow"><span class="toc-text">rainbow</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cscope"><span class="toc-text">cscope</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LSP"><span class="toc-text">LSP</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%85%8D%E7%BD%AE"><span class="toc-text">其他配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E9%98%85%E8%AF%BB"><span class="toc-text">扩展阅读</span></a>
+  </div>
+</aside>
+  
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: snoire@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2020 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+  </footer>
+</div>
+
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/zshguide/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+  
+  
+  
+  
+</div>
+    
+
+
+
+
+
+    
+  </body>
+</html>
