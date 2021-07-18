@@ -210,7 +210,7 @@
 <h1 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h1><p><a target="_blank" rel="noopener" href="http://c.biancheng.net/c/">参考</a></p>
 <h2 id="运算符优先级"><a href="#运算符优先级" class="headerlink" title="运算符优先级"></a>运算符优先级</h2><p>这个必须得单独列一章啊</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yuliying/article/details/72898132">C语言运算符优先级</a></p>
-<p><img src="Learning-notes/Operator-priority.png" alt="运算符优先级"></p>
+<p><img src="/passages/Learning-notes/Operator-priority.png" alt="运算符优先级"></p>
 <p><strong>说明：</strong></p>
 <p>​    <strong>同一优先级的运算符，运算次序由结合方向所决定。    简单记就是：！ &gt; 算术运算符 &gt; 关系运算符 &gt; &amp;&amp; &gt; || &gt; 赋值运算符</strong></p>
 <h2 id="ASCII-表"><a href="#ASCII-表" class="headerlink" title="ASCII 表"></a>ASCII 表</h2><table>
@@ -2170,8 +2170,8 @@ str[i] = &#39;\0&#39;;
 <li>后缀操作符：括号<code>( )</code>表示这是一个函数，方括号<code>[ ]</code>表示这是一个数组。</li>
 <li>前缀操作符：星号<code>*</code>表示“指向xxx的指针”。</li>
 </ul>
-<p><img src="Learning-notes/190712_154218.png" alt="例4"></p>
-<p><img src="Learning-notes/190712_155003.png" alt="例5"></p>
+<p><img src="/passages/Learning-notes/190712_154218.png" alt="例4"></p>
+<p><img src="/passages/Learning-notes/190712_155003.png" alt="例5"></p>
 <p>常见指针变量的定义：</p>
 <table>
 <thead>
@@ -2452,7 +2452,7 @@ str[i] = &#39;\0&#39;;
 <p>但是，在这 4GB 的地址空间中，要拿出一部分给操作系统内核使用，应用程序无法直接访问这一段内存，这一部分内存地址被称为<strong>内核空间</strong>（Kernel Space）。</p>
 <p>Windows 在默认情况下会将高地址的 2GB 空间分配给内核（也可以配置为 1GB），而 Linux 默认情况下会将高地址的 1GB 空间分配给内核。也就是说，应用程序只能使用剩下的 2GB 或 3GB 的地址空间，称为<strong>用户空间</strong>（User Space）。 </p>
 <p>Linux 下 32 位环境的一种经典内存模型：</p>
-<p><img src="Learning-notes/190716_141748.jpg" alt="Linux下32位环境的一种经典内存模型"></p>
+<p><img src="/passages/Learning-notes/190716_141748.jpg" alt="Linux下32位环境的一种经典内存模型"></p>
 <p>对各个内存分区的说明：</p>
 <table>
 <thead>
@@ -2475,7 +2475,7 @@ str[i] = &#39;\0&#39;;
 </tr>
 <tr>
 <td align="center">堆区(heap)</td>
-<td>一般由程序员分配和释放，若程序员不释放，程序运行结束时由操作系统回收。malloc()、calloc()、free() 等函数操作的就是这块内存。  <br />注意：这里所说的堆区与数据结构中的堆不是一个概念，堆区的分配方式倒是类似于链表。</td>
+<td>一般由程序员分配和释放，若程序员不释放，程序运行结束时由操作系统回收。malloc()、calloc()、free() 等函数操作的就是这块内存。  <br>注意：这里所说的堆区与数据结构中的堆不是一个概念，堆区的分配方式倒是类似于链表。</td>
 </tr>
 <tr>
 <td align="center">动态链接库</td>
@@ -3099,7 +3099,7 @@ str[i] = &#39;\0&#39;;
 </thead>
 <tbody><tr>
 <td>r</td>
-<td>- 列出目录清单<br />- shell 名称展开(这个是基于上面的)</td>
+<td>- 列出目录清单<br>- shell 名称展开(这个是基于上面的)</td>
 </tr>
 <tr>
 <td>w</td>
@@ -3107,7 +3107,7 @@ str[i] = &#39;\0&#39;;
 </tr>
 <tr>
 <td>x</td>
-<td>- 进入目录<br />- 访问目录内具体的文件信息(需要知道文件名)<br />- 读写文件内容<br />+ 注意，虽然创建、移动、改名和删除目录中的文件是 <code>w</code> 的功能<br />+ 但是，如果你没有 <code>x</code> 的进入目录和访问文件的权限<br />+ 你依然不能创建、移动、改名或者删除目录中的文件<br />+ 所以说如果要使 <code>w</code> 生效，必须设置 <code>x</code></td>
+<td>- 进入目录<br>- 访问目录内具体的文件信息(需要知道文件名)<br>- 读写文件内容<br>+ 注意，虽然创建、移动、改名和删除目录中的文件是 <code>w</code> 的功能<br>+ 但是，如果你没有 <code>x</code> 的进入目录和访问文件的权限<br>+ 你依然不能创建、移动、改名或者删除目录中的文件<br>+ 所以说如果要使 <code>w</code> 生效，必须设置 <code>x</code></td>
 </tr>
 </tbody></table>
 <h3 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h3><p>虽然我们通常看到一个八进制的权限掩码用三位数字来表示，但是从技术层面上来讲， 用四位数字来表示它更<br>确切些。为什么呢？因为，除了读取，写入，和执行权限之外，还有 其它的，较少用到的权限设置。</p>
@@ -3223,11 +3223,11 @@ str[i] = &#39;\0&#39;;
 </thead>
 <tbody><tr>
 <td>IFS</td>
-<td>由 <space> 或 <tab> 或 <enter> 三者之一组成(我们常用 space )。</td>
+<td>由 <space> 或 <tab> 或 <enter> 三者之一组成(我们常用 space )。</enter></tab></space></td>
 </tr>
 <tr>
 <td>CR</td>
-<td>由 <enter> 产生。</td>
+<td>由 <enter> 产生。</enter></td>
 </tr>
 <tr>
 <td>=</td>
@@ -3430,7 +3430,7 @@ str[i] = &#39;\0&#39;;
 
 
 <p>grep 的正则表达式，手册页上讲得挺清楚的，我就不翻译了。</p>
-<p><img src="Learning-notes/grep-manual.png" alt="grep-manual"></p>
+<p><img src="/passages/Learning-notes/grep-manual.png" alt="grep-manual"></p>
 <p>主要分为 <code>BRE</code> 和 <code>ERE</code> ，<strong>在 grep 中</strong> ，这两个可以做到相同的事。区别在于， <code>?</code> 、<code>+</code>、<code>&#123;</code>、<code>|</code>、<code>(</code> 和 <code>)</code> 这几个字符（是不是少了个 <code>&#125;</code>？），如果不加 <code>\</code> 转义，那么在 <code>BRE</code> 中，它们就会作为普通字符参与字符匹配。</p>
 <p>相反，在 <code>ERE</code> 中，这几个字符本身就是元字符，如果给这几个字符加了 <code>\</code> 转义，它们反而会变成普通字符。</p>
 <h3 id="awk-抽取域"><a href="#awk-抽取域" class="headerlink" title="awk - 抽取域"></a>awk - 抽取域</h3><p>这里有个<a target="_blank" rel="noopener" href="https://www.linuxidc.com/Linux/2017-10/147270.htm">教程</a>，讲得挺详细的。但是有些语法可能不对。</p>
@@ -3647,7 +3647,7 @@ str[i] = &#39;\0&#39;;
 <p><strong>第一步</strong>：执行[option]相关内容，也就是<code>-f，-F，-v</code>选项内容。</p>
 <p><strong>第二步</strong>：执行BEGIN{action;… } 语句块中的语句。BEGIN 语句块在awk开始从输入流中读取行之前被执行，这是一个可选的语句块，比如变量初始化、打印输出表格的表头等语句通常可以写在BEGIN 语句块中。</p>
 <p><strong>第三步</strong>：从文件或标准输入(stdin) 读取每一行，然后执行pattern{action;… }语句块，它逐行扫描文件，从第一行到最后一行重复这个过程，直到文件全部被读取完毕。pattern语句块中的通用命令是最重要的部分，也是可选的。如果没有提供pattern 语句块，则默认执行{ print } ，即打印每一个读取到的行，awk 读取的每一行都会执行该语句块。</p>
-<p><strong>第四步</strong>：当读至输入流末尾时，<a href="">也就是所有行都被读取完执行完后</a>，再执行END{action;…} 语句块。END 语句块在awk从输入流中读取完所有的行之后即被执行，比如打印所有行的分析结果这类信息汇总都是在END 语句块中完成，它也是一个可选语句块。</p>
+<p><strong>第四步</strong>：当读至输入流末尾时，<a href>也就是所有行都被读取完执行完后</a>，再执行END{action;…} 语句块。END 语句块在awk从输入流中读取完所有的行之后即被执行，比如打印所有行的分析结果这类信息汇总都是在END 语句块中完成，它也是一个可选语句块。</p>
 <p>看上面的<strong>例5</strong>，都没有 BEGIN 和 END，只有中间的部分。</p>
 <ol>
 <li>其中 <code>awk &#39;$4~/[Gg]reen/ &#123;print $0&#125;&#39; awk.de</code> 是标准的 <code>pattern&#123;action;… &#125;</code> 模式，也就是 正则+打印。</li>
@@ -4159,7 +4159,7 @@ str[i] = &#39;\0&#39;;
 <h4 id="Taglist-左"><a href="#Taglist-左" class="headerlink" title="Taglist(左)"></a>Taglist(左)</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">:Tlist 打开/关闭侧栏</span><br><span class="line">Ctrl+m   打开Taglist</span><br><span class="line">Ctrl+ww  左右切换</span><br><span class="line"></span><br><span class="line">在taglist窗口中，可以使用下面的快捷键：</span><br><span class="line">&lt;CR&gt;          跳到光标下tag所定义的位置，用鼠标双击此tag功能也一样</span><br><span class="line">o             在一个新打开的窗口中显示光标下tag</span><br><span class="line">&lt;Space&gt;       显示光标下tag的原型定义</span><br><span class="line">u             更新taglist窗口中的tag</span><br><span class="line">s             更改排序方式，在按名字排序和按出现顺序排序间切换</span><br><span class="line">x             taglist窗口放大和缩小，方便查看较长的tag</span><br><span class="line">+             打开一个折叠，同zo</span><br><span class="line">-             将tag折叠起来，同zc</span><br><span class="line">*             打开所有的折叠，同zR</span><br><span class="line">=             将所有tag折叠起来，同zM</span><br><span class="line">[[            跳到前一个文件</span><br><span class="line">]]            跳到后一个文件</span><br><span class="line">q             <span class="comment">//关闭taglist窗口</span></span><br><span class="line">&lt;F1&gt;          显示帮助</span><br></pre></td></tr></table></figure>
 
 <h4 id="nerdtree-右"><a href="#nerdtree-右" class="headerlink" title="nerdtree(右)"></a>nerdtree(右)</h4><blockquote>
-<p>TlistToggle <F10></p>
+<p>TlistToggle <F10></F10></p>
 </blockquote>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">ctrl + n        <span class="comment">//打开</span></span><br><span class="line">    </span><br><span class="line">ctrl + w + h    光标 focus 左侧树形目录</span><br><span class="line">ctrl + w + l    光标 focus 右侧文件显示窗口</span><br><span class="line">ctrl + w + w    光标自动在左右侧窗口切换</span><br><span class="line">ctrl + w + r    移动当前窗口的布局位置</span><br><span class="line">o       在已有窗口中打开文件、目录或书签，并跳到该窗口</span><br><span class="line">go      在已有窗口 中打开文件、目录或书签，但不跳到该窗口</span><br><span class="line">t       在新 Tab 中打开选中文件/书签，并跳到新 Tab</span><br><span class="line">T       在新 Tab 中打开选中文件/书签，但不跳到新 Tab</span><br><span class="line">i       split 一个新窗口打开选中文件，并跳到该窗口</span><br><span class="line">gi      split 一个新窗口打开选中文件，但不跳到该窗口</span><br><span class="line">s       vsplit 一个新窗口打开选中文件，并跳到该窗口</span><br><span class="line">gs      vsplit 一个新 窗口打开选中文件，但不跳到该窗口</span><br><span class="line">!       执行当前文件</span><br><span class="line">O       递归打开选中 结点下的所有目录</span><br><span class="line">x       合拢选中结点的父目录</span><br><span class="line">X       递归 合拢选中结点下的所有目录</span><br><span class="line">e       Edit the current dif</span><br><span class="line">双击    相当于 NERDTree-o</span><br><span class="line">中键    对文件相当于 NERDTree-i，对目录相当于 NERDTree-e</span><br><span class="line">D       删除当前书签</span><br><span class="line">P       跳到根结点</span><br><span class="line">p       跳到父结点</span><br><span class="line">K       跳到当前目录下同级的第一个结点</span><br><span class="line">J       跳到当前目录下同级的最后一个结点</span><br><span class="line">k       跳到当前目录下同级的前一个结点</span><br><span class="line">j       跳到当前目录下同级的后一个结点</span><br><span class="line">C       将选中目录或选中文件的父目录设为根结点</span><br><span class="line">u       将当前根结点的父目录设为根目录，并变成合拢原根结点</span><br><span class="line">U       将当前根结点的父目录设为根目录，但保持展开原根结点</span><br><span class="line">r       递归刷新选中目录</span><br><span class="line">R       递归刷新根结点</span><br><span class="line">m       显示文件系统菜单</span><br><span class="line">cd      将 CWD 设为选中目录</span><br><span class="line">I       切换是否显示隐藏文件</span><br><span class="line">f       切换是否使用文件过滤器</span><br><span class="line">F       切换是否显示文件</span><br><span class="line">B       切换是否显示书签</span><br><span class="line">q       <span class="comment">//关闭 NerdTree 窗口</span></span><br><span class="line">?       切换是否显示 Quick Help</span><br><span class="line"></span><br><span class="line">切换标签页</span><br><span class="line">:tabnew [++opt选项] ［＋cmd］ 文件      建立对指定文件新的tab</span><br><span class="line">:tabc   关闭当前的 tab</span><br><span class="line">:tabo   关闭所有其他的 tab</span><br><span class="line">:tabs   查看所有打开的 tab</span><br><span class="line">:tabp   前一个 tab</span><br><span class="line">:tabn   后一个 tab</span><br></pre></td></tr></table></figure>
 
@@ -4760,8 +4760,8 @@ str[i] = &#39;\0&#39;;
 
 
 
-<h3 id="sockaddr-in结构体"><a href="#sockaddr-in结构体" class="headerlink" title="sockaddr_in结构体"></a>sockaddr_in结构体</h3><p><img src="Learning-notes/sockaddr_in%E7%BB%93%E6%9E%84%E4%BD%93.jpg" alt="sockaddr_in结构体"></p>
-<p><img src="Learning-notes/sockaddr%E4%B8%8Esockaddr_in.jpg" alt="sockaddr_in结构体"></p>
+<h3 id="sockaddr-in结构体"><a href="#sockaddr-in结构体" class="headerlink" title="sockaddr_in结构体"></a>sockaddr_in结构体</h3><p><img src="/passages/Learning-notes/sockaddr_in%E7%BB%93%E6%9E%84%E4%BD%93.jpg" alt="sockaddr_in结构体"></p>
+<p><img src="/passages/Learning-notes/sockaddr%E4%B8%8Esockaddr_in.jpg" alt="sockaddr_in结构体"></p>
 <p>sockaddr_in 与 sockaddr 长度相同，强制转换不会丢失数据。</p>
 <p>因为给 sa_data 赋值很难，所以需要这样转换，而且还有 ipv6 的地址呢，使用sockaddr_in6，这样也方便一点。</p>
 <p><strong>send()</strong> 返回实际发送的数据的字节数–它可能小于你要求发送的数目！</p>
